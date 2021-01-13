@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Sibur;assembly=Sibur"       
+             x:Class="Sibur.MainPage">
+    <ContentPage.Resources>
+        <StyleSheet Source="/mainstylesheet.css" />
+    </ContentPage.Resources>
+    <StackLayout>
+        <Image Source="Sibur_logo.png" HorizontalOptions="Center" Margin="0,40,0,20" />
+        <Label Text="ВХОД" FontSize="24" HorizontalOptions="Center"/>
+        <Label Text="Логин" Margin="54,0,0,0"/>
+        <Frame BorderColor="#008993" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+            <local:CustomEntry x:Name="Login" Margin="30,0,30,0"></local:CustomEntry>
+        </Frame>
+        <Label Text="Пароль" Margin="54,0,0,0"/>
+        <Frame BorderColor="#008993" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+            <Grid  Margin="0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <local:CustomEntry IsPassword="True" x:Name="Password" Margin="20,0,40,0" Grid.Column="0" Grid.ColumnSpan="2"></local:CustomEntry>
+                <Image Source="Eye.png" Margin="0,0,10,0" HorizontalOptions="End" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPass" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Frame>
+        <Button Clicked="GoButton" Margin="30" Text="Войти" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
+        <Label Text="Регистрация" TextDecorations="Underline" FontSize="24" HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
+        </Label>               
+        <Label Text="Войти с помощью" FontSize="18" HorizontalOptions="Center" Margin="0,30,0,10"/>
+        <Image Source="Shape.png" HorizontalOptions="Center">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GotoFacebook" NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+    </StackLayout>
+</ContentPage>
