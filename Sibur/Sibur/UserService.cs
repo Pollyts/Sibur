@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
-using Newtonsoft;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Sibur.Models;
+using System.Net;
 
 namespace Sibur
 {
@@ -28,6 +30,21 @@ namespace Sibur
         //}
 
         // добавляем одного друга
+
+        public async Task<User> Add(User usr)
+        {
+            HttpClient client = GetClient();
+            var response = await client.PostAsync(Url,
+                new StringContent(
+                    JsonConvert.SerializeObject(usr),
+                    Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonConvert.DeserializeObject<User>(
+                await response.Content.ReadAsStringAsync());
+        }
         public async Task Add()
         {           
             string myJson = @"{
@@ -45,27 +62,18 @@ namespace Sibur
         ""UserImg"": [],
         ""UserQuests"": []
 }";
-            using (var client = new HttpClient())
-            {
-                HttpResponseMessage response1 = null;
-                var content = new StringContent(myJson, Encoding.UTF8, "text/json");
+            
 
-                response1 = client.PostAsync(Url, content).Result;
+                //HttpClient client = GetClient();
+                //var response = await client.PostAsync(Url,
+                //    new StringContent(myJson, Encoding.UTF8, "text/json"));
 
-                //response = await client.PostAsync(url, content);
+                //if (response.StatusCode != HttpStatusCode.OK)
+                //    return null;
 
-
+                //return JsonConvert.DeserializeObject<Friend>(
+                //    await response.Content.ReadAsStringAsync());
             }
-            //HttpClient client = GetClient();
-            //    var response = await client.PostAsync(Url,
-            //        new StringContent(myJson));
-
-            //    if (response.StatusCode != HttpStatusCode.OK)
-            //        return null;
-
-            //    return JsonConvert.DeserializeObject<User>(
-            //        await response.Content.ReadAsStringAsync());
-        }
         //// обновляем друга
         //public async Task<User> Update(User friend)
         //{

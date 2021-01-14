@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Sibur;assembly=Sibur"
+             xmlns:local="clr-namespace:Sibur.Views;assembly=Sibur"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-             x:Class="Sibur.TabbedPage1"
+             x:Class="Sibur.Views.TabbedPage1"
             BarBackgroundColor="#008993">
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
-        <local:Page1 IconImageSource="Events.png"/>
+        <local:Profile IconImageSource="Events.png"/>
         <local:Page2 IconImageSource="Calendar.png"/>
         <local:Page3 IconImageSource="List.png"/>
         <local:Page4 IconImageSource="Profile.png"/>

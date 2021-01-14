@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sibur
+namespace Sibur.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Registration : ContentPage
+    public partial class Page3 : ContentPage
     {
-        public Registration()
+        public Page3()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

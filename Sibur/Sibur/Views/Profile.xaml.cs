@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sibur
+namespace Sibur.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class Profile : ContentPage
     {
-        public Page1()
+        public Profile()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
