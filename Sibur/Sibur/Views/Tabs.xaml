@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Sibur.Views;assembly=Sibur"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-             x:Class="Sibur.Views.TabbedPage1"
+             x:Class="Sibur.Views.Tabs"
             BarBackgroundColor="#008993">
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Sibur.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabbedPage1 : TabbedPage
+    public partial class Tabs : TabbedPage
     {
-        public TabbedPage1()
+        public Tabs()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);

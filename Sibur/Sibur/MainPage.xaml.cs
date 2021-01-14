@@ -22,18 +22,15 @@ namespace Sibur
         }
         private async void GoButton(object sender, System.EventArgs e)
         {
-            //Button button = (Button)sender;
-            //button.Text = "Нажато!";
-            //button.BackgroundColor = Color.Red;
-            await Navigation.PushAsync(new TabbedPage1());
+            await Navigation.PushAsync(new Tabs());
         }
         public void GotoFacebook(object sender, EventArgs args)
         {
            
         }
-        private void TapGestureRecognizer_OnTapped(object sender, EventArgs args)
+        private async void TapGestureRecognizer_OnTapped(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new Registration());
+            await Navigation.PushAsync(new Registration());
         }
 
     }    

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Sibur;assembly=Sibur"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Sibur.Views.Registration">
     <ContentPage.Content>
         <ScrollView>
@@ -14,27 +13,27 @@
                     <StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
                             <Label VerticalOptions="Center" Text="Почта" FontSize="17"/>
-                            <Entry VerticalOptions="Center" x:Name="E_Mail" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
+                            <Entry Text="{Binding NewUser.Mail}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
                             <Label VerticalOptions="Center" Text="Пароль" FontSize="17"/>
-                            <Entry VerticalOptions="Center" IsPassword="true" x:Name="E_Password" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
+                            <Entry Text="{Binding NewUser.Password}" VerticalOptions="Center" IsPassword="true" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
                             <Label VerticalOptions="Center" Text="ФИО" FontSize="17"/>
-                            <Entry VerticalOptions="Center" x:Name="E_FIO" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
+                            <Entry Text="{Binding NewUser.Name}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
                             <Label VerticalOptions="Center" Text="Дата рождения" FontSize="17"/>
-                            <DatePicker Format="D" VerticalOptions="Center" x:Name="E_BirthDate" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
+                            <DatePicker Format="D" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
                             <Label VerticalOptions="Center" Text="Должность" FontSize="17"/>
-                            <Entry VerticalOptions="Center" x:Name="E_Post" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
+                            <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                <Button Clicked="Button_Clicked" Margin="30" Text="Зарегистрироваться" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
+                <Button Text="Зарегистрироваться" Command="{Binding ViewModel.SaveUserCommand}" CommandParameter="{Binding NewUser}" Margin="30" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
