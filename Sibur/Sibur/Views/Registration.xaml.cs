@@ -16,14 +16,13 @@ namespace Sibur.Views
     {
         public User NewUser { get; private set; }
         public RegistrationViewModel ViewModel { get; private set; }
-        public Registration()
-        {            
+        public Registration(INavigation n)
+        {                    
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NewUser = new User();
-            ViewModel = new RegistrationViewModel();
+            ViewModel = new RegistrationViewModel() {Navigation = n};
             this.BindingContext = this;
-            NewUser.Name = "HHHHHHHHH";
         }
     }
 }

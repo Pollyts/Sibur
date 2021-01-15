@@ -30,7 +30,7 @@ namespace Sibur
         }
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new Registration());
+            await Navigation.PushAsync(new Registration(this.Navigation));
         }
 
     }    

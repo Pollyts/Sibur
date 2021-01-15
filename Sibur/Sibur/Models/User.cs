@@ -15,7 +15,6 @@ namespace Sibur.Models
             MailConfirm = false;
             Currency = 0;
             Thanks = 0;
-            Role = "User";
             EngPoints = 0;
         }
         public int Id { get; set; }

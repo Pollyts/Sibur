@@ -53,9 +53,7 @@ namespace Sibur.ViewModels
             User usr = userObject as User;
             if (usr != null)
             {
-                //IsBusy = true;
-                // редактирование
-
+                IsBusy = true;
                 Globals.CurrentUser = await db.Add(usr);
             }
             Back();
