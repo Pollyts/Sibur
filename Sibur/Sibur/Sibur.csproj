@@ -39,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Entrance.xaml.cs">
+      <DependentUpon>Entrance.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>

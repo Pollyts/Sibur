@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Sibur.Views.Registration">
     <ContentPage.Content>
+        <StackLayout>
         <ScrollView>
             <StackLayout>
                 <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
@@ -34,7 +35,14 @@
                     </StackLayout>
                 </Frame>
                 <Button Text="Зарегистрироваться" Command="{Binding ViewModel.SaveUserCommand}" CommandParameter="{Binding NewUser}" Margin="30" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
-            </StackLayout>
+            </StackLayout>            
         </ScrollView>
+            <!--<StackLayout IsVisible="{Binding ViewModel.IsBusy}"
+                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
+            <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
+                <ActivityIndicator IsRunning="{Binding ViewModel.IsBusy}" Color="Red" >
+            </ActivityIndicator>
+        </StackLayout>-->
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -34,25 +34,36 @@ namespace Sibur
             return JsonConvert.DeserializeObject<User>(
                 await response.Content.ReadAsStringAsync());
         }
-//        public async Task Add()
-//        {           
-//            string myJson = @"{
-//        ""Mail"": ""123456"",
-//        ""Password"": ""qwerty"",
-//        ""MailConfirm"": true,
-//        ""Name"": ""qqqq"",
-//        ""Currency"": 0,
-//        ""Thanks"": 0,
-//        ""Role"": null,
-//        ""EngPoints"": 0,
-//        ""ActAttendings"": [],
-//        ""ActChat"": null,
-//        ""QuestTaskUsers"": [],
-//        ""UserImg"": [],
-//        ""UserQuests"": []
-//}";
-            
+        public async Task<User> Entry(string mail, string password)
+        {
+            HttpClient client = GetClient();
+            string requesturi = Url + $"/?mail={mail}&pass={password}";
+            var response = await client.GetAsync(requesturi);
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
 
- 
+            return JsonConvert.DeserializeObject<User>(
+                await response.Content.ReadAsStringAsync());
+        }
+        //        public async Task Add()
+        //        {           
+        //            string myJson = @"{
+        //        ""Mail"": ""123456"",
+        //        ""Password"": ""qwerty"",
+        //        ""MailConfirm"": true,
+        //        ""Name"": ""qqqq"",
+        //        ""Currency"": 0,
+        //        ""Thanks"": 0,
+        //        ""Role"": null,
+        //        ""EngPoints"": 0,
+        //        ""ActAttendings"": [],
+        //        ""ActChat"": null,
+        //        ""QuestTaskUsers"": [],
+        //        ""UserImg"": [],
+        //        ""UserQuests"": []
+        //}";
+
+
+
     }
 }

@@ -9,7 +9,7 @@ namespace Sibur
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new Entrance());
         }
 
         protected override void OnStart()

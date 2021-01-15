@@ -12,7 +12,7 @@ namespace Sibur.Models
             QuestTaskUsers = new HashSet<QuestTaskUser>();
             UserImg = new HashSet<UserImg>();
             UserQuests = new HashSet<UserQuest>();
-            MailConfirm = false;
+            MailConfirm = true;
             Currency = 0;
             Thanks = 0;
             EngPoints = 0;

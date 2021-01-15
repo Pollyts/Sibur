@@ -21,8 +21,16 @@ namespace Sibur.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NewUser = new User();
-            ViewModel = new RegistrationViewModel() {Navigation = n};
+            ViewModel = new RegistrationViewModel() {Navigation = n, View=this};
             this.BindingContext = this;
+        }
+        public void Success()
+        {
+            DisplayAlert("Успешно", "Вы зарегистрировались в приложении", "ОK");
+        }
+        public void Fail()
+        {
+            DisplayAlert("Провалено", "Где-то косяк", "ОK");
         }
     }
 }

@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Threading.Tasks;
 using Sibur.Models;
+using Sibur.Views;
 
 namespace Sibur.ViewModels
 {
@@ -17,7 +18,7 @@ namespace Sibur.ViewModels
         public ICommand SaveUserCommand { get; set; }
         public ICommand BackCommand { protected set; get; }
         public INavigation Navigation { get; set; }
-
+        public Registration View { get; set; }
         public RegistrationViewModel()
         {
             IsBusy = false;
@@ -55,8 +56,13 @@ namespace Sibur.ViewModels
             {
                 IsBusy = true;
                 Globals.CurrentUser = await db.Add(usr);
+                View.Success();
+                Back();
             }
-            Back();
+            else
+            {
+                View.Fail();
+            }
         }
     }
 }

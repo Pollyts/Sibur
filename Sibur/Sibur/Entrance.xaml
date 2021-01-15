@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Sibur;assembly=Sibur"       
-             x:Class="Sibur.MainPage">
+             x:Class="Sibur.Entrance">
     <ContentPage.Resources>
         <StyleSheet Source="/mainstylesheet.css" />
     </ContentPage.Resources>
@@ -11,7 +11,7 @@
         <Label Text="ВХОД" FontSize="24" HorizontalOptions="Center"/>
         <Label Text="Логин" Margin="54,0,0,0"/>
         <Frame BorderColor="#008993" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
-            <local:CustomEntry x:Name="Login" Margin="30,0,30,0"></local:CustomEntry>
+            <local:CustomEntry Text="{Binding Mail}" Margin="30,0,30,0"></local:CustomEntry>
         </Frame>
         <Label Text="Пароль" Margin="54,0,0,0"/>
         <Frame BorderColor="#008993" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <local:CustomEntry IsPassword="True" x:Name="Password" Margin="20,0,40,0" Grid.Column="0" Grid.ColumnSpan="2"></local:CustomEntry>
+                <local:CustomEntry IsPassword="True" x:Name="Password" Text="{Binding Password}" Margin="20,0,40,0" Grid.Column="0" Grid.ColumnSpan="2"></local:CustomEntry>
                 <Image Source="Eye.png" Margin="0,0,10,0" HorizontalOptions="End" Grid.Column="1">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ShowPass" NumberOfTapsRequired="1" />
@@ -28,7 +28,7 @@
                 </Image>
             </Grid>
         </Frame>
-        <Button Clicked="GoButton" Margin="30" Text="Войти" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
+        <Button Command="{Binding GoEntryCommand}" CommandParameter="{Binding}" Margin="30" Text="Войти" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
         <Label Text="Регистрация" TextDecorations="Underline" FontSize="24" HorizontalOptions="Center">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"/>
