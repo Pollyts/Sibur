@@ -35,14 +35,14 @@
                     </StackLayout>
                 </Frame>
                 <Button Text="Зарегистрироваться" Command="{Binding ViewModel.SaveUserCommand}" CommandParameter="{Binding NewUser}" Margin="30" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
-            </StackLayout>            
-        </ScrollView>
-            <!--<StackLayout IsVisible="{Binding ViewModel.IsBusy}"
+                    <StackLayout IsVisible="{Binding ViewModel.IsBusy}"
                     HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
-            <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
-                <ActivityIndicator IsRunning="{Binding ViewModel.IsBusy}" Color="Red" >
-            </ActivityIndicator>
-        </StackLayout>-->
+                        <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
+                        <ActivityIndicator IsRunning="{Binding ViewModel.IsBusy}" Color="#008993" >
+                        </ActivityIndicator>
+                    </StackLayout>
+                </StackLayout>            
+        </ScrollView>            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
