@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Sibur.Models;
+using Sibur.ViewModels;
 
 namespace Sibur.Views
 {
@@ -16,6 +18,7 @@ namespace Sibur.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            BindingContext = new ProfileViewModel() { Navigation=this.Navigation};
         }
 
     }
