@@ -8,9 +8,9 @@
             BarBackgroundColor="#008993">
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
-        <local:Profile IconImageSource="Events.png"/>
-        <local:Page2 IconImageSource="Calendar.png"/>
+        <local:Profile IconImageSource="Profile.png"/>
+        <local:Activities IconImageSource="Events.png"/>
         <local:Page3 IconImageSource="List.png"/>
-        <local:Page4 IconImageSource="Profile.png"/>
+        <local:Page4 IconImageSource="Calendar.png"/>
     </TabbedPage.Children>
 </TabbedPage>

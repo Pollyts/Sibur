@@ -7,13 +7,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sibur.Models;
 using Sibur.Views;
+using Sibur.Requests;
 
 namespace Sibur.ViewModels
 {
     public class RegistrationViewModel : INotifyPropertyChanged
     {
         private bool isBusy;    // идет ли загрузка с сервера
-        DBRequests db = new DBRequests();
+        UserRequests db = new UserRequests();
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand SaveUserCommand { get; set; }
         public ICommand BackCommand { protected set; get; }

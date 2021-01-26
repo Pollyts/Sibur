@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using Sibur.Models;
 using Sibur.Views;
 using System;
+using Sibur.Requests;
 
 namespace Sibur.ViewModels
 {
     class ProfileViewModel
     {
-        DBRequests db = new DBRequests();
+        UserRequests db = new UserRequests();
         public ICommand ChangeProfileInfoCommand { get; set; }
         public ICommand QuitCommand { protected set; get; }
         public INavigation Navigation { get; set; }

@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Sibur.Models;
 using System.Net;
 
-namespace Sibur
+namespace Sibur.Requests
 {
-    public class DBRequests
+    public class UserRequests
     {
         private const string Url = "https://dbgrpprj.azurewebsites.net/Users";
+        JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        };
         // настройка клиента
         private HttpClient GetClient()
         {
@@ -25,14 +30,14 @@ namespace Sibur
             HttpClient client = GetClient();
             var response = await client.PostAsync(Url,
                 new StringContent(
-                    JsonConvert.SerializeObject(usr),
+                    JsonSerializer.Serialize(usr),
                     Encoding.UTF8, "application/json"));
 
             if (response.StatusCode != HttpStatusCode.OK)
                 return null;
 
-            return JsonConvert.DeserializeObject<User>(
-                await response.Content.ReadAsStringAsync());
+            return JsonSerializer.Deserialize<User>(
+                await response.Content.ReadAsStringAsync(), options);
         }
         public async Task<User> Entry(string mail, string password)
         {
@@ -42,8 +47,8 @@ namespace Sibur
             if (response.StatusCode != HttpStatusCode.OK)
                 return null;
 
-            return JsonConvert.DeserializeObject<User>(
-                await response.Content.ReadAsStringAsync());
+            return JsonSerializer.Deserialize<User>(
+                await response.Content.ReadAsStringAsync(), options);
         }
         //        public async Task Add()
         //        {           

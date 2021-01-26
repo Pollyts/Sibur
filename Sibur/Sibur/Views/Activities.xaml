@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sibur.Views.Activities">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+                <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
+            <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
+                    <Image Source="search.png" Margin="0,10,0,10" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="Center"/>                
+                    <ImageButton BackgroundColor="Transparent" Source="Pluse.png" Margin="0,10,0,10" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                    <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+                            <ListView x:Name="friendsList" ItemsSource="{Binding activities}" HasUnevenRows="False">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ViewCell.View>
+                                                <StackLayout>
+                                                    <Label Text="{Binding name}" FontSize="Medium" />
+                                                    <Label Text="{Binding desc}" FontSize="Small" />
+                                                </StackLayout>
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>                                    
+                    </Frame>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

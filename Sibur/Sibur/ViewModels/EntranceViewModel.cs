@@ -7,12 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sibur.Models;
 using Sibur.Views;
+using Sibur.Requests;
 
 namespace Sibur.ViewModels
 {
     public class EntranceViewModel 
     {
-        DBRequests db = new DBRequests();
+        UserRequests db = new UserRequests();
         public ICommand GoEntryCommand { get; set; }
         public INavigation Navigation { get; set; }
         public Entrance View { get; set; }
