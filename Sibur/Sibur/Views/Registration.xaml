@@ -1,48 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Sibur.Views.Registration">
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+x:Class="Sibur.Views.Registration"
+xmlns:local="clr-namespace:Sibur;assembly=Sibur"
+Title="Grid spacing demo">
     <ContentPage.Content>
-        <StackLayout>
-        <ScrollView>
-            <StackLayout>
-                <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-                <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
-                    <Label Text="РЕГИСТРАЦИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>                    
-                </StackLayout>
-                <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
-                            <Label VerticalOptions="Center" Text="Почта" FontSize="17"/>
-                            <Entry Text="{Binding NewUser.Mail}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
-                            <Label VerticalOptions="Center" Text="Пароль" FontSize="17"/>
-                            <Entry Text="{Binding NewUser.Password}" VerticalOptions="Center" IsPassword="true" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
-                            <Label VerticalOptions="Center" Text="ФИО" FontSize="17"/>
-                            <Entry Text="{Binding NewUser.Name}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
-                            <Label VerticalOptions="Center" Text="Дата рождения" FontSize="17"/>
-                            <DatePicker Format="D" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="10,10,10,0">
-                            <Label VerticalOptions="Center" Text="Должность" FontSize="17"/>
-                            <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="30,0,30,0"/>
-                        </StackLayout>
-                    </StackLayout>
+        <Grid Margin="0,30" VerticalOptions="FillAndExpand">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="sibur_minilogo.png" HorizontalOptions="Center" />
+
+                <Label Grid.Row="1" Text ="РЕГИСТРАЦИЯ" VerticalOptions="Start" FontSize="24" Margin="20,5,20,0" HorizontalOptions="CenterAndExpand"/>
+
+                <Frame Grid.Row="2" BackgroundColor="White" VerticalOptions="Fill" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+
+                        </Grid.RowDefinitions>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="Почта" FontSize="17" VerticalOptions="Center"/>
+                            <Entry Grid.Column="1" Text="{Binding NewUser.Mail}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Grid Grid.Row="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalOptions="Center" Text="Пароль" FontSize="17"/>
+                            <Entry Grid.Column="1" Text="{Binding NewUser.Password}" VerticalOptions="Center" IsPassword="true" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Grid Grid.Row="2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalOptions="Center" Text="ФИО" FontSize="17"/>
+                            <Entry Grid.Column="1" Text="{Binding NewUser.Name}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Grid Grid.Row="3" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Дата рождения" VerticalOptions="Center" FontSize="17"/>
+                            <!--<DatePicker Grid.Column="1" Format="D" VerticalOptions="Center"/>-->
+                            <local:CustomDatePicker Grid.Column="1" Format="D" VerticalOptions="Center"/>
+                        </Grid>
+                        <Grid Grid.Row="4" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalOptions="Center" Text="Должность" FontSize="17"/>
+                            <Entry Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                    </Grid>
                 </Frame>
-                <Button Text="Зарегистрироваться" Command="{Binding ViewModel.SaveUserCommand}" CommandParameter="{Binding NewUser}" Margin="30" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
-                </StackLayout>
-            </ScrollView>
+                <Button Grid.Row="3" Text="Зарегистрироваться" Command="{Binding ViewModel.SaveUserCommand}" CommandParameter="{Binding NewUser}" Margin="30" TextColor="#FFFFFF" BackgroundColor="#008993" CornerRadius="24"/>
+
+            </Grid>
+
             <StackLayout IsVisible="{Binding ViewModel.IsBusy}"
-                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
+HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
                 <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
                 <ActivityIndicator IsRunning="{Binding ViewModel.IsBusy}" Color="#008993" >
                 </ActivityIndicator>
             </StackLayout>
-        </StackLayout>        
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

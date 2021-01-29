@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sibur.Views.ActivityCreation" BackgroundColor="#008993"
+             xmlns:local="clr-namespace:Sibur;assembly=Sibur">
+    <ContentPage.Resources>
+        <StyleSheet Source="/mainstylesheet.css" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Margin="30" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="СОЗДАТЬ МЕРОПРИЯТИЕ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
+            <Label Text="Название:" Margin="54,0,0,10" FontSize="16" TextColor="White"/>
+            <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+                <local:CustomEntry Text="{Binding Name}" FontSize="16" Placeholder="Введите название" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+            </Frame>
+            <Label Text="Описание:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+            <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+                <local:CustomEntry Text="{Binding Name}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+            </Frame>
+            <Label Text="Категория:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+            <Picker x:Name="picker" Margin="30,10,30,10">
+                <!--SelectedIndexChanged="picker_SelectedIndexChanged"-->
+                <Picker.Items>
+                    <x:String>Обязательно</x:String>
+                    <x:String>Тренинг</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

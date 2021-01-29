@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using Sibur.Models;
 using Sibur.Views;
 using Sibur.Requests;
+using System;
 
 namespace Sibur.ViewModels
 {
     class ActivitiesViewModel : INotifyPropertyChanged
     {
+        public ICommand CreateActivityCommand { get; set; }
         //private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,7 +26,14 @@ namespace Sibur.ViewModels
         public ActivitiesViewModel()
         {
             activities = new ObservableCollection<ActWithCatGet>();
+            CreateActivityCommand = new Command(CreateActivity);
         }
+
+        private async void CreateActivity()
+        {
+            await Navigation.PushModalAsync(new ActivityCreation());
+        }
+
 
         //public Activity SelectedActivity
         //{
