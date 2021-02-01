@@ -18,13 +18,10 @@
                 <local:CustomEntry Text="{Binding Name}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
             </Frame>
             <Label Text="Категория:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-            <Picker x:Name="picker" Margin="30,10,30,10">
-                <!--SelectedIndexChanged="picker_SelectedIndexChanged"-->
-                <Picker.Items>
-                    <x:String>Обязательно</x:String>
-                    <x:String>Тренинг</x:String>
-                </Picker.Items>
-            </Picker>
+            <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
+            </Picker>-->
+            <Button Command="{Binding AddCategoryCommand}" CommandParameter="{Binding}" Text="Добавить категорию" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
+            <Label Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="54,10,0,10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

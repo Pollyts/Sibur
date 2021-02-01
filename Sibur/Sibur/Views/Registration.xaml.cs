@@ -20,7 +20,7 @@ namespace Sibur.Views
         {                    
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            NewUser = new User();
+            NewUser = new User(true);
             ViewModel = new RegistrationViewModel() {Navigation = n, View=this};
             this.BindingContext = this;
         }

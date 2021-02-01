@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Sibur;assembly=Sibur"
+             x:Class="Sibur.Views.CategoryPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Категории" Margin="10" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>
+            <Label  x:Name="lbl" Text="Выбранные: Нет" Margin="20"/>
+            <local:CustomEntry Placeholder="Поиск" Margin="30,0"></local:CustomEntry>            
+            <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+                <CollectionView SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" FontSize="Medium" />
+                                    </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <local:CustomEntry Text="{Binding NewCategory.Name}" FontSize="Small" Placeholder="Введите название новой категории" Margin="30,0">
+                </local:CustomEntry>
+                <Button Text="Добавить" Command="{Binding CreateCategoryCommand}"/>
+            </StackLayout>
+            <Button Text="Назад" Command="{Binding GoToActivitiesCommand}"/>
+            <Button Text="Ок" Command="{Binding SaveCategoriesCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,6 +8,10 @@ namespace Sibur.Models
     {
         public User()
         {
+
+        }
+        public User(bool a)
+        {
             ActAttendings = new HashSet<ActAttending>();
             QuestTaskUsers = new HashSet<QuestTaskUser>();
             UserImg = new HashSet<UserImg>();
@@ -29,7 +33,7 @@ namespace Sibur.Models
         //Для админов
         public string Role { get; set; }
         //Склироз мешает сори(если вспомню поправлю)
-        public int EngPoints { get; set; }
+        public float EngPoints { get; set; }
 
         public virtual ICollection<ActAttending> ActAttendings { get; set; }
         public virtual ICollection<ActChat> ActChat { get; set; }

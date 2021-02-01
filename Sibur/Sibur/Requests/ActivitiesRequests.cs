@@ -13,6 +13,7 @@ namespace Sibur.Requests
     class ActivitiesRequests
     {
         private const string Url = "https://dbgrpprj.azurewebsites.net/Activities";
+        private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories";
         JsonSerializerOptions options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
@@ -38,6 +39,12 @@ namespace Sibur.Requests
 
             return JsonSerializer.Deserialize<ActWithCat>(
                 await response.Content.ReadAsStringAsync(), options);
+        }
+        public async Task<IEnumerable<Category>> GetCategories()
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(UrlCat);
+            return JsonSerializer.Deserialize<IEnumerable<Category>>(result, options);
         }
         public async Task<IEnumerable<ActWithCatGet>> Get()
         {
