@@ -23,7 +23,8 @@ namespace Sibur.ViewModels
         public ICommand GoToActivitiesCommand { get; set; }
         //private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
-        public Activity currentact;
+        public Activity currentact { get; set; }
+        public ActivityCreation activityCreationpage;
         public Category NewCategory { get; set; }
 
 
@@ -56,7 +57,8 @@ namespace Sibur.ViewModels
 
         private async void CreateActivity()
         {
-            //await db.Add();
+            ActWithCatPost act = new ActWithCatPost(currentact, selectedcats.ToArray());
+            bool ifcan = await db.Add(act);
         }
         private async void DeleteActivity()
         {
@@ -81,6 +83,7 @@ namespace Sibur.ViewModels
         private async void SaveCategories()
         {
             await Navigation.PopModalAsync();
+            activityCreationpage.setCategoriesList();
         }
         private async void CreateCategory()
         {

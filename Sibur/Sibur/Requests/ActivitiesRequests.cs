@@ -26,19 +26,18 @@ namespace Sibur.Requests
             return client;
         }
 
-        public async Task<ActWithCat> Add(Activity act)
+        public async Task<bool> Add(ActWithCatPost act)
         {
             HttpClient client = GetClient();
-            var response = await client.PostAsync(Url,
+            var response = await client.PostAsync(Url+"/WithCat",
                 new StringContent(
                     JsonSerializer.Serialize(act),
                     Encoding.UTF8, "application/json"));
 
             if (response.StatusCode != HttpStatusCode.OK)
-                return null;
-
-            return JsonSerializer.Deserialize<ActWithCat>(
-                await response.Content.ReadAsStringAsync(), options);
+                return false;
+            else
+                return true;
         }
         public async Task<IEnumerable<Category>> GetCategories()
         {

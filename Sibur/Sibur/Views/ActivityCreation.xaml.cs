@@ -18,13 +18,21 @@ namespace Sibur.Views
         public ActivityCreation()
         {
             InitializeComponent();
-            viewmodel = new AddDeleteEditActivitiesViewModel(){ Navigation = this.Navigation };
+            viewmodel = new AddDeleteEditActivitiesViewModel() { Navigation = this.Navigation, activityCreationpage=this };
             BindingContext = viewmodel;
         }
         protected override async void OnAppearing()
         {
             await viewmodel.GetCategories();
             base.OnAppearing();            
+        }
+        public void setCategoriesList()
+        {
+            L_Categories.Text = "Выбранные: ";
+            foreach (Category cat in viewmodel.selectedcats)
+            {
+                L_Categories.Text += cat.Name + "; ";
+            }
         }
     }
 }

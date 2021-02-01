@@ -7,21 +7,32 @@
         <StyleSheet Source="/mainstylesheet.css" />
     </ContentPage.Resources>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
             <Label Margin="30" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="СОЗДАТЬ МЕРОПРИЯТИЕ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
             <Label Text="Название:" Margin="54,0,0,10" FontSize="16" TextColor="White"/>
             <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
-                <local:CustomEntry Text="{Binding Name}" FontSize="16" Placeholder="Введите название" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+                    <local:CustomEntry Text="{Binding currentact.Name}" FontSize="16" Placeholder="Введите название" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
             </Frame>
             <Label Text="Описание:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
             <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
-                <local:CustomEntry Text="{Binding Name}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+                    <local:CustomEntry Text="{Binding currentact.Description}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
             </Frame>
             <Label Text="Категория:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
             <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
             </Picker>-->
-            <Button Command="{Binding AddCategoryCommand}" CommandParameter="{Binding}" Text="Добавить категорию" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
+            <Button Command="{Binding AddCategoryCommand}" Text="Добавить категорию" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
             <Label Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="54,10,0,10"/>
-        </StackLayout>
+                <Label Text="Дата начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+                <local:CustomDatePicker x:Name="DP_StartDate"/>
+                <Label Text="Время начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+                <TimePicker x:Name="TP_StartTime"/>
+                <Label Text="Дата окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+                <local:CustomDatePicker x:Name="DP_EndDate"/>
+                <Label Text="Время окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+                <TimePicker x:Name="TP_EndTime"/>
+                <Button Command="{Binding CreateActivityCommand}" Text="Добавить" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
