@@ -34,5 +34,13 @@ namespace Sibur.Views
                 L_Categories.Text += cat.Name + "; ";
             }
         }
+        public void Fail()
+        {
+            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+        }
+        public void Sucess()
+        {
+            DisplayAlert("Успешно", "Мероприятие успешно добавлено", "ОK");
+        }
     }
 }

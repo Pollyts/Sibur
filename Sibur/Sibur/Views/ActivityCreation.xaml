@@ -19,19 +19,20 @@
                     <local:CustomEntry Text="{Binding currentact.Description}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
             </Frame>
             <Label Text="Категория:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-            <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
+                <Label Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="54,0,0,10"/>
+                <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
             </Picker>-->
-            <Button Command="{Binding AddCategoryCommand}" Text="Добавить категорию" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
-            <Label Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="54,10,0,10"/>
+                <Button Command="{Binding AddCategoryCommand}" BackgroundColor="#008993" Text="Добавить категорию" Padding="10,5,10,5" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" FontSize="18" HorizontalOptions="Center" CornerRadius="24" Margin="31,10,30,0" VerticalOptions="Fill" />
+            
                 <Label Text="Дата начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <local:CustomDatePicker x:Name="DP_StartDate"/>
+                <local:CustomDatePicker Date="{Binding currentact.StartD}" Margin="54,10,54,10" x:Name="DP_StartDate"/>
                 <Label Text="Время начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <TimePicker x:Name="TP_StartTime"/>
+                <TimePicker Margin="54,10,54,10" x:Name="TP_StartTime"/>
                 <Label Text="Дата окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <local:CustomDatePicker x:Name="DP_EndDate"/>
+                <local:CustomDatePicker Date="{Binding currentact.EndD}" Margin="54,10,54,10" x:Name="DP_EndDate"/>
                 <Label Text="Время окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <TimePicker x:Name="TP_EndTime"/>
-                <Button Command="{Binding CreateActivityCommand}" Text="Добавить" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
+                <TimePicker Margin="54,10,54,10" x:Name="TP_EndTime"/>
+                <Button Command="{Binding CreateActivityCommand}" Text="Добавить" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

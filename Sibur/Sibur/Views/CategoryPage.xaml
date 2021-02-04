@@ -3,29 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Sibur;assembly=Sibur"
              x:Class="Sibur.Views.CategoryPage">
-    <ContentPage.Content>
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#84CB35" />
+                                <!--#124B30-->
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>        
         <StackLayout>
-            <Label Text="Категории" Margin="10" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="КАТЕГОРИИ" Margin="10" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>
             <Label  x:Name="lbl" Text="Выбранные: Нет" Margin="20"/>
-            <local:CustomEntry Placeholder="Поиск" Margin="30,0"></local:CustomEntry>            
+            <Frame BorderColor="#008993" Margin="30,0,30,0" Padding="20,5" CornerRadius="23.5">
+                <local:CustomEntry Placeholder="Поиск" ></local:CustomEntry>
+            </Frame>
             <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
-                <CollectionView SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
+                <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                                    <StackLayout>
-                                        <Label Text="{Binding Name}" FontSize="Medium" />
-                                    </StackLayout>
+                            <Grid Padding="10">
+                                <Label Text="{Binding Name}" FontSize="Medium" />
+                            </Grid>                            
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Frame>
             <StackLayout Orientation="Horizontal">
-                <local:CustomEntry Text="{Binding NewCategory.Name}" FontSize="Small" Placeholder="Введите название новой категории" Margin="30,0">
+                <local:CustomEntry Text="{Binding NewCategory.Name}" FontSize="Small" Placeholder="Введите название новой категории" PlaceholderColor="#124B30" Margin="30,0">
                 </local:CustomEntry>
-                <Button Text="Добавить" Command="{Binding CreateCategoryCommand}"/>
+                <Button Text="Добавить" BackgroundColor="White" BorderColor="#008993" CornerRadius="23" BorderWidth="1.5" Command="{Binding CreateCategoryCommand}"/>
             </StackLayout>
-            <Button Text="Назад" Command="{Binding GoToActivitiesCommand}"/>
-            <Button Text="Ок" Command="{Binding SaveCategoriesCommand}"/>
+            <StackLayout Margin="20" Orientation="Horizontal">
+                <Button Text="Выбрать" BackgroundColor="#008993" CornerRadius="23" Padding="10" TextColor="White" FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding SaveCategoriesCommand}"/>
+                <Button Text="Отменить" BackgroundColor="#008993" CornerRadius="23" Padding="10" TextColor="White" FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding GoToActivitiesCommand}"/>                
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

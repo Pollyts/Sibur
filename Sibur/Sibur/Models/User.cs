@@ -16,10 +16,7 @@ namespace Sibur.Models
             QuestTaskUsers = new HashSet<QuestTaskUser>();
             UserImg = new HashSet<UserImg>();
             UserQuests = new HashSet<UserQuest>();
-            MailConfirm = true;
-            Currency = 0;
-            Thanks = 0;
-            EngPoints = 0;
+            UsersKpihistories = new HashSet<UsersKpihistory>();
         }
         public int Id { get; set; }
         public string Mail { get; set; }
@@ -31,8 +28,8 @@ namespace Sibur.Models
         //Уже забыл зачем. Вроде как репутация, можно просто кого-то благодарить. Нлорм тема
         public int Thanks { get; set; }
         //Для админов
-        public string Role { get; set; }
-        //Склироз мешает сори(если вспомню поправлю)
+        public char? Role { get; set; }
+        //Теперь это очки kpi
         public float EngPoints { get; set; }
 
         public virtual ICollection<ActAttending> ActAttendings { get; set; }
@@ -42,5 +39,6 @@ namespace Sibur.Models
         //отдельная хрень на картинку(так вроде лучше работать должно и не будет нужная инфа подгружаться "долго"(в кавычках потому что я хз сколько это времени займет в обоих случаях))
         public virtual ICollection<UserImg> UserImg { get; set; }
         public virtual ICollection<UserQuest> UserQuests { get; set; }
+        public virtual ICollection<UsersKpihistory> UsersKpihistories { get; set; }
     }
 }

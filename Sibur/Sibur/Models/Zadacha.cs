@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Sibur.Models
 {
-    public partial class Assignment
+    public partial class Zadacha
     {
-        public Assignment()
+        public Zadacha()
         {
             QuestTasks = new HashSet<QuestTask>();
         }

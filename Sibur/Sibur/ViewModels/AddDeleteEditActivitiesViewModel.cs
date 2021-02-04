@@ -59,11 +59,15 @@ namespace Sibur.ViewModels
         {
             ActWithCatPost act = new ActWithCatPost(currentact, selectedcats.ToArray());
             bool ifcan = await db.Add(act);
+            if (ifcan)
+                activityCreationpage.Sucess();
+            else
+                activityCreationpage.Fail();
         }
-        private async void DeleteActivity()
-        {
-            //await db.Add();
-        }
+        //private async void DeleteActivity()
+        //{
+        //    //await db.Add();
+        //}
         private async void AddCategory()
         {
             CreateCategoryCommand = new Command(CreateCategory);
@@ -85,14 +89,14 @@ namespace Sibur.ViewModels
             await Navigation.PopModalAsync();
             activityCreationpage.setCategoriesList();
         }
-        private async void CreateCategory()
+        private void CreateCategory()
         {
             categories.Add(NewCategory);
             NewCategory = new Category() { Id = 0 };
         }
-        private async void EditActivity()
-        {
-            //await db.Add();
-        }
+        //private async void EditActivity()
+        //{
+        //    //await db.Add();
+        //}
     }
 }

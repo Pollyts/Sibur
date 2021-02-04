@@ -183,4 +183,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Settings.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cancel.png" />
+  </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace Sibur.Models
         public int ActivityId { get; set; }
         public int UserId { get; set; }
 
-        public virtual Activity Activities { get; set; }
-        public virtual User Users { get; set; }
+        public virtual Activity Activity { get; set; }
+        public virtual User User { get; set; }
     }
 }

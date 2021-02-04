@@ -19,7 +19,7 @@ namespace Sibur.Models
         public int ComplOneReward { get; set; }
 
         public virtual Quest Quest { get; set; }
-        public virtual Assignment Task { get; set; }
+        public virtual Zadacha Task { get; set; }
         public virtual ICollection<QuestTaskUser> QuestTaskUser { get; set; }
     }
 }

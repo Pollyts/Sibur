@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Sibur.Models;
 using System.Net;
@@ -13,11 +12,7 @@ namespace Sibur.Requests
     class ActivitiesRequests
     {
         private const string Url = "https://dbgrpprj.azurewebsites.net/Activities";
-        private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories";
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        };
+        private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories";        
         // настройка клиента
         private HttpClient GetClient()
         {
@@ -27,13 +22,12 @@ namespace Sibur.Requests
         }
 
         public async Task<bool> Add(ActWithCatPost act)
-        {
+        {            
             HttpClient client = GetClient();
-            var response = await client.PostAsync(Url+"/WithCat",
+            var response = await client.PostAsync("https://dbgrpprj.azurewebsites.net/Activities/WithCat",
                 new StringContent(
-                    JsonSerializer.Serialize(act),
+                    JsonConvert.SerializeObject(act),
                     Encoding.UTF8, "application/json"));
-
             if (response.StatusCode != HttpStatusCode.OK)
                 return false;
             else
@@ -43,13 +37,13 @@ namespace Sibur.Requests
         {
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(UrlCat);
-            return JsonSerializer.Deserialize<IEnumerable<Category>>(result, options);
+            return JsonConvert.DeserializeObject<IEnumerable<Category>>(result);
         }
         public async Task<IEnumerable<ActWithCatGet>> Get()
         {
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(Url);
-            return JsonSerializer.Deserialize<IEnumerable<ActWithCatGet>>(result, options);
+            return JsonConvert.DeserializeObject<IEnumerable<ActWithCatGet>>(result);
         }        
     }
 }
