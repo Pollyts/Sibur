@@ -12,11 +12,12 @@ using System;
 
 namespace Sibur.ViewModels
 {
-    public class AddDeleteEditActivitiesViewModel
+    public class AddDeleteEditActivitiesViewModel : INotifyPropertyChanged
     {
         public ICommand CreateActivityCommand { get; set; }
         public ICommand CreateCategoryCommand { get; set; }
         public ICommand SaveCategoriesCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
         public ICommand DeleteActivityCommand { get; set; }
         public ICommand EditActivityCommand { get; set; }
         public ICommand AddCategoryCommand { get; set; }
@@ -27,20 +28,37 @@ namespace Sibur.ViewModels
         public ActivityCreation activityCreationpage;
         public Category NewCategory { get; set; }
 
-
+       
         public ObservableCollection<Category> categories { get; set; }
-        public ObservableCollection<Category> selectedcats { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation { get; set; }
         public Registration View { get; set; }
 
+        ObservableCollection<Category> selectedcats;
+        public ObservableCollection<Category> Selectedcats
+        {
+            get
+            {
+                return selectedcats;
+            }
+            set
+            {
+                if (selectedcats != value)
+                {
+                    selectedcats = value;
+                }
+            }
+        }
         public AddDeleteEditActivitiesViewModel()
         {
             currentact = new Activity();
             categories = new ObservableCollection<Category>();
             CreateActivityCommand = new Command(CreateActivity);
+            GoBackCommand = new Command(GoBack);
             AddCategoryCommand = new Command(AddCategory);
         }
+
+        //Получить список категорий
         public async Task GetCategories()
         {
             IEnumerable<Category> cats = await db.GetCategories();
@@ -54,34 +72,47 @@ namespace Sibur.ViewModels
                 categories.Add(a);
         }
 
-
+        //Создать мероприятие ActWithCatPost
         private async void CreateActivity()
         {
-            ActWithCatPost act = new ActWithCatPost(currentact, selectedcats.ToArray());
+            ActWithCatPost act = new ActWithCatPost(currentact, Selectedcats.ToArray());
             bool ifcan = await db.Add(act);
             if (ifcan)
                 activityCreationpage.Sucess();
             else
                 activityCreationpage.Fail();
         }
-        //private async void DeleteActivity()
-        //{
-        //    //await db.Add();
-        //}
+
+
+        //Переход по кнопке "Добавить категории" на страницу CategoriyPage
         private async void AddCategory()
         {
             CreateCategoryCommand = new Command(CreateCategory);
             GoToActivitiesCommand = new Command(GoToActivities);
             SaveCategoriesCommand = new Command(SaveCategories);
             NewCategory = new Category() { Id=0};
-            selectedcats = new ObservableCollection<Category>();
+            Selectedcats = new ObservableCollection<Category>();
+            //if((selectedcats!=null)&&(selectedcats.Count>0))
+            //        {
+
+            //}
+            //Selectedcats= new ObservableCollection<Category>()
+            //{
+            //    categories[1], categories[3]
+            //};
             //Перемещение на страницу со списком категорий
             await Navigation.PushModalAsync(new CategoryPage(this));
 
         }
+
+        //Возвращение на страницу с созданием мероприятия
         private async void GoToActivities()
         {
             selectedcats.Clear();
+            await Navigation.PopModalAsync();
+        }
+        private async void GoBack()
+        {
             await Navigation.PopModalAsync();
         }
         private async void SaveCategories()
@@ -97,6 +128,15 @@ namespace Sibur.ViewModels
         //private async void EditActivity()
         //{
         //    //await db.Add();
+        //}
+        //private async void DeleteActivity()
+        //{
+        //    //await db.Add();
+        //}
+        //public void OnPropertyChanged(string propName)
+        //{
+        //    if (PropertyChanged != null)
+        //        PropertyChanged(this, new PropertyChangedEventArgs(propName));
         //}
     }
 }

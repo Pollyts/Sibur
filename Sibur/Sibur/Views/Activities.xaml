@@ -15,17 +15,17 @@
                             <ListView  ItemsSource="{Binding activities}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <ViewCell>
-                                            <ViewCell.View>
-                                                <StackLayout>
-                                                    <Label Text="{Binding name}" FontSize="Medium" />
+                            <ViewCell>
+                                <ViewCell.View>
+                                                <StackLayout Padding="10,5">
+                                        <Label Text="{Binding name}" TextColor="#008993" FontSize="Large" />
                                                     <Label Text="{Binding desc}" FontSize="Small" />
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding startD}" FontSize="Small" />
-                                                        <Label Text=" - "/>
-                                                        <Label Text="{Binding endD}" FontSize="Small" />
+                                            <Label Text="{Binding startD}" TextColor="#124B30" FontSize="Small" />
+                                            <Label Text=" - " TextColor="#124B30"/>
+                                            <Label Text="{Binding endD}" TextColor="#124B30" FontSize="Small" />
                                                     </StackLayout>
-                                                    <Label Text="Подробнее" FontSize="Small" />                                           
+                                                    <Label Text="Подробнее" Margin="0,10" FontSize="Medium" />                                           
                                                 </StackLayout>
                                             </ViewCell.View>
                                         </ViewCell>

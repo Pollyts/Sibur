@@ -17,18 +17,18 @@ namespace Sibur.Views
         public AddDeleteEditActivitiesViewModel viewmodel;
         public CategoryPage(AddDeleteEditActivitiesViewModel vm)
         {
-            InitializeComponent();
             viewmodel = vm;
             BindingContext = viewmodel;
+            InitializeComponent();            
         }
         void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            viewmodel.selectedcats.Clear();
+            viewmodel.Selectedcats.Clear();
             lbl.Text = "Выбранные: ";
             foreach (object cat in e.CurrentSelection)
             {
-                viewmodel.selectedcats.Add(cat as Category);
-                lbl.Text += viewmodel.selectedcats[viewmodel.selectedcats.Count - 1].Name+"; ";
+                viewmodel.Selectedcats.Add(cat as Category);
+                lbl.Text += viewmodel.Selectedcats[viewmodel.Selectedcats.Count - 1].Name+"; ";
             }
         }
     }

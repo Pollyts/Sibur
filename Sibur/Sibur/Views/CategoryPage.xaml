@@ -30,6 +30,7 @@
             </Frame>
             <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
                 <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
+                    <!--SelectedItems="{Binding selectedcats, Mode=TwoWay}"-->
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="10">
@@ -40,7 +41,7 @@
                 </CollectionView>
             </Frame>
             <StackLayout Orientation="Horizontal">
-                <local:CustomEntry Text="{Binding NewCategory.Name}" FontSize="Small" Placeholder="Введите название новой категории" PlaceholderColor="#124B30" Margin="30,0">
+                <local:CustomEntry Text="{Binding NewCategory.Name}" FontSize="Small" Placeholder="Добавьте новую категорию" PlaceholderColor="#124B30" Margin="30,0">
                 </local:CustomEntry>
                 <Button Text="Добавить" BackgroundColor="White" BorderColor="#008993" CornerRadius="23" BorderWidth="1.5" Command="{Binding CreateCategoryCommand}"/>
             </StackLayout>
