@@ -37,11 +37,12 @@ namespace Sibur.Requests
         public async Task<User> Entry(string mail, string password)
         {
             HttpClient client = GetClient();
-            string requesturi = Url + $"/?mail={mail}&pass={password}";
+            string requesturi = Url + $"?mail={mail}&pass={password}";
             var response = await client.GetAsync(requesturi);
-            if (response.StatusCode != HttpStatusCode.OK)
-                return null;
-
+            //if (response.RequestMessage.Content.ToString()== "Нужно подтверждение почты")
+            //{
+                
+            //}
             return JsonConvert.DeserializeObject<User>(
                 await response.Content.ReadAsStringAsync());
         }

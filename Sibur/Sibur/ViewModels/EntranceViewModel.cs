@@ -30,6 +30,7 @@ namespace Sibur.ViewModels
         {
             {
                 EntranceViewModel entranceViewModel = vm as EntranceViewModel;
+                if(entranceViewModel.Mail!=null && entranceViewModel.Password!=null)
                 Globals.CurrentUser = await db.Entry(entranceViewModel.Mail, entranceViewModel.Password);
                 if ((Globals.CurrentUser != null)&&(Globals.CurrentUser.Mail.Trim()==entranceViewModel.Mail) && (Globals.CurrentUser.Password.Trim() == entranceViewModel.Password))
                 {

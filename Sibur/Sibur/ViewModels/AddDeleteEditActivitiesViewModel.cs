@@ -75,7 +75,15 @@ namespace Sibur.ViewModels
         //Создать мероприятие ActWithCatPost
         private async void CreateActivity()
         {
-            ActWithCatPost act = new ActWithCatPost(currentact, Selectedcats.ToArray());
+            ActWithCatPost act;
+            if(Selectedcats==null)
+            {
+                act = new ActWithCatPost(currentact);
+            }
+            else
+            {
+                act = new ActWithCatPost(currentact, Selectedcats.ToArray());
+            }            
             bool ifcan = await db.Add(act);
             if (ifcan)
                 activityCreationpage.Sucess();
