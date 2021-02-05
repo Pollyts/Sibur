@@ -130,8 +130,11 @@ namespace Sibur.ViewModels
         }
         private void CreateCategory()
         {
-            categories.Add(NewCategory);
-            NewCategory = new Category() { Id = 0 };
+            if((NewCategory.Name!="")&&(NewCategory.Name!=null))
+            {
+                categories.Add(NewCategory);
+                NewCategory = new Category() { Id = 0 };
+            }            
         }
         //private async void EditActivity()
         //{
