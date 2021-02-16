@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sibur.Views.CurrentActivity">
+    <ContentPage.Resources>
+        <StyleSheet Source="/mainstylesheet.css" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ImageButton  Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BorderColor="#008993" BackgroundColor="#008993" Source="cancel.png"/>
+                <Label Margin="5" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="СОЗДАТЬ МЕРОПРИЯТИЕ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
+                <Label Text="Название:" Margin="54,0,0,10" FontSize="16" TextColor="White"/>
+                
+                <Button Command="{Binding CreateActivityCommand}" Text="Добавить" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -15,6 +15,10 @@ namespace Sibur.ViewModels
     class ActivitiesViewModel : INotifyPropertyChanged
     {
         public ICommand CreateActivityCommand { get; set; }
+        public ICommand OpenActivityCommand { get; set; }
+        public ICommand EditActivityCommand { get; set; }
+        public ICommand DeleteActivityCommand { get; set; }
+        Activity selectedact;
         //private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
         public event PropertyChangedEventHandler PropertyChanged;
@@ -27,33 +31,51 @@ namespace Sibur.ViewModels
         {
             activities = new ObservableCollection<ActWithCatGet>();
             CreateActivityCommand = new Command(CreateActivity);
+            OpenActivityCommand = new Command(OpenActivity);
+            EditActivityCommand = new Command(EditActivity);
+            DeleteActivityCommand = new Command(DeleteActivity);
         }
 
         private async void CreateActivity()
         {
             await Navigation.PushModalAsync(new ActivityCreation());
         }
+        private async void OpenActivity(object actobject)
+        {
+            await Navigation.PushModalAsync(new ActivityCreation());
+        }
+        private async void EditActivity()
+        {
+            await Navigation.PushModalAsync(new ActivityCreation());
+        }
+        private async void DeleteActivity()
+        {
+            await Navigation.PushModalAsync(new ActivityCreation());
+        }
+
 
 
         //public Activity SelectedActivity
         //{
-        //    //get { return selectedFriend; }
-        //    //set
-        //    //{
-        //    //    if (selectedFriend != value)
-        //    //    {
-        //    //        Friend tempFriend = new Friend()
-        //    //        {
-        //    //            Id = value.Id,
-        //    //            Name = value.Name,
-        //    //            Email = value.Email,
-        //    //            Phone = value.Phone
-        //    //        };
-        //    //        selectedFriend = null;
-        //    //        OnPropertyChanged("SelectedFriend");
-        //    //        Navigation.PushAsync(new FriendPage(tempFriend, this));
-        //    //    }
-        //    //}
+        //    get { return selectedact; }
+        //    set
+        //    {
+        //        if (selectedact != value)
+        //        {
+        //            Activity tempact = new Activity()
+        //            {
+        //                Id = value.Id,
+        //                Name = value.Name,
+        //                Description = value.Description,
+        //                StartD=value.StartD,
+        //                EndD=value.EndD,
+
+        //            };
+        //            selectedact = null;
+        //            Navigation.PushAsync(new CurrentActivity(tempact));
+        //            selectedact = null;
+        //        }
+        //    }
         //}
         public async Task GetActivities()
         {

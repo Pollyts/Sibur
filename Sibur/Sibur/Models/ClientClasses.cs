@@ -47,6 +47,7 @@ namespace Sibur.Models
     #region Activities
     public class ActWithCat
     {
+        public int id { get; set; }
         public string name { get; set; }
         public DateTime? startD { get; set; }
         public DateTime? endD { get; set; }
@@ -57,12 +58,13 @@ namespace Sibur.Models
         }
         public ActWithCat(Activity activity)
         {
+            id = activity.Id;
             name = activity.Name;
             startD = activity.StartD;
             endD = activity.EndD;
             desc = activity.Description;
         }
-        public static implicit operator Activity(ActWithCat b) => new Activity() { Name = b.name, StartD = b.startD, EndD = b.endD, Description = b.desc };
+        public static implicit operator Activity(ActWithCat b) => new Activity() { Id = b.id, Name = b.name, StartD = b.startD, EndD = b.endD, Description = b.desc };
     }
     public class ActWithCatGet : ActWithCat
     {
@@ -103,7 +105,7 @@ namespace Sibur.Models
             categories = cats;
         }
 
-        public static implicit operator Activity(ActWithCatPost b) => new Activity() { Name = b.name, StartD = b.startD, EndD = b.endD, Description = b.desc };
+        public static implicit operator Activity(ActWithCatPost b) => new Activity() { Id = b.id, Name = b.name, StartD = b.startD, EndD = b.endD, Description = b.desc };
 
     }
 
