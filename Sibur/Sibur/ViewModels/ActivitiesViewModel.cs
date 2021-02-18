@@ -42,7 +42,8 @@ namespace Sibur.ViewModels
         }
         private async void OpenActivity(object actobject)
         {
-            await Navigation.PushModalAsync(new ActivityCreation());
+            ActWithCatGet currentact = actobject as ActWithCatGet;
+            await Navigation.PushModalAsync(new CurrentActivity(currentact));
         }
         private async void EditActivity()
         {

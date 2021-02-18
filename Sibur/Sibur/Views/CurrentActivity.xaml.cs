@@ -14,9 +14,12 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CurrentActivity : ContentPage
     {
-        public CurrentActivity(Activity CurrentAct)
+        public CurrentActivityViewModel viewmodel;
+        public CurrentActivity(ActWithCatGet CurrentAct)
         {
             InitializeComponent();
+            viewmodel = new CurrentActivityViewModel(CurrentAct);
+            BindingContext = viewmodel;            
         }
     }
 }
