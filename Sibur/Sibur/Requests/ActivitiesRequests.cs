@@ -12,7 +12,8 @@ namespace Sibur.Requests
     class ActivitiesRequests
     {
         private const string Url = "https://dbgrpprj.azurewebsites.net/Activities";
-        private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories";        
+        private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories"; 
+        private const string UrlChats = "https://dbgrpprj.azurewebsites.net/ActChats";
         // настройка клиента
         private HttpClient GetClient()
         {
@@ -44,6 +45,36 @@ namespace Sibur.Requests
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(Url);
             return JsonConvert.DeserializeObject<IEnumerable<ActWithCatGet>>(result);
-        }        
+        }
+        public async Task<bool> SignUp(int ActivityId, int Userid)
+        {
+            HttpClient client = GetClient();
+            string requesturi = Url + $"/{ActivityId}?userid={Userid}";
+            var response = await client.GetAsync(requesturi);
+            if (response.StatusCode != HttpStatusCode.OK)
+                return false;
+            else
+                return true;
+        }
+        public async Task<bool> AddComment(int Activityid, int Userid, string Comment)
+        {
+            HttpClient client = GetClient();
+            ActChat ac = new ActChat() { UserId = Userid, ActivityId=Activityid, Text=Comment };
+            var response = await client.PostAsync(UrlChats,
+                new StringContent(
+                    JsonConvert.SerializeObject(ac),
+                    Encoding.UTF8, "application/json"));
+            if (response.StatusCode != HttpStatusCode.Created)
+                return false;
+            else
+                return true;
+        }
+        public async Task<IEnumerable<ActChat>> GetComments(int Activityid)
+        {
+            HttpClient client = GetClient();
+            string requesturi = UrlChats + $"/{Activityid}";
+            string result = await client.GetStringAsync(requesturi);
+            return JsonConvert.DeserializeObject<IEnumerable<ActChat>>(result);
+        }
     }
 }

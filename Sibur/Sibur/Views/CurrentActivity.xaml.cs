@@ -16,10 +16,23 @@ namespace Sibur.Views
     {
         public CurrentActivityViewModel viewmodel;
         public CurrentActivity(ActWithCatGet CurrentAct)
-        {
+        {            
+            viewmodel = new CurrentActivityViewModel(CurrentAct) { CurrentActivityPage=this};
+            BindingContext = viewmodel;
             InitializeComponent();
-            viewmodel = new CurrentActivityViewModel(CurrentAct);
-            BindingContext = viewmodel;            
+        }
+        protected override async void OnAppearing()
+        {
+            await viewmodel.GetComments();
+            base.OnAppearing();
+        }
+        public void Fail()
+        {
+            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+        }
+        public void Sucess()
+        {
+            DisplayAlert("Успешно", "Всё супер, живём", "ОК");
         }
     }
 }
