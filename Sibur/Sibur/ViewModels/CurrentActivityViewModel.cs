@@ -13,22 +13,25 @@ using System;
 namespace Sibur.ViewModels
 {
     public class CurrentActivityViewModel : INotifyPropertyChanged
-    {
-        //ObservableCollection<ActChat> selectedcats;
+    {        
         ActivitiesRequests db = new ActivitiesRequests();
         public ICommand SignUpCommand { get; set; }
+        public ActAttending currentattending;
         public ICommand AddCommentCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public ActWithCatGet CurrentActivity;
         public CurrentActivity CurrentActivityPage;
         public ObservableCollection<ActChat> comments { get; set; }
+        public INavigation Navigation { get; set; }
         public string TextComment { get; set; }
         public CurrentActivityViewModel (ActWithCatGet curact)
         {
-            comments = new ObservableCollection<ActChat>();
-            CurrentActivity = curact;
+            CurrentActivity = curact;            
+            comments = new ObservableCollection<ActChat>();            
             SignUpCommand = new Command(SignUp);
             AddCommentCommand = new Command(AddComment);
+            GoBackCommand = new Command(GoBack);
         }
 
         //Подгрузка комментариев
@@ -45,15 +48,55 @@ namespace Sibur.ViewModels
                 comments.Add(c);
         }
 
-        //Записаться на мероприятие
+        //Переименовывает кнопку
+        public void GetButtonName()
+        {
+            currentattending = Globals.CurrentUser.ActAttendings.ToList().Find(r => r.ActivityId == CurrentActivity.id);
+            if (currentattending == null)
+                CurrentActivityPage.ButtonText(true);
+            else
+                CurrentActivityPage.ButtonText(false);
+        }
+        //Записаться на мероприятие или отписаться
         private async void SignUp()
         {
-            bool ifcan = await db.SignUp(CurrentActivity.id, Globals.CurrentUser.Id);
-            if (ifcan)
-                CurrentActivityPage.Sucess();
+            if (currentattending != null)
+            {
+                bool ifcan = await db.SignOut(CurrentActivity.id, Globals.CurrentUser.Id);
+                if (ifcan)
+                {
+                    UserRequests us = new UserRequests();
+                    CurrentActivityPage.Sucess();
+                    Globals.CurrentUser = await us.Entry(Globals.CurrentUser.Mail, Globals.CurrentUser.Password);
+                    currentattending = null;
+                    GetButtonName();
+                }
+                else
+                    CurrentActivityPage.Fail();
+            }
             else
-                CurrentActivityPage.Fail();
+            {
+                bool ifcan = await db.SignUp(CurrentActivity.id, Globals.CurrentUser.Id);
+                if (ifcan)
+                {
+                    UserRequests us = new UserRequests();
+                    CurrentActivityPage.Sucess();
+                    Globals.CurrentUser = await us.Entry(Globals.CurrentUser.Mail, Globals.CurrentUser.Password);
+                    currentattending = Globals.CurrentUser.ActAttendings.ToList().Find(r => r.ActivityId == CurrentActivity.id);
+                    GetButtonName();
+                }
+                else
+                    CurrentActivityPage.Fail();
+            }
         }
+        
+        //Вернуться к списку мероприятий
+        private async void GoBack()
+        {
+            await Navigation.PopModalAsync();
+        }
+
+        //Добавление комментария
         private async void AddComment()
         {
             if((TextComment=="")||(TextComment == null))
@@ -139,10 +182,5 @@ namespace Sibur.ViewModels
                 }
             }
         }
-        //protected void OnPropertyChanged(string propName)
-        //{
-        //    if (PropertyChanged != null)
-        //        PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        //}
     }
 }

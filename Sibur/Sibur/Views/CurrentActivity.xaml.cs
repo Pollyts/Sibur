@@ -17,9 +17,10 @@ namespace Sibur.Views
         public CurrentActivityViewModel viewmodel;
         public CurrentActivity(ActWithCatGet CurrentAct)
         {            
-            viewmodel = new CurrentActivityViewModel(CurrentAct) { CurrentActivityPage=this};
+            viewmodel = new CurrentActivityViewModel(CurrentAct) { CurrentActivityPage=this, Navigation=this.Navigation};
             BindingContext = viewmodel;
             InitializeComponent();
+            viewmodel.GetButtonName();
         }
         protected override async void OnAppearing()
         {
@@ -33,6 +34,17 @@ namespace Sibur.Views
         public void Sucess()
         {
             DisplayAlert("Успешно", "Всё супер, живём", "ОК");
+        }
+        public void ButtonText(bool signin)
+        {
+            if(signin)
+            {
+                SignUpButton.Text = "Записаться";
+            }
+            else
+            {
+                SignUpButton.Text = "Отменить";
+            }
         }
     }
 }

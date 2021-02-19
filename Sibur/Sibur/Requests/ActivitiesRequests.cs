@@ -56,6 +56,18 @@ namespace Sibur.Requests
             else
                 return true;
         }
+
+        //Удаление посещения Activities/DelAttending/id(айди мероприятия вместо id)?userid=айди юзера
+        public async Task<bool> SignOut(int ActivityId, int Userid)
+        {
+            HttpClient client = GetClient();
+            string requesturi = Url + $"/DelAttending/{ActivityId}?userid={Userid}";
+            var response = await client.GetAsync(requesturi);
+            if (response.StatusCode != HttpStatusCode.OK)
+                return false;
+            else
+                return true;
+        }
         public async Task<bool> AddComment(int Activityid, int Userid, string Comment)
         {
             HttpClient client = GetClient();
