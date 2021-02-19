@@ -41,20 +41,19 @@
                 <Button Command="{Binding AddCommentCommand}" Text="Добавить" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="#84CB35" FontSize="16" TextColor="#FFFFFF" CornerRadius="24" />
                 </StackLayout>
                 <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
-                        <ListView ItemsSource="{Binding comments}" HasUnevenRows="true">
+                    <ListView ItemsSource="{Binding comments}" HasUnevenRows="true">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
                                         <Frame Margin="5" BorderColor="#008993" >
-                                            <Label Text="{Binding Text}" FontSize="Medium" />                                            
+                                            <Label Text="{Binding Text}" FontSize="Medium" />
                                         </Frame>
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>
