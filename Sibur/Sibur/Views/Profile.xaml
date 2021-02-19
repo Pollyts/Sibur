@@ -15,8 +15,8 @@
                             <StackLayout Orientation="Horizontal">
                                     <Image Source="Information.png" Margin="0"/>
                                 <Label Text="Рейтинг: "/>
-                                <Image Source="Stars.png"/>                                
-                            </StackLayout>
+                                    <Label Text="{Binding Raiting}"/>
+                                </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="Information.png" Margin="0"/>
                                 <Label Text="Баланс:"/>

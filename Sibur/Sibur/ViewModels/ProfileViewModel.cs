@@ -26,6 +26,17 @@ namespace Sibur.ViewModels
             QuitCommand = new Command(Quit);
             CurrentUser = Globals.CurrentUser;
         }
+        public string Raiting
+        {
+            get
+            {  
+                return CurrentUser.EngPoints.ToString();
+            }
+            set
+            {
+                //CurrentUser.Name = value;
+            }
+        }
         public string Name
         {
             get 

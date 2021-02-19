@@ -18,7 +18,11 @@ namespace Sibur.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = new ProfileViewModel() { Navigation=this.Navigation};
+        }
+        protected override void OnAppearing()
+        {
+            BindingContext = new ProfileViewModel() { Navigation = this.Navigation };
+            base.OnAppearing();
         }
 
     }
