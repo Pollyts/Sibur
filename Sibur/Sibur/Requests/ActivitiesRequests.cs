@@ -34,6 +34,15 @@ namespace Sibur.Requests
             else
                 return true;
         }
+        public async Task<bool> Delete(int ActivityId)
+        {
+            HttpClient client = GetClient();
+            var response = await client.DeleteAsync(Url + $"/{ActivityId}");
+            if (response.StatusCode != HttpStatusCode.OK)
+                return false;
+            else
+                return true;
+        }
         public async Task<IEnumerable<Category>> GetCategories()
         {
             HttpClient client = GetClient();

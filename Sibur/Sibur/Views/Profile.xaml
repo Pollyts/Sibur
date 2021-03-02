@@ -14,7 +14,8 @@
                             <StackLayout VerticalOptions="Center">
                             <StackLayout Orientation="Horizontal">
                                     <Image Source="Information.png" Margin="0"/>
-                                <Label Text="Рейтинг: "/>
+                                <!--<Label Text="Рейтинг: "/>-->
+                                    <Label Text="KPI: "/>
                                     <Label Text="{Binding Raiting}"/>
                                 </StackLayout>
                             <StackLayout Orientation="Horizontal">

@@ -33,7 +33,7 @@ namespace Sibur.Views
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Всё супер, живём", "ОК");
+            DisplayAlert("Успешно", "Ура, получилось", "ОК");
         }
         public void ButtonText(bool signin)
         {

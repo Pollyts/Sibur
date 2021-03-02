@@ -25,7 +25,7 @@ namespace Sibur.ViewModels
         //public ICommand CreateActivityCommand { get; set; }
         public ObservableCollection<ActWithCatGet> activities { get; set; }
         public INavigation Navigation { get; set; }
-        public Registration View { get; set; }
+        public Activities ActivitiesPage;
 
         public ActivitiesViewModel()
         {
@@ -49,9 +49,10 @@ namespace Sibur.ViewModels
         {
             await Navigation.PushModalAsync(new ActivityCreation());
         }
-        private async void DeleteActivity()
+        private async void DeleteActivity(object actobject)
         {
-            await Navigation.PushModalAsync(new ActivityCreation());
+            ActWithCatGet currentact = actobject as ActWithCatGet;
+            await db.Delete(currentact.id);
         }
 
 
