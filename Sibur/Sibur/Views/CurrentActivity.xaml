@@ -47,7 +47,10 @@
                                 <ViewCell>
                                     <ViewCell.View>
                                         <Frame Margin="5" BorderColor="#008993" >
+                                            <StackLayout>
+                                                <Label Text="{Binding UserName}" FontSize="Small" />
                                             <Label Text="{Binding Text}" FontSize="Medium" />
+                                            </StackLayout>
                                         </Frame>
                                     </ViewCell.View>
                                 </ViewCell>

@@ -104,7 +104,7 @@ namespace Sibur.ViewModels
                 CurrentActivityPage.Fail();
                 return;
             }
-            bool ifcan = await db.AddComment(CurrentActivity.id, Globals.CurrentUser.Id, TextComment);
+            bool ifcan = await db.AddComment(CurrentActivity.id, Globals.CurrentUser.Id, TextComment, Globals.CurrentUser.Name);
             if (ifcan)
             {
                 CurrentActivityPage.Sucess();

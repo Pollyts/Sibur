@@ -77,10 +77,12 @@ namespace Sibur.Requests
             else
                 return true;
         }
-        public async Task<bool> AddComment(int Activityid, int Userid, string Comment)
+
+        //Добавление комментария
+        public async Task<bool> AddComment(int Activityid, int Userid, string Comment, string Name)
         {
             HttpClient client = GetClient();
-            ActChat ac = new ActChat() { UserId = Userid, ActivityId=Activityid, Text=Comment };
+            ActChat ac = new ActChat() { UserId = Userid, ActivityId=Activityid, Text=Comment, UserName=Name };
             var response = await client.PostAsync(UrlChats,
                 new StringContent(
                     JsonConvert.SerializeObject(ac),
