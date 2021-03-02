@@ -52,7 +52,16 @@ namespace Sibur.ViewModels
         private async void DeleteActivity(object actobject)
         {
             ActWithCatGet currentact = actobject as ActWithCatGet;
-            await db.Delete(currentact.id);
+            bool ifcan = await db.Delete(currentact.id);
+            if (ifcan)
+            {
+                ActivitiesPage.Sucess();
+                await GetActivities();
+            }
+            else
+            {
+                ActivitiesPage.Fail();
+            }
         }
 
 

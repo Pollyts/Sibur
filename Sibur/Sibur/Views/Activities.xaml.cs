@@ -18,7 +18,7 @@ namespace Sibur.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            viewModel = new ActivitiesViewModel() { Navigation = this.Navigation };
+            viewModel = new ActivitiesViewModel() { Navigation = this.Navigation, ActivitiesPage=this };
             BindingContext = viewModel;
         }
 
@@ -26,6 +26,14 @@ namespace Sibur.Views
         {
             await viewModel.GetActivities();
             base.OnAppearing();
+        }
+        public void Fail()
+        {
+            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+        }
+        public void Sucess()
+        {
+            DisplayAlert("Успешно", "Ура, получилось", "ОК");
         }
     }
 }

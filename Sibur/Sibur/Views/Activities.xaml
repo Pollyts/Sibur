@@ -16,8 +16,8 @@
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
                         <Button Text="Открыть" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                        <Button Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding }" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                        <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+                        <Button Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+                        <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                 <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                                 <ListView.ItemTemplate>
