@@ -14,7 +14,7 @@
             <Label Text="Нажмите на мероприятие, чтобы узнать подробную информацию" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
             <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
                 <StackLayout>
-                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand">
                         <Button Text="Открыть" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                         <Button Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                         <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>

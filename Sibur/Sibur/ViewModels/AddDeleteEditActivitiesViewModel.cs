@@ -57,6 +57,15 @@ namespace Sibur.ViewModels
             GoBackCommand = new Command(GoBack);
             AddCategoryCommand = new Command(AddCategory);
         }
+        public AddDeleteEditActivitiesViewModel(ActWithCatGet oldact)
+        {
+            //currentact = oldact;
+            //Selectedcats=oldact.ActCategories
+            //categories = new ObservableCollection<Category>();
+            //CreateActivityCommand = new Command(CreateActivity);
+            //GoBackCommand = new Command(GoBack);
+            //AddCategoryCommand = new Command(AddCategory);
+        }
 
         //Получить список категорий
         public async Task GetCategories()

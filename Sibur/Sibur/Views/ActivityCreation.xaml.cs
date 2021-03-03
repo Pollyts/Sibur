@@ -21,6 +21,12 @@ namespace Sibur.Views
             BindingContext = viewmodel;
             InitializeComponent();            
         }
+        public ActivityCreation(ActWithCatGet oldactivity)
+        {
+            viewmodel = new AddDeleteEditActivitiesViewModel(oldactivity) { Navigation = this.Navigation, activityCreationpage = this };
+            BindingContext = viewmodel;
+            InitializeComponent();
+        }
         protected override async void OnAppearing()
         {
             await viewmodel.GetCategories();

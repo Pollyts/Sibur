@@ -35,6 +35,20 @@ namespace Sibur.ViewModels
             EditActivityCommand = new Command(EditActivity);
             DeleteActivityCommand = new Command(DeleteActivity);
         }
+        public bool ForAdmin
+        {
+            get {
+                if (Globals.CurrentUser.Role != null)
+                    return true;
+                else return false;
+            }
+            set
+            {
+                //isBusy = value;
+                //OnPropertyChanged("IsBusy");
+                //OnPropertyChanged("IsLoaded");
+            }
+        }
 
         private async void CreateActivity()
         {
@@ -45,9 +59,10 @@ namespace Sibur.ViewModels
             ActWithCatGet currentact = actobject as ActWithCatGet;
             await Navigation.PushModalAsync(new CurrentActivity(currentact));
         }
-        private async void EditActivity()
+        private async void EditActivity(object actobject)
         {
-            await Navigation.PushModalAsync(new ActivityCreation());
+            ActWithCatGet currentact = actobject as ActWithCatGet;
+            await Navigation.PushModalAsync(new ActivityCreation(currentact));
         }
         private async void DeleteActivity(object actobject)
         {
