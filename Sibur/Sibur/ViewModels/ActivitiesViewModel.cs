@@ -48,8 +48,7 @@ namespace Sibur.ViewModels
                 //OnPropertyChanged("IsBusy");
                 //OnPropertyChanged("IsLoaded");
             }
-        }
-
+        }        
         private async void CreateActivity()
         {
             await Navigation.PushModalAsync(new ActivityCreation());
