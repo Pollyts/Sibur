@@ -11,6 +11,6 @@
         <local:Profile IconImageSource="Profile.png"/>
         <local:Activities IconImageSource="Events.png"/>
         <local:Page3 IconImageSource="List.png"/>
-        <local:Page4 IconImageSource="Calendar.png"/>
+        <local:RaitingPage IconImageSource="Calendar.png"/>
     </TabbedPage.Children>
 </TabbedPage>

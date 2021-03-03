@@ -36,7 +36,7 @@
     <EmbeddedResource Update="Views\Page3.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Page4.xaml">
+    <EmbeddedResource Update="Views\RaitingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Registration.xaml">
@@ -56,6 +56,9 @@
     </Compile>
     <Compile Update="Views\CurrentActivity.xaml.cs">
       <DependentUpon>CurrentActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RaitingPage.xaml.cs">
+      <DependentUpon>RaitingPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>

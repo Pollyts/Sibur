@@ -124,4 +124,19 @@ namespace Sibur.Models
         }
     }
     #endregion
+
+    #region Ranks
+    public class UserRank
+    {
+        public int UserId { get; set; }
+        public float kpi { get; set; }
+        public string name { get; set; }
+
+        public UserRank()
+        {
+
+        }
+    }
+    #endregion
 }
+

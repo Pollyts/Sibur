@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sibur.Views.RaitingPage">
+    <ContentPage.Content>
+    <StackLayout>
+            <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
+            <Label x:Name="lbl" Text="РЕЙТИНГ" Margin="10" FontSize="24" HorizontalOptions="CenterAndExpand"/>        
+               <StackLayout Margin="0,0,0,15" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
+                <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <!--<CollectionView ItemsSource="{Binding CurrentRank}" VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                                <Label Text="{Binding name}" FontSize="Medium" TextColor="#008993"/>
+                                --><!--<Label Text="{Binding kpi}" FontSize="Medium" TextColor="#008993" HorizontalOptions="End" />--><!--
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            <ListView x:Name="ActivitiesList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="5">
+                                    <Label Text="{Binding name}" TextColor="#008993" FontSize="Medium" HorizontalOptions="StartAndExpand" />
+                                        <Label Text="{Binding kpi}" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
