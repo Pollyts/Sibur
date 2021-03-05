@@ -18,6 +18,7 @@ namespace Sibur.Views
         public CategoryPage(AddDeleteEditActivitiesViewModel vm)
         {
             viewmodel = vm;
+            viewmodel.categoryPage = this;
             BindingContext = viewmodel;
             InitializeComponent();            
         }
@@ -30,6 +31,10 @@ namespace Sibur.Views
                 viewmodel.Selectedcats.Add(cat as Category);
                 lbl.Text += viewmodel.Selectedcats[viewmodel.Selectedcats.Count - 1].Name+"; ";
             }
+        }
+        public void UpdateCollection()
+        {
+            CatCollection.SelectedItems = null;            
         }
     }
 }

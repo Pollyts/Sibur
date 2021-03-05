@@ -15,6 +15,7 @@ namespace Sibur.ViewModels
     public class AddDeleteEditActivitiesViewModel : INotifyPropertyChanged
     {
         public ICommand CreateActivityCommand { get; set; }
+        public ICommand  DeleteCategoriesCommand { get; set; }
         public ICommand CreateCategoryCommand { get; set; }
         public ICommand SaveCategoriesCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
@@ -28,7 +29,7 @@ namespace Sibur.ViewModels
         public ActivityCreation activityCreationpage;
         public Category NewCategory { get; set; }
         public bool isedit=false;
-
+        public CategoryPage categoryPage { get; set; }
        
         public ObservableCollection<Category> categories { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -128,6 +129,7 @@ namespace Sibur.ViewModels
         //Переход по кнопке "Добавить категории" на страницу CategoriyPage
         private async void AddCategory()
         {
+            DeleteCategoriesCommand = new Command(DeleteCategories);
             CreateCategoryCommand = new Command(CreateCategory);
             GoToActivitiesCommand = new Command(GoToActivities);
             SaveCategoriesCommand = new Command(SaveCategories);
@@ -160,6 +162,23 @@ namespace Sibur.ViewModels
         {
             await Navigation.PopModalAsync();
             activityCreationpage.setCategoriesList();
+        }
+        private async void DeleteCategories()
+        {
+            foreach (Category category in Selectedcats.ToList())
+            {
+                if (category.Id==0)
+                {
+                    categories.Remove(category);
+                    Selectedcats.Remove(category);
+                }
+                else
+                await db.DeleteCategory(category.Id);
+            }
+            await GetCategories();
+            categoryPage.UpdateCollection();
+            //await Navigation.PopModalAsync();
+            //AddCategory();
         }
         private void CreateCategory()
         {

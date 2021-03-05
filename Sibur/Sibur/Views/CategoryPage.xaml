@@ -61,9 +61,11 @@ Value="#84CB35" />
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Text="Выбрать" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding SaveCategoriesCommand}"/>
-                <Button Grid.Column="1" Text="Отменить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" CornerRadius="23" Padding="10" FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding GoToActivitiesCommand}"/>
+                <Button Grid.Column="1" Text="Удалить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding DeleteCategoriesCommand}"/>
+                <Button Grid.Column="2" Text="Отменить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" CornerRadius="23" Padding="10" FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding GoToActivitiesCommand}"/>
             </Grid>
         </Grid>
     </ContentPage.Content>
