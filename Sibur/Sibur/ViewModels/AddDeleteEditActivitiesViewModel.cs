@@ -27,7 +27,7 @@ namespace Sibur.ViewModels
         public Activity currentact { get; set; }
         public ActivityCreation activityCreationpage;
         public Category NewCategory { get; set; }
-        public bool isedit;
+        public bool isedit=false;
 
        
         public ObservableCollection<Category> categories { get; set; }
@@ -52,7 +52,6 @@ namespace Sibur.ViewModels
         }
         public AddDeleteEditActivitiesViewModel()
         {
-            isedit = false;
             currentact = new Activity();
             categories = new ObservableCollection<Category>();
             CreateActivityCommand = new Command(CreateActivity);
@@ -61,7 +60,6 @@ namespace Sibur.ViewModels
         }
         public AddDeleteEditActivitiesViewModel(ActWithCatGet oldact)
         {
-            isedit = true;
             currentact = oldact;
             Selectedcats = new ObservableCollection<Category>();
             categories = new ObservableCollection<Category>();

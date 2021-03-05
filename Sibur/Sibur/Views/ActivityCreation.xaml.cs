@@ -29,8 +29,9 @@ namespace Sibur.Views
         }
         protected override async void OnAppearing()
         {
-            if (viewmodel.currentact.Id!=0)
+            if ((!viewmodel.isedit)&&(viewmodel.currentact.Id!=0))
             {
+                viewmodel.isedit = true;
                 B_AddorEdit.Text = "Редактировать";
                 L_Name.Text = "РЕДАКТИРОВАТЬ МЕРОПРИЯТИЕ";
                 await viewmodel.GetCategoriesForEditing();
