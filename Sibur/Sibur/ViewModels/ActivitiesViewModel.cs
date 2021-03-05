@@ -78,8 +78,6 @@ namespace Sibur.ViewModels
             }
         }
 
-
-
         //public Activity SelectedActivity
         //{
         //    get { return selectedact; }

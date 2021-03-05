@@ -27,6 +27,7 @@ namespace Sibur.ViewModels
         public Activity currentact { get; set; }
         public ActivityCreation activityCreationpage;
         public Category NewCategory { get; set; }
+        public bool isedit;
 
        
         public ObservableCollection<Category> categories { get; set; }
@@ -51,6 +52,7 @@ namespace Sibur.ViewModels
         }
         public AddDeleteEditActivitiesViewModel()
         {
+            isedit = false;
             currentact = new Activity();
             categories = new ObservableCollection<Category>();
             CreateActivityCommand = new Command(CreateActivity);
@@ -59,41 +61,65 @@ namespace Sibur.ViewModels
         }
         public AddDeleteEditActivitiesViewModel(ActWithCatGet oldact)
         {
-            //currentact = oldact;
-            //Selectedcats=oldact.ActCategories
-            //categories = new ObservableCollection<Category>();
-            //CreateActivityCommand = new Command(CreateActivity);
-            //GoBackCommand = new Command(GoBack);
-            //AddCategoryCommand = new Command(AddCategory);
+            isedit = true;
+            currentact = oldact;
+            Selectedcats = new ObservableCollection<Category>();
+            categories = new ObservableCollection<Category>();
+            CreateActivityCommand = new Command(CreateActivity);
+            GoBackCommand = new Command(GoBack);
+            AddCategoryCommand = new Command(AddCategory);
         }
 
         //Получить список категорий
         public async Task GetCategories()
         {
             IEnumerable<Category> cats = await db.GetCategories();
-            // очищаем список
-            //activities.Clear();
             while (categories.Any())
                 categories.RemoveAt(categories.Count - 1);
-
-            // добавляем загруженные данные
             foreach (Category a in cats)
                 categories.Add(a);
         }
 
+        //Получение текущих категорий при редактировании мероприятия
+        public async Task GetCategoriesForEditing()
+        {
+            IEnumerable<Category> cats = await db.GetCategoriesForEditing(currentact.Id);
+            while (Selectedcats.Any())
+                Selectedcats.RemoveAt(Selectedcats.Count - 1);
+            if (cats != null)
+                foreach (Category a in cats)
+                    Selectedcats.Add(a);
+        }
         //Создать мероприятие ActWithCatPost
         private async void CreateActivity()
         {
-            ActWithCatPost act;
-            if(Selectedcats==null)
+            bool ifcan=false;
+            if (isedit)
             {
-                act = new ActWithCatPost(currentact);
+                ActWithCatPost act;
+                if (Selectedcats == null)
+                {
+                    act = new ActWithCatPost(currentact);
+                }
+                else
+                {
+                    act = new ActWithCatPost(currentact, Selectedcats.ToArray());
+                }
+                ifcan = await db.Edit(act);
             }
             else
             {
-                act = new ActWithCatPost(currentact, Selectedcats.ToArray());
-            }            
-            bool ifcan = await db.Add(act);
+                ActWithCatPost act;
+                if (Selectedcats == null)
+                {
+                    act = new ActWithCatPost(currentact);
+                }
+                else
+                {
+                    act = new ActWithCatPost(currentact, Selectedcats.ToArray());
+                }
+                ifcan = await db.Add(act);                
+            }
             if (ifcan)
                 activityCreationpage.Sucess();
             else

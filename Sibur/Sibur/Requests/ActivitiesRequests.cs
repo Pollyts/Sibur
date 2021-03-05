@@ -34,6 +34,18 @@ namespace Sibur.Requests
             else
                 return true;
         }
+        public async Task<bool> Edit(ActWithCatPost act)
+        {
+            HttpClient client = GetClient();
+            var response = await client.PutAsync(Url+$"/{act.id}",
+                new StringContent(
+                    JsonConvert.SerializeObject(act),
+                    Encoding.UTF8, "application/json"));
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                return false;
+            else
+                return true;
+        }
         public async Task<bool> Delete(int ActivityId)
         {
             HttpClient client = GetClient();
@@ -47,6 +59,12 @@ namespace Sibur.Requests
         {
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(UrlCat);
+            return JsonConvert.DeserializeObject<IEnumerable<Category>>(result);
+        }
+        public async Task<IEnumerable<Category>> GetCategoriesForEditing(int ActivityId)
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(Url + $"/Categories/{ActivityId}");
             return JsonConvert.DeserializeObject<IEnumerable<Category>>(result);
         }
         public async Task<IEnumerable<ActWithCatGet>> Get()

@@ -29,6 +29,13 @@ namespace Sibur.Views
         }
         protected override async void OnAppearing()
         {
+            if (viewmodel.currentact.Id!=0)
+            {
+                B_AddorEdit.Text = "Редактировать";
+                L_Name.Text = "РЕДАКТИРОВАТЬ МЕРОПРИЯТИЕ";
+                await viewmodel.GetCategoriesForEditing();
+                setCategoriesList();
+            }
             await viewmodel.GetCategories();
             base.OnAppearing();            
         }
@@ -46,7 +53,7 @@ namespace Sibur.Views
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Мероприятие успешно добавлено", "ОK");
+            DisplayAlert("Успешно", "Данные успешно загрузились", "ОK");
         }
     }
 }
