@@ -6,6 +6,7 @@ x:Class="Sibur.Entrance">
     <ContentPage.Resources>
         <StyleSheet Source="/mainstylesheet.css" />
     </ContentPage.Resources>
+    <ContentPage.Content>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,8 +15,7 @@ x:Class="Sibur.Entrance">
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
 
@@ -50,11 +50,12 @@ x:Class="Sibur.Entrance">
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"/>
             </Label.GestureRecognizers>
         </Label>
-        <Label Grid.Row ="9" Text="Войти с помощью" FontSize="18" HorizontalOptions="Center" Margin="0,30,0,0" />
-        <Image Grid.Row ="10" Source="Shape.png" HorizontalOptions="Center">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="GotoFacebook" NumberOfTapsRequired="1" />
-            </Image.GestureRecognizers>
-        </Image>
+        <StackLayout IsVisible="{Binding IsBusy}"
+HorizontalOptions="Center" Grid.Row ="9" VerticalOptions="CenterAndExpand" Padding="20">
+            <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#008993" >
+            </ActivityIndicator>
+        </StackLayout>
     </Grid>
+    </ContentPage.Content>
 </ContentPage>

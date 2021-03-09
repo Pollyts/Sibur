@@ -79,7 +79,7 @@ Title="Grid spacing demo">
             </Grid>
 
             <StackLayout IsVisible="{Binding ViewModel.IsBusy}"
-HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
+HorizontalOptions="Center" VerticalOptions="EndAndExpand" Padding="20">
                 <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
                 <ActivityIndicator IsRunning="{Binding ViewModel.IsBusy}" Color="#008993" >
                 </ActivityIndicator>
