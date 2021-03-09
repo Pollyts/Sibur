@@ -10,7 +10,7 @@
     <TabbedPage.Children>
         <local:Profile IconImageSource="Profile.png"/>
         <local:Activities IconImageSource="Events.png"/>
-        <local:Page3 IconImageSource="List.png"/>
+        <local:UserActivitiesPage IconImageSource="List.png"/>
         <local:RaitingPage IconImageSource="Calendar.png"/>
     </TabbedPage.Children>
 </TabbedPage>

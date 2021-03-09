@@ -19,6 +19,7 @@
                         <Button Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                         <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
+                    <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
                     <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

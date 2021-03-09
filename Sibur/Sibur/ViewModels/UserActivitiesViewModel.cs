@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Sibur.ViewModels
 {
-    public class EditProfileViewModel
+    class UserActivitiesViewModel
     {
-
     }
 }

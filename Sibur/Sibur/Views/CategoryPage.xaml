@@ -34,7 +34,7 @@ Value="#84CB35" />
             <Label Text="КАТЕГОРИИ" Margin="10" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="1" x:Name="lbl" Text="Выбранные: Нет" Margin="20"/>
             <Frame Grid.Row="2" BorderColor="#008993" Margin="30,0,30,0" Padding="20,5" CornerRadius="23.5">
-                <local:CustomEntry Placeholder="Поиск" ></local:CustomEntry>
+                <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
             </Frame>
             <Frame Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
                 <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">

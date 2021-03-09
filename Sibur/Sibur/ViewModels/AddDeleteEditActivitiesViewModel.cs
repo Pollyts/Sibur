@@ -14,6 +14,7 @@ namespace Sibur.ViewModels
 {
     public class AddDeleteEditActivitiesViewModel : INotifyPropertyChanged
     {
+        public ICommand PerformSearchCommand { get; set; }
         public ICommand CreateActivityCommand { get; set; }
         public ICommand  DeleteCategoriesCommand { get; set; }
         public ICommand CreateCategoryCommand { get; set; }
@@ -32,6 +33,7 @@ namespace Sibur.ViewModels
         public CategoryPage categoryPage { get; set; }
        
         public ObservableCollection<Category> categories { get; set; }
+        public Collection<Category> allcategories { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation { get; set; }
         public Registration View { get; set; }
@@ -77,6 +79,7 @@ namespace Sibur.ViewModels
                 categories.RemoveAt(categories.Count - 1);
             foreach (Category a in cats)
                 categories.Add(a);
+            allcategories = new ObservableCollection<Category>(categories);
         }
 
         //Получение текущих категорий при редактировании мероприятия
@@ -125,10 +128,49 @@ namespace Sibur.ViewModels
                 activityCreationpage.Fail();
         }
 
+        private string _searchText { get; set; }
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    PerformSearchCommand.Execute(_searchText);
+                }
+            }
+        }
+        private void PerformSearch(object search)
+        {
+            string text = search.ToString();
+            if ((text == null) || (text == ""))
+            {
+                //activities = new ObservableCollection<ActWithCatGet>(allactivities);
+                while (categories.Any())
+                    categories.RemoveAt(categories.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (Category a in allcategories)
+                    categories.Add(a);
+            }
+            else
+            {
+                var temp = (from cat in allcategories where cat.Name.Contains(text) select cat);
+                //activities = new ObservableCollection<ActWithCatGet>(temp);      
+                while (categories.Any())
+                    categories.RemoveAt(categories.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (Category a in temp)
+                    categories.Add(a);
+            }
+        }
 
         //Переход по кнопке "Добавить категории" на страницу CategoriyPage
         private async void AddCategory()
         {
+            PerformSearchCommand = new Command(PerformSearch);
             DeleteCategoriesCommand = new Command(DeleteCategories);
             CreateCategoryCommand = new Command(CreateCategory);
             GoToActivitiesCommand = new Command(GoToActivities);
@@ -185,6 +227,7 @@ namespace Sibur.ViewModels
             if((NewCategory.Name!="")&&(NewCategory.Name!=null))
             {
                 categories.Add(NewCategory);
+                allcategories = new ObservableCollection<Category>(categories);
                 NewCategory = new Category() { Id = 0 };
             }            
         }

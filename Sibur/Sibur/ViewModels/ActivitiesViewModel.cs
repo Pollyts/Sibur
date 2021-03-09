@@ -15,6 +15,7 @@ namespace Sibur.ViewModels
     class ActivitiesViewModel : INotifyPropertyChanged
     {
         public ICommand CreateActivityCommand { get; set; }
+        public ICommand PerformSearchCommand { get; set; }
         public ICommand OpenActivityCommand { get; set; }
         public ICommand EditActivityCommand { get; set; }
         public ICommand DeleteActivityCommand { get; set; }
@@ -23,6 +24,7 @@ namespace Sibur.ViewModels
         ActivitiesRequests db = new ActivitiesRequests();
         public event PropertyChangedEventHandler PropertyChanged;
         //public ICommand CreateActivityCommand { get; set; }
+        public Collection<ActWithCatGet> allactivities { get; set; }
         public ObservableCollection<ActWithCatGet> activities { get; set; }
         public INavigation Navigation { get; set; }
         public Activities ActivitiesPage;
@@ -34,6 +36,7 @@ namespace Sibur.ViewModels
             OpenActivityCommand = new Command(OpenActivity);
             EditActivityCommand = new Command(EditActivity);
             DeleteActivityCommand = new Command(DeleteActivity);
+            PerformSearchCommand = new Command(PerformSearch);
         }
         public bool ForAdmin
         {
@@ -48,7 +51,45 @@ namespace Sibur.ViewModels
                 //OnPropertyChanged("IsBusy");
                 //OnPropertyChanged("IsLoaded");
             }
-        }        
+        }
+        private string _searchText { get; set; }
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    PerformSearchCommand.Execute(_searchText);
+                }
+            }
+        }
+        private void PerformSearch(object search)
+        {
+            string text = search.ToString();
+            if ((text == null) || (text == ""))
+            {
+                //activities = new ObservableCollection<ActWithCatGet>(allactivities);
+                while (activities.Any())
+                    activities.RemoveAt(activities.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (ActWithCatGet a in allactivities)
+                    activities.Add(a);
+            }
+            else
+            {
+                var temp = (from act in allactivities where act.name.Contains(text) select act);
+                //activities = new ObservableCollection<ActWithCatGet>(temp);      
+                while (activities.Any())
+                    activities.RemoveAt(activities.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (ActWithCatGet a in temp)
+                    activities.Add(a);
+            }
+        }
         private async void CreateActivity()
         {
             await Navigation.PushModalAsync(new ActivityCreation());
@@ -77,29 +118,6 @@ namespace Sibur.ViewModels
                 ActivitiesPage.Fail();
             }
         }
-
-        //public Activity SelectedActivity
-        //{
-        //    get { return selectedact; }
-        //    set
-        //    {
-        //        if (selectedact != value)
-        //        {
-        //            Activity tempact = new Activity()
-        //            {
-        //                Id = value.Id,
-        //                Name = value.Name,
-        //                Description = value.Description,
-        //                StartD=value.StartD,
-        //                EndD=value.EndD,
-
-        //            };
-        //            selectedact = null;
-        //            Navigation.PushAsync(new CurrentActivity(tempact));
-        //            selectedact = null;
-        //        }
-        //    }
-        //}
         public async Task GetActivities()
         {
             IEnumerable<ActWithCatGet> acts = await db.Get();
@@ -111,6 +129,7 @@ namespace Sibur.ViewModels
             // добавляем загруженные данные
             foreach (ActWithCatGet a in acts)
                 activities.Add(a);
+            allactivities = new ObservableCollection<ActWithCatGet>(activities);
         }
     }
 }

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Sibur.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page3 : ContentPage
+    public partial class UserActivitiesPage : ContentPage
     {
-        public Page3()
+        public UserActivitiesPage()
         {
             InitializeComponent();
         }
