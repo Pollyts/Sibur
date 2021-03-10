@@ -12,7 +12,7 @@ using System;
 
 namespace Sibur.ViewModels
 {
-    class UserActivitiesViewModel
+    public class UserActivitiesViewModel
     {
         public ICommand CreateActivityCommand { get; set; }
         public ICommand PerformSearchCommand { get; set; }

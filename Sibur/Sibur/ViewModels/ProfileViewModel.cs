@@ -97,9 +97,9 @@ namespace Sibur.ViewModels
                 //CurrentUser.Post = value;
             }
         }
-        private void ChangeProfileInfo(object obj)
+        private async void ChangeProfileInfo(object obj)
         {
-
+            await Navigation.PushModalAsync(new EditProfilePage(Globals.CurrentUser));
         }
         private async void Quit(object obj)
         {

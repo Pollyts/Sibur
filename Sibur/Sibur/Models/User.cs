@@ -13,33 +13,30 @@ namespace Sibur.Models
         public User(bool a)
         {
             ActAttendings = new HashSet<ActAttending>();
+            ActChats = new HashSet<ActChat>();
             QuestTaskUsers = new HashSet<QuestTaskUser>();
-            UserImg = new HashSet<UserImg>();
+            UserImgs = new HashSet<UserImg>();
             UserQuests = new HashSet<UserQuest>();
             UsersKpihistories = new HashSet<UsersKpihistory>();
-            MailConfirm = true;
         }
+
         public int Id { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
         public bool MailConfirm { get; set; }
         public string Name { get; set; }
-        //Бабки в магазе
         public int Currency { get; set; }
-        //Уже забыл зачем. Вроде как репутация, можно просто кого-то благодарить. Нлорм тема
         public int Thanks { get; set; }
-        //Для админов
         public char? Role { get; set; }
-        //Теперь это очки kpi
         public float EngPoints { get; set; }
+        public DateTime LastEntry { get; set; }
+        public float Bonus { get; set; }
 
         public virtual ICollection<ActAttending> ActAttendings { get; set; }
-        public virtual ICollection<ActChat> ActChat { get; set; }
+        public virtual ICollection<ActChat> ActChats { get; set; }
         public virtual ICollection<QuestTaskUser> QuestTaskUsers { get; set; }
-        //можно не читать полностью <3
-        //отдельная хрень на картинку(так вроде лучше работать должно и не будет нужная инфа подгружаться "долго"(в кавычках потому что я хз сколько это времени займет в обоих случаях))
-        public virtual ICollection<UserImg> UserImg { get; set; }
+        public virtual ICollection<UserImg> UserImgs { get; set; }
         public virtual ICollection<UserQuest> UserQuests { get; set; }
-        public virtual ICollection<UsersKpihistory> UsersKpihistories { get; set; }
+        public virtual ICollection<UsersKpihistory> UsersKpihistories { get; set; }        
     }
 }

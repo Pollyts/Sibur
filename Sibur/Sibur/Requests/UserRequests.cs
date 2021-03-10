@@ -20,6 +20,27 @@ namespace Sibur.Requests
             return client;
         }
 
+        public async Task<bool> Delete(int userId)
+        {
+            HttpClient client = GetClient();
+            var response = await client.DeleteAsync(Url + $"/{userId}");
+            if (response.StatusCode != HttpStatusCode.OK)
+                return false;
+            else
+                return true;
+        }
+        public async Task<bool> Edit(User user)
+        {
+            HttpClient client = GetClient();
+            var response = await client.PutAsync(Url + $"/{user.Id}",
+                new StringContent(
+                    JsonConvert.SerializeObject(user),
+                    Encoding.UTF8, "application/json"));
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                return false;
+            else
+                return true;
+        }
         public async Task<User> Add(User usr)
         {
             HttpClient client = GetClient();
@@ -33,7 +54,7 @@ namespace Sibur.Requests
 
             return JsonConvert.DeserializeObject<User>(
                 await response.Content.ReadAsStringAsync());
-        }
+        }        
         public async Task<User> Entry(string mail, string password)
         {
             HttpClient client = GetClient();
@@ -46,25 +67,5 @@ namespace Sibur.Requests
             return JsonConvert.DeserializeObject<User>(
                 await response.Content.ReadAsStringAsync());
         }
-        //        public async Task Add()
-        //        {           
-        //            string myJson = @"{
-        //        ""Mail"": ""123456"",
-        //        ""Password"": ""qwerty"",
-        //        ""MailConfirm"": true,
-        //        ""Name"": ""qqqq"",
-        //        ""Currency"": 0,
-        //        ""Thanks"": 0,
-        //        ""Role"": null,
-        //        ""EngPoints"": 0,
-        //        ""ActAttendings"": [],
-        //        ""ActChat"": null,
-        //        ""QuestTaskUsers"": [],
-        //        ""UserImg"": [],
-        //        ""UserQuests"": []
-        //}";
-
-
-
     }
 }
