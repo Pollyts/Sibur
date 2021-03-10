@@ -14,6 +14,7 @@ namespace Sibur.Requests
         private const string Url = "https://dbgrpprj.azurewebsites.net/Activities";
         private const string UrlCat = "https://dbgrpprj.azurewebsites.net/Categories"; 
         private const string UrlChats = "https://dbgrpprj.azurewebsites.net/ActChats";
+        private const string UrlAttendings = "https://dbgrpprj.azurewebsites.net/Users/Attending";
         // настройка клиента
         private HttpClient GetClient()
         {
@@ -81,6 +82,12 @@ namespace Sibur.Requests
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(Url);
             return JsonConvert.DeserializeObject<IEnumerable<ActWithCatGet>>(result);
+        }
+        public async Task<IEnumerable<ActAttending>> GetUserActivities(int userId)
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(UrlAttendings+$"/{userId}");
+            return JsonConvert.DeserializeObject<IEnumerable<ActAttending>>(result);
         }
         public async Task<bool> SignUp(int ActivityId, int Userid)
         {

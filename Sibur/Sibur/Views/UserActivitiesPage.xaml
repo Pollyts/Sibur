@@ -6,7 +6,7 @@
         <StackLayout>
             <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
             <RelativeLayout>
-                <ImageButton  Command="{Binding CreateActivityCommand}" RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=lbl,
+                <ImageButton IsVisible="{Binding ForAdmin}" Command="{Binding CreateActivityCommand}" RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=lbl,
              Property=X, Factor=0.5, Constant=-10}" 
                x:Name="image" BackgroundColor="Transparent" Source="Pluse.png"/>
                 <Label x:Name="lbl" Text="МОИ МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>
