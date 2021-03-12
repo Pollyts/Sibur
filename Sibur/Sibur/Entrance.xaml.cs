@@ -24,14 +24,6 @@ namespace Sibur
         {
             Password.IsPassword = Password.IsPassword ? false : true;
         }
-        //private async void GoButton(object sender, System.EventArgs e)
-        //{
-        //    await Navigation.PushAsync(new Tabs());
-        //}
-        public void GotoFacebook(object sender, EventArgs args)
-        {
-           
-        }
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new Registration(this.Navigation));

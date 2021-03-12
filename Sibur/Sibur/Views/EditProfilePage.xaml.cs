@@ -14,9 +14,11 @@ namespace Sibur.Views
     public partial class EditProfilePage : ContentPage
     {
         public EditProfileViewModel viewmodel;
-        public EditProfilePage(User user)
+        public EditProfilePage(EditProfileViewModel epvm)
         {
-            viewmodel = new EditProfileViewModel(user) { Navigation = this.Navigation, editprofilepage = this };
+            viewmodel = epvm;
+            viewmodel.Navigation = this.Navigation;
+            viewmodel.editprofilepage = this;
             BindingContext = viewmodel;
             InitializeComponent();
         }
