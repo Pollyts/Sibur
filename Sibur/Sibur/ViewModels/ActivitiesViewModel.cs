@@ -30,7 +30,7 @@ namespace Sibur.ViewModels
 
         public ActivitiesViewModel()
         {
-            isBusy = false;
+            IsBusy = false;
             activities = new ObservableCollection<ActWithCatGet>();
             CreateActivityCommand = new Command(CreateActivity);
             OpenActivityCommand = new Command(OpenActivity);
@@ -55,12 +55,7 @@ namespace Sibur.ViewModels
             {
                 isBusy = value;
                 OnPropertyChanged("IsBusy");
-                OnPropertyChanged("IsLoaded");
             }
-        }
-        public bool IsLoaded
-        {
-            get { return !isBusy; }
         }
         protected void OnPropertyChanged(string propName)
         {
@@ -106,7 +101,7 @@ namespace Sibur.ViewModels
         }
         private async void CreateActivity()
         {
-            await Navigation.PushModalAsync(new ActivityCreation());
+            await Navigation.PushModalAsync(new ActivityCreation(null));
         }
         private async void OpenActivity(object actobject)
         {

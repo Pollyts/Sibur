@@ -14,18 +14,12 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActivityCreation : ContentPage
     {
-        public AddDeleteEditActivitiesViewModel viewmodel;
-        public ActivityCreation()
-        {
-            viewmodel = new AddDeleteEditActivitiesViewModel() { Navigation = this.Navigation, activityCreationpage = this };
-            BindingContext = viewmodel;
-            InitializeComponent();            
-        }
+        public AddEditActivitiesViewModel viewmodel;
         public ActivityCreation(ActWithCatGet oldactivity)
         {
-            viewmodel = new AddDeleteEditActivitiesViewModel(oldactivity) { Navigation = this.Navigation, activityCreationpage = this };
+            viewmodel = new AddEditActivitiesViewModel(oldactivity) { Navigation = this.Navigation, activityCreationpage = this };
             BindingContext = viewmodel;
-            InitializeComponent();
+            InitializeComponent();            
         }
         protected override async void OnAppearing()
         {
@@ -37,7 +31,6 @@ namespace Sibur.Views
                 await viewmodel.GetCategoriesForEditing();
                 setCategoriesList();
             }
-            await viewmodel.GetCategories();
             base.OnAppearing();            
         }
         public void setCategoriesList()

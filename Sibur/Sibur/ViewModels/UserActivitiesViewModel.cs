@@ -94,7 +94,7 @@ namespace Sibur.ViewModels
         }
         private async void CreateActivity()
         {
-            await Navigation.PushModalAsync(new ActivityCreation());
+            await Navigation.PushModalAsync(new ActivityCreation(null));
         }
         private async void OpenActivity(object actobject)
         {

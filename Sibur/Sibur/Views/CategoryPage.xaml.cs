@@ -14,13 +14,18 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryPage : ContentPage
     {
-        public AddDeleteEditActivitiesViewModel viewmodel;
-        public CategoryPage(AddDeleteEditActivitiesViewModel vm)
+        public CategoriesViewModel viewmodel;
+        public CategoryPage(CategoriesViewModel vm)
         {
             viewmodel = vm;
             viewmodel.categoryPage = this;
             BindingContext = viewmodel;
             InitializeComponent();            
+        }
+        protected override async void OnAppearing()
+        {
+            await viewmodel.GetCategories();
+            base.OnAppearing();
         }
         void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
