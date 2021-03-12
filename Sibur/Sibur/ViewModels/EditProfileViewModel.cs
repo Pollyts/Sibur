@@ -53,6 +53,7 @@ namespace Sibur.ViewModels
             if (ifcan)
             {
                 editprofilepage.Sucess();
+                await Navigation.PopModalAsync();
                 await Navigation.PopToRootAsync();
             }
             else

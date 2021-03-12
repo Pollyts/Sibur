@@ -45,7 +45,13 @@ namespace Sibur.ViewModels
 
             // добавляем загруженные данные
             foreach (ActChat c in com)
+            {
+                if((c.UserId==null)||(c.UserId == 0))
+                {
+                    c.UserName += " (Удален)";
+                }
                 comments.Add(c);
+            }                    
         }
 
         //Переименовывает кнопку

@@ -35,12 +35,7 @@ namespace Sibur.ViewModels
             {
                 isBusy = value;
                 OnPropertyChanged("IsBusy");
-                OnPropertyChanged("IsLoaded");
             }
-        }
-        public bool IsLoaded
-        {
-            get { return !isBusy; }
         }
         protected void OnPropertyChanged(string propName)
         {

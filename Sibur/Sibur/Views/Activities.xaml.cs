@@ -24,8 +24,10 @@ namespace Sibur.Views
 
         protected override async void OnAppearing()
         {
+            viewModel.IsBusy = true;
             await viewModel.GetActivities();
             base.OnAppearing();
+            viewModel.IsBusy = false;
         }
         private async void SelectItemCheck(object sender, SelectedItemChangedEventArgs e)
         {

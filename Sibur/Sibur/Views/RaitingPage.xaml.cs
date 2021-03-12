@@ -18,8 +18,27 @@ namespace Sibur.Views
         public RaitingPage()
         {
             InitializeComponent();
-            viewmodel = new RaitingViewModel();
+            viewmodel = new RaitingViewModel() {raitingPage=this };
             BindingContext = viewmodel;            
+        }
+        private void SelectItemCheck(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (viewmodel.ForAdmin)
+            {
+                B_Delete.IsEnabled = true;
+                B_Delete.BackgroundColor = Color.FromRgb(0, 137, 147);
+                B_Delete.TextColor = Color.White;
+            }
+            else
+                RankList.SelectedItem = null;
+        }
+        public void Fail()
+        {
+            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+        }
+        public void Sucess()
+        {
+            DisplayAlert("Успешно", "Ура, получилось", "ОК");
         }
         protected override async void OnAppearing()
         {

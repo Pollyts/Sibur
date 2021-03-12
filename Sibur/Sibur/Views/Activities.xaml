@@ -20,7 +20,14 @@
                         <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                    <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                    <Grid>
+                        <StackLayout IsVisible="{Binding IsBusy}"
+HorizontalOptions="Center"  VerticalOptions="Center" Padding="20">
+                            <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
+                            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#008993" >
+                            </ActivityIndicator>
+                        </StackLayout>
+                        <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                             <ViewCell>
@@ -38,9 +45,11 @@
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-                            </ListView>                
-                    </StackLayout>
-            </Frame>            
-            </StackLayout>
+                            </ListView>                    
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -18,6 +18,7 @@ namespace Sibur.Models
             UserImgs = new HashSet<UserImg>();
             UserQuests = new HashSet<UserQuest>();
             UsersKpihistories = new HashSet<UsersKpihistory>();
+            MailConfirm = true;
         }
 
         public int Id { get; set; }

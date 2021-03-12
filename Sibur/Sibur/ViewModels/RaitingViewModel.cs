@@ -14,14 +14,18 @@ namespace Sibur.ViewModels
 {
     public class RaitingViewModel
     {
+        public ICommand PerformSearchCommand { get; set; }
         public ICommand ShowRankCommand { get; set; }
+        public ICommand DeleteUserCommand { get; set; }
         public ICommand ShowMonthRankCommand { get; set; }
         public ObservableCollection<UserRank> UsersMonthRank { get; set; }
         public ObservableCollection<UserRank> UsersRank { get; set; }
         public ObservableCollection<UserRank> CurrentRank { get; set; }
+        public ObservableCollection<UserRank> AllCurrentRanks { get; set; }
         public RaitingRequests db = new RaitingRequests();
+        public UserRequests dbuser = new UserRequests();
+        public RaitingPage raitingPage;
         public INavigation Navigation { get; set; }
-        public Activities ActivitiesPage;
 
         public RaitingViewModel()
         {
@@ -30,22 +34,76 @@ namespace Sibur.ViewModels
             UsersRank = new ObservableCollection<UserRank>();
             ShowRankCommand = new Command(ShowRank);
             ShowMonthRankCommand = new Command(ShowMonthRank);
+            PerformSearchCommand = new Command(PerformSearch);
+            DeleteUserCommand = new Command(DeleteUser);
         }
-        //public bool ForAdmin
-        //{
-        //    get
-        //    {
-        //        if (Globals.CurrentUser.Role != null)
-        //            return true;
-        //        else return false;
-        //    }
-        //    set
-        //    {
-        //        //isBusy = value;
-        //        //OnPropertyChanged("IsBusy");
-        //        //OnPropertyChanged("IsLoaded");
-        //    }
-        //}
+        private async void DeleteUser(object currus)
+        {
+            UserRank ur = currus as UserRank;
+            bool ifcan = await dbuser.Delete(ur.UserId);
+            if (ifcan)
+            {
+                raitingPage.Sucess();
+                await GetRanks();
+            }
+            else
+            {
+                raitingPage.Fail();
+            }
+        }
+        private string _searchText { get; set; }
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    PerformSearchCommand.Execute(_searchText);
+                }
+            }
+        }
+        private void PerformSearch(object search)
+        {
+            string text = search.ToString();
+            if ((text == null) || (text == ""))
+            {
+                //activities = new ObservableCollection<ActWithCatGet>(allactivities);
+                while (CurrentRank.Any())
+                    CurrentRank.RemoveAt(CurrentRank.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (UserRank a in AllCurrentRanks)
+                    CurrentRank.Add(a);
+            }
+            else
+            {
+                var temp = (from rank in AllCurrentRanks where rank.name.Contains(text) select rank);
+                //activities = new ObservableCollection<ActWithCatGet>(temp);      
+                while (CurrentRank.Any())
+                    CurrentRank.RemoveAt(CurrentRank.Count - 1);
+
+                // добавляем загруженные данные
+                foreach (UserRank a in temp)
+                    CurrentRank.Add(a);
+            }
+        }
+        public bool ForAdmin
+        {
+            get
+            {
+                if (Globals.CurrentUser.Role != null)
+                    return true;
+                else return false;
+            }
+            set
+            {
+                //isBusy = value;
+                //OnPropertyChanged("IsBusy");
+                //OnPropertyChanged("IsLoaded");
+            }
+        }
         public async Task GetRanks()
         {
             IEnumerable<UserRank> urank = await db.GetRank();
@@ -68,6 +126,7 @@ namespace Sibur.ViewModels
                 CurrentRank.RemoveAt(CurrentRank.Count - 1);
             foreach (UserRank ur in UsersRank)
                 CurrentRank.Add(ur);
+            AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
         }
         private void ShowMonthRank()
         {
@@ -76,6 +135,7 @@ namespace Sibur.ViewModels
                 CurrentRank.RemoveAt(CurrentRank.Count - 1);
             foreach (UserRank ur in UsersMonthRank)
                 CurrentRank.Add(ur);
+            AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
         }
     }
 }

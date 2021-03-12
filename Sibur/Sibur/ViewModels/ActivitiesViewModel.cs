@@ -19,11 +19,10 @@ namespace Sibur.ViewModels
         public ICommand OpenActivityCommand { get; set; }
         public ICommand EditActivityCommand { get; set; }
         public ICommand DeleteActivityCommand { get; set; }
-        Activity selectedact;
-        //private bool isBusy;    // идет ли загрузка с сервера
+
+        private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
         public event PropertyChangedEventHandler PropertyChanged;
-        //public ICommand CreateActivityCommand { get; set; }
         public Collection<ActWithCatGet> allactivities { get; set; }
         public ObservableCollection<ActWithCatGet> activities { get; set; }
         public INavigation Navigation { get; set; }
@@ -31,6 +30,7 @@ namespace Sibur.ViewModels
 
         public ActivitiesViewModel()
         {
+            isBusy = false;
             activities = new ObservableCollection<ActWithCatGet>();
             CreateActivityCommand = new Command(CreateActivity);
             OpenActivityCommand = new Command(OpenActivity);
@@ -38,6 +38,8 @@ namespace Sibur.ViewModels
             DeleteActivityCommand = new Command(DeleteActivity);
             PerformSearchCommand = new Command(PerformSearch);
         }
+
+        //Проверка на админа
         public bool ForAdmin
         {
             get {
@@ -45,12 +47,25 @@ namespace Sibur.ViewModels
                     return true;
                 else return false;
             }
+        }
+        public bool IsBusy
+        {
+            get { return isBusy; }
             set
             {
-                //isBusy = value;
-                //OnPropertyChanged("IsBusy");
-                //OnPropertyChanged("IsLoaded");
+                isBusy = value;
+                OnPropertyChanged("IsBusy");
+                OnPropertyChanged("IsLoaded");
             }
+        }
+        public bool IsLoaded
+        {
+            get { return !isBusy; }
+        }
+        protected void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
         private string _searchText { get; set; }
         public string SearchText
@@ -70,20 +85,19 @@ namespace Sibur.ViewModels
             string text = search.ToString();
             if ((text == null) || (text == ""))
             {
-                //activities = new ObservableCollection<ActWithCatGet>(allactivities);
-                while (activities.Any())
-                    activities.RemoveAt(activities.Count - 1);
-
+                //while (activities.Any())
+                //    activities.RemoveAt(activities.Count - 1);
+                activities.Clear();
                 // добавляем загруженные данные
                 foreach (ActWithCatGet a in allactivities)
                     activities.Add(a);
             }
             else
             {
-                var temp = (from act in allactivities where act.name.Contains(text) select act);
-                //activities = new ObservableCollection<ActWithCatGet>(temp);      
-                while (activities.Any())
-                    activities.RemoveAt(activities.Count - 1);
+                activities.Clear();
+                var temp = (from act in allactivities where act.name.Contains(text) select act);   
+                //while (activities.Any())
+                //    activities.RemoveAt(activities.Count - 1);
 
                 // добавляем загруженные данные
                 foreach (ActWithCatGet a in temp)
@@ -119,7 +133,7 @@ namespace Sibur.ViewModels
             }
         }
         public async Task GetActivities()
-        {
+        {            
             IEnumerable<ActWithCatGet> acts = await db.Get();
             // очищаем список
             //activities.Clear();
