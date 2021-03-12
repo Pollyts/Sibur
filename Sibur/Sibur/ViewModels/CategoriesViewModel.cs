@@ -26,6 +26,7 @@ namespace Sibur.ViewModels
         public Category NewCategory { get; set; }
         ActivitiesRequests db = new ActivitiesRequests();
         public Activity currentact;
+        public User Test;
         AddEditActivitiesViewModel addeditvm;
         public INavigation Navigation;
         public CategoriesViewModel(ObservableCollection<Category>catsforedit, Activity act, AddEditActivitiesViewModel oldvm, INavigation nav)
