@@ -40,7 +40,6 @@ x:Class="Sibur.Entrance">
                 </Image>
             </Grid>
         </Frame>
-
         <Button Grid.Row ="7" Command="{Binding GoEntryCommand}" CommandParameter="{Binding}" Text="Войти" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" >
 
         </Button>
