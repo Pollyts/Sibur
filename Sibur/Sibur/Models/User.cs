@@ -29,6 +29,7 @@ namespace Sibur.Models
         public int Currency { get; set; }
         public int Thanks { get; set; }
         public char? Role { get; set; }
+        public bool Display { get; set; }
         public float EngPoints { get; set; }
         public DateTime LastEntry { get; set; }
         public float Bonus { get; set; }
