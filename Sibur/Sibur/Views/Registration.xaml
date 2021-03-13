@@ -35,7 +35,6 @@ Title="Grid spacing demo">
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-
                             <Label Grid.Column="0" Text="Почта" FontSize="17" VerticalOptions="Center"/>
                             <Entry Grid.Column="1" Text="{Binding NewUser.Mail}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                         </Grid>
