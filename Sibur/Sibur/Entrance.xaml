@@ -27,7 +27,7 @@ x:Class="Sibur.Entrance">
         </Frame>
         <Label Grid.Row ="5" Text="Пароль" VerticalOptions="End" FontSize="18" Margin="54,20,0,0"/>
         <Frame Grid.Row ="6" BorderColor="#008993" Padding="0" CornerRadius="23.5" Margin="31,0,30,0" >
-            <Grid Padding="0" >
+            <Grid  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -40,6 +40,7 @@ x:Class="Sibur.Entrance">
                 </Image>
             </Grid>
         </Frame>
+
         <Button Grid.Row ="7" Command="{Binding GoEntryCommand}" CommandParameter="{Binding}" Text="Войти" TextColor="#FFFFFF" BackgroundColor="#008993" FontSize="18" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" >
 
         </Button>

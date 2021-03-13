@@ -12,8 +12,8 @@ x:Class="Sibur.Views.CategoryPage">
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-Value="#84CB35" />
-                                <!--#124B30-->
+                                Value="#84CB35" />
+                                
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -22,21 +22,21 @@ Value="#84CB35" />
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="0,25,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Text="КАТЕГОРИИ" Margin="10" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="1" x:Name="lbl" Text="Выбранные: Нет" Margin="20"/>
-            <Frame Grid.Row="2" BorderColor="#008993" Margin="30,0,30,0" Padding="20,5" CornerRadius="23.5">
+            <Frame Grid.Row="2" BorderColor="#008993" Margin="10,0,10,0" Padding="10,0" HasShadow="False" CornerRadius="23.5">
                 <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
             </Frame>
-            <Frame Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+            <Frame Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="True" Padding="10">
                 <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
                     <!--SelectedItems="{Binding selectedcats, Mode=TwoWay}"-->
                     <CollectionView.ItemTemplate>
@@ -50,22 +50,22 @@ Value="#84CB35" />
             </Frame>
             <Grid Grid.Row="4" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <local:CustomEntry Grid.Column="0" Text="{Binding NewCategory.Name}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Placeholder="Добавьте новую категорию" PlaceholderColor="#124B30" >
+                <local:CustomEntry  Text="{Binding NewCategory.Name}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Placeholder="Добавьте новую категорию" PlaceholderColor="#124B30" Margin="20,0,10,0" >
                 </local:CustomEntry>
-                <Button Grid.Column="1" Text="Добавить" BackgroundColor="#008993" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" CornerRadius="23"  Command="{Binding CreateCategoryCommand}"/>
+                <Button Grid.Column="1" Text="Добавить" BackgroundColor="#008993" Padding="10" Margin="10,0,10,0" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" CornerRadius="23"  Command="{Binding CreateCategoryCommand}"/>
             </Grid>
             <Grid Grid.Row="5" Margin="20" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Text="Выбрать" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding SaveCategoriesCommand}"/>
-                <Button Grid.Column="1" Text="Удалить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding DeleteCategoriesCommand}"/>
-                <Button Grid.Column="2" Text="Отменить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" CornerRadius="23" Padding="10" FontSize="18" HorizontalOptions="CenterAndExpand" Command="{Binding GoToActivitiesCommand}"/>
+                <Button Grid.Column="0" Text="Выбрать" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="15" HorizontalOptions="Fill" Command="{Binding SaveCategoriesCommand}"/>
+                <Button Grid.Column="1" Text="Удалить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="10"  FontSize="15" HorizontalOptions="Fill" Command="{Binding DeleteCategoriesCommand}"/>
+                <Button Grid.Column="2" Text="Отменить" BackgroundColor="White" BorderColor="#008993" BorderWidth="1.5" VerticalOptions="Center" CornerRadius="23" Padding="8" FontSize="15" HorizontalOptions="Fill" Command="{Binding GoToActivitiesCommand}"/>
             </Grid>
         </Grid>
     </ContentPage.Content>
