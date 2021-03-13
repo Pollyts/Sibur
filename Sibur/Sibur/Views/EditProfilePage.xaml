@@ -5,24 +5,48 @@
              xmlns:local="clr-namespace:Sibur;assembly=Sibur">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>                
-                <ImageButton  Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancel.png"/>
-                <Label Margin="5" x:Name="L_Name" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="РЕДАКТИРОВАНИЕ ПРОФИЛЯ" FontAttributes="Bold" TextColor="White" FontSize="24"/>                
-                <Label Text="ФИО:" Margin="54,0,0,10" FontSize="16" TextColor="White"/>
-                <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <ImageButton  Command="{Binding GoBackCommand}"  HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancel.png"/>
+                <Label Grid.Row="1" Margin="5,5,5,0" x:Name="L_Name" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="РЕДАКТИРОВАНИЕ ПРОФИЛЯ" FontAttributes="Bold" TextColor="White" FontSize="24"/>                
+                <Grid Grid.Row="2" Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                    <Label  Text="ФИО:" Margin="54,0,0,0" FontSize="16"  VerticalOptions="End" TextColor="White"/>
+                <Frame Grid.Row="1" BackgroundColor="White" Margin="30,0,30,0" Padding="0"   CornerRadius="23.5">
                     <local:CustomEntry Text="{Binding currentuser.Name, Mode=TwoWay}" FontSize="16" Placeholder="Введите имя" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
                 </Frame>
-                <Label Text="Почта:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+                <Label Grid.Row="2" Text="Почта:" Margin="54,10,0,10" VerticalOptions="End" FontSize="16" TextColor="White"/>
+                <Frame Grid.Row="3" BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
                     <local:CustomEntry Text="{Binding currentuser.Mail, Mode=TwoWay}" FontSize="16" Placeholder="Добавьте вашу почту" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
                 </Frame>
-                <Label Text="Пароль:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
+                <Label Grid.Row="4" Text="Пароль:" VerticalOptions="End" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
+                <Frame Grid.Row="5" BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
                     <local:CustomEntry Text="{Binding currentuser.Password, Mode=TwoWay}" FontSize="16" Placeholder="Добавьте пароль" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
                 </Frame>
-                <Button Command="{Binding EditUserProfileCommand}" Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
-                <Button Command="{Binding DeleteUserProfileCommand}" Text="Удалить профиль" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
-            </StackLayout>                
+                    </Grid> 
+            <Grid Grid.Row="3" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    
+                </Grid.RowDefinitions>
+                <Button  Command="{Binding EditUserProfileCommand}" Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="End"  />
+                <Button Grid.Row="1" Command="{Binding DeleteUserProfileCommand}" Text="УДАЛИТЬ ПРОФИЛЬ" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,20,30,30" VerticalOptions="End" />
+                </Grid> 
+                </Grid>                
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -8,33 +8,95 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout>
-                <ImageButton  Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancel.png"/>
-                <Label Margin="5" x:Name="L_Name" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="СОЗДАТЬ МЕРОПРИЯТИЕ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
-            <Label Text="Название:" Margin="54,0,0,10" FontSize="16" TextColor="White"/>
-            <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
-                    <local:CustomEntry Text="{Binding currentact.Name, Mode=TwoWay}" FontSize="16" Placeholder="Введите название" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+        <Grid Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"  Margin="30,0,5,0" HorizontalTextAlignment="Center" x:Name="L_Name" HorizontalOptions="Center" Text="СОЗДАТЬ МЕРОПРИЯТИЕ" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="24"/>
+                <ImageButton Grid.Column="1" Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  VerticalOptions="Start" Source="cancel.png"/>
+               
+            </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                
+            </Grid.RowDefinitions>
+            <Label  Text="Название:" Margin="30,0,0,0" FontSize="16" TextColor="White"/>
+            <Frame  Grid.Row="1" BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="10">
+                    <local:CustomEntry Text="{Binding currentact.Name, Mode=TwoWay}" FontSize="16" Placeholder="Введите название" PlaceholderColor="#124B30" Margin="5,0,5,0"></local:CustomEntry>
             </Frame>
-            <Label Text="Описание:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-            <Frame BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
-                    <local:CustomEntry Text="{Binding currentact.Description, Mode=TwoWay}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
+            </Grid>
+            <Grid Grid.Row="2" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Описание:" Margin="30,0,0,0" FontSize="16" TextColor="White"/>
+            <Frame Grid.Row="1" BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="10">
+                    <local:CustomEntry Text="{Binding currentact.Description, Mode=TwoWay}" FontSize="16" Placeholder="Опишите ваше мероприятие" PlaceholderColor="#124B30" Margin="5,0,5,0"></local:CustomEntry>
             </Frame>
-            <Label Text="Категория:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <Label Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="54,0,0,10"/>
+                </Grid >
+            <Grid Grid.Row="3" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label  Text="Категория:" Margin="30,0,0,10" FontSize="16" TextColor="White"/>
+                <Label Grid.Row="1" Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="30,0,0,0"/>
                 <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
             </Picker>-->
-                <Button Command="{Binding AddCategoryCommand}" BackgroundColor="#008993" Text="Добавить категорию" Padding="10,5,10,5" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" FontSize="18" HorizontalOptions="Center" CornerRadius="24" Margin="31,10,30,0" VerticalOptions="Fill" />
-            
-                <Label Text="Дата начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <local:CustomDatePicker Date="{Binding currentact.StartD, Mode=TwoWay}" Margin="54,10,54,10" x:Name="DP_StartDate"/>
-                <Label Text="Время начала:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <TimePicker Margin="54,10,54,10" x:Name="TP_StartTime"/>
-                <Label Text="Дата окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <local:CustomDatePicker Date="{Binding currentact.EndD, Mode=TwoWay}" Margin="54,10,54,10" x:Name="DP_EndDate"/>
-                <Label Text="Время окончания:" Margin="54,10,0,10" FontSize="16" TextColor="White"/>
-                <TimePicker Margin="54,10,54,10" x:Name="TP_EndTime"/>
-                <Button Command="{Binding CreateActivityCommand}" x:Name="B_AddorEdit" Text="Добавить" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="Fill" />
-            </StackLayout>
+                </Grid >
+                <Button Grid.Row="4" Command="{Binding AddCategoryCommand}" BackgroundColor="#008993" Text="Добавить категорию" Padding="10,5,10,5" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" FontSize="18" HorizontalOptions="Fill" CornerRadius="24" Margin="61,10,60,0" VerticalOptions="Fill" />
+                <Grid Grid.Row="5" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label  Text="Дата начала:" Margin="30,10,0,0" FontSize="16" TextColor="White"/>
+                <local:CustomDatePicker Grid.Row="1" Date="{Binding currentact.StartD, Mode=TwoWay}" Margin="30,10,30,10" x:Name="DP_StartDate"/>
+                </Grid >
+                <Grid Grid.Row="6" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label  Text="Время начала:" Margin="30,10,0,0" FontSize="16" TextColor="White"/>
+                <TimePicker Grid.Row="1" Margin="30,10,30,10" x:Name="TP_StartTime"/>
+                    </Grid >
+                    
+            <Grid Grid.Row="7" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="Дата окончания:" Margin="30,10,0,0" FontSize="16" TextColor="White"/>
+                <local:CustomDatePicker Grid.Row="1" Date="{Binding currentact.EndD, Mode=TwoWay}" Margin="30,10,30,10" x:Name="DP_EndDate"/>
+                </Grid >
+            <Grid Grid.Row="8" >        
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label  Text="Время окончания:" Margin="30,10,0,0" FontSize="16" TextColor="White"/>
+                <TimePicker Grid.Row="1" Margin="30,10,30,10" x:Name="TP_EndTime"/>
+                </Grid >
+                <Button Grid.Row="9" Command="{Binding CreateActivityCommand}" x:Name="B_AddorEdit" Text="Добавить" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="61,30,60,40" VerticalOptions="Fill" HorizontalOptions="Fill" Padding="10"/>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

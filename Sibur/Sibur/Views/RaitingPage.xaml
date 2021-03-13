@@ -3,32 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sibur.Views.RaitingPage">
     <ContentPage.Content>
-    <StackLayout>
-            <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-            <StackLayout Orientation="Horizontal">
-            <Label x:Name="lbl" Text="ПОЛЬЗОВАТЕЛИ" Margin="10" FontSize="24" HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="B_Delete" Text="Удалить" Command="{Binding DeleteUserCommand}"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" IsEnabled="False" IsVisible="{Binding ForAdmin}" TextColor="LightGray" BackgroundColor="Gray" HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <Label Text="Рейтинг" Margin="10" FontSize="14" HorizontalOptions="CenterAndExpand"/>
-            <StackLayout Margin="0,0,0,15" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
-                <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                <Button Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-            <ListView ItemSelected="SelectItemCheck" SelectionMode="Single" x:Name="RankList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+    <Grid>
+        <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            <Image  Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
+            <Label Grid.Row="1" x:Name="lbl" Text="РЕЙТИНГ" Margin="0,0,0,10" FontSize="24" HorizontalOptions="CenterAndExpand"/>        
+               <Grid  Grid.Row="2"  Margin="0,0,0,15" VerticalOptions="Start" >
+                   <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                   </Grid.ColumnDefinitions>
+                   <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" />
+                <Button Grid.Column="1" Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="2" BackgroundColor="#008993" />
+            </Grid>           
+            <ListView Grid.Row="3" x:Name="ActivitiesList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" Padding="5">
+                                <Grid Padding="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
                                     <Label Text="{Binding name}" TextColor="#008993" FontSize="Medium" HorizontalOptions="StartAndExpand" />
-                                        <Label Text="{Binding kpi}" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
-                                </StackLayout>
+                                        <Label Grid.Column="1" Text="{Binding kpi}" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                                </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
