@@ -20,6 +20,7 @@ namespace Sibur.Views
             viewmodel = vm;
             viewmodel.categoryPage = this;
             BindingContext = viewmodel;
+            //helloworld
             InitializeComponent();            
         }
         protected override async void OnAppearing()

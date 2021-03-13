@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Sibur.Models;
 using Sibur.Views;
 using Sibur.Requests;
+using System;
 
 namespace Sibur.ViewModels
 {
@@ -50,15 +51,19 @@ namespace Sibur.ViewModels
                 if(entranceViewModel.Mail!=null && entranceViewModel.Password!=null)
                 Globals.CurrentUser = await db.Entry(entranceViewModel.Mail, entranceViewModel.Password);
                 if ((Globals.CurrentUser != null)&&(Globals.CurrentUser.Mail.Trim()==entranceViewModel.Mail) && (Globals.CurrentUser.Password.Trim() == entranceViewModel.Password))
-                {
+                {                    
                     await Navigation.PushAsync(new Tabs());
+                    if (Globals.CurrentUser.LastEntry.ToString("yyyy-MM-dd") == DateTime.Now.Date.AddDays(-1).ToString("yyyy-MM-dd"))
+                    {
+                        await Navigation.PushModalAsync(new BonusPage(Globals.CurrentUser.Bonus.ToString()));
+                    }
                 }
                 else
                 {
                     View.Fail();
                 }
                 IsBusy = false;
-            }
+            }            
         }
     }
 }

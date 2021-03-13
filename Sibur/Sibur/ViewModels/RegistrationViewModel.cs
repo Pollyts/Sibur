@@ -66,12 +66,5 @@ namespace Sibur.ViewModels
             }
             IsBusy = false;
         }
-        //private async void SaveUser(object userObject)
-        //{
-        //    IsBusy = true;
-        //    Globals.CurrentUser = await db.Entry("tt", "12345");
-        //    View.Success();
-        //    Back();
-        //}
     }
 }
