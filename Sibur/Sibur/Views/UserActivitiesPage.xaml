@@ -3,29 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sibur.Views.UserActivitiesPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-            <RelativeLayout>
-                <ImageButton IsVisible="{Binding ForAdmin}" Command="{Binding CreateActivityCommand}" RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=lbl,
-             Property=X, Factor=0.5, Constant=-10}" 
-               x:Name="image" BackgroundColor="Transparent" Source="Pluse.png"/>
-                <Label x:Name="lbl" Text="МОИ МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>
-            </RelativeLayout>
-            <Label Text="Нажмите на мероприятие, чтобы узнать подробную информацию" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
-            <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
-                <StackLayout>
-                    <StackLayout Orientation="Horizontal" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand">
-                        <Button Text="Открыть" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                        <Button Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                        <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
-                    <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                    <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
-                        <ListView.ItemTemplate>
+        <Grid Margin="0,30">
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="aUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20" />
+            <Grid Grid.Row="1"  HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="AUTO"/>
+                            </Grid.ColumnDefinitions>
+                <ImageButton IsVisible="{Binding ForAdmin}" Command="{Binding CreateActivityCommand}" 
+               x:Name="image"  BackgroundColor="Transparent" Source="Pluse.png" HorizontalOptions="Start"/>
+                <Label Grid.Column="1" x:Name="lbl" Text="МОИ МЕРОПРИЯТИЯ" VerticalOptions="Center" />
+            </Grid>
+            <Label Grid.Row="2" Text="Нажмите на мероприятие, чтобы узнать подробную информацию" Margin="15,0" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Micro" />
+                
+                    <Grid Grid.Row="3" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand" Margin="10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        <Button Text="Открыть" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" CornerRadius="24"/>
+                        <Button Grid.Column="1" Text="Изменить" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" CornerRadius="24"/>
+                        <Button Grid.Column="2" Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" CornerRadius="24"/>
+                    </Grid>
+           <Frame Grid.Row="4" BackgroundColor= "White" CornerRadius="20" Margin="10,10" HasShadow="True" >
+               <Grid>
+                   <Grid.RowDefinitions>
+                   <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>   
+                </Grid.RowDefinitions>
+                   <SearchBar  x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                    <ListView Grid.Row="1" x:Name="ActivitiesList"  ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                        <ListView.ItemTemplate >
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <StackLayout Padding="10,5">
+                                        <StackLayout >
                                             <Label Text="{Binding name}" TextColor="#008993" FontSize="Large" />
                                             <Label Text="{Binding desc}" FontSize="Small" />
                                             <StackLayout Orientation="Horizontal">
@@ -39,8 +59,10 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
+               </Grid>     
+  
             </Frame>
-        </StackLayout>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
