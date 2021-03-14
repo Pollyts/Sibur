@@ -11,16 +11,17 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
             <Image  Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-            <Label Grid.Row="1" x:Name="lbl" Text="РЕЙТИНГ" Margin="0,0,0,10" FontSize="24" HorizontalOptions="CenterAndExpand"/>        
-               <Grid  Grid.Row="2"  Margin="0,0,0,15" VerticalOptions="Start" >
+            <Label x:Name="lbl" Grid.Row="1" Text="ПОЛЬЗОВАТЕЛИ" Margin="10" FontSize="24" HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="B_Delete" Grid.Row="1" Text="Удалить" Command="{Binding DeleteUserCommand}"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" IsEnabled="False" IsVisible="{Binding ForAdmin}" TextColor="LightGray" BackgroundColor="Gray" HorizontalOptions="CenterAndExpand"/>
+            <Grid  Grid.Row="2"  Margin="0,0,0,15" VerticalOptions="Start" >
                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                    </Grid.ColumnDefinitions>
-                   <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" CornerRadius="20"/>
-                <Button Grid.Column="1" Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="4" BackgroundColor="#008993" CornerRadius="20" />
-            </Grid>           
-            <ListView Grid.Row="3" x:Name="ActivitiesList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                   <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" />
+                <Button Grid.Column="1" Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="2" BackgroundColor="#008993" />
+            </Grid>
+            <ListView Grid.Row="3" x:Name="RankList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

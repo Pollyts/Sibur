@@ -18,6 +18,7 @@ namespace Sibur.ViewModels
         public ICommand DeleteUserProfileCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
         public INavigation Navigation { get; set; }
+        ProfileViewModel ProfileViewModel;
 
         private bool isBusy;
 
@@ -25,8 +26,9 @@ namespace Sibur.ViewModels
         public EditProfilePage editprofilepage;
 
         public User currentuser { get; set; }
-        public EditProfileViewModel(User user)
+        public EditProfileViewModel(User user, ProfileViewModel pvm)
         {
+            ProfileViewModel = pvm;
             currentuser = user;
             EditUserProfileCommand = new Command(EditUserProfile);
             GoBackCommand = new Command(GoBack);
@@ -54,7 +56,7 @@ namespace Sibur.ViewModels
             {
                 editprofilepage.Sucess();
                 await Navigation.PopModalAsync();
-                await Navigation.PopToRootAsync();
+                ProfileViewModel.QuitCommand.Execute(null);
             }
             else
             {

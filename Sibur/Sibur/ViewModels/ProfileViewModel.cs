@@ -12,7 +12,7 @@ using Sibur.Requests;
 
 namespace Sibur.ViewModels
 {
-    class ProfileViewModel
+    public class ProfileViewModel
     {
         UserRequests db = new UserRequests();
         public ICommand ChangeProfileInfoCommand { get; set; }
@@ -99,11 +99,13 @@ namespace Sibur.ViewModels
         }
         private async void ChangeProfileInfo(object obj)
         {
-            await Navigation.PushModalAsync(new EditProfilePage(Globals.CurrentUser));
+            EditProfileViewModel epvm = new EditProfileViewModel(Globals.CurrentUser, this);
+            await Navigation.PushModalAsync(new EditProfilePage(epvm));
         }
         private async void Quit(object obj)
         {
-            await Navigation.PushAsync(new Entrance());
+            //await Navigation.PushAsync(new Entrance());
+            await Navigation.PopToRootAsync();
         }
     }
 }

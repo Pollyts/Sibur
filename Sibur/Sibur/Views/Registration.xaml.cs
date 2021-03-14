@@ -14,13 +14,13 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Registration : ContentPage
     {
-        public User NewUser { get; private set; }
+        public User NewUser { get; set;}
         public RegistrationViewModel ViewModel { get; private set; }
         public Registration(INavigation n)
         {                    
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             NewUser = new User(true);
+            NavigationPage.SetHasNavigationBar(this, false);
             ViewModel = new RegistrationViewModel() {Navigation = n, View=this};
             this.BindingContext = this;
         }

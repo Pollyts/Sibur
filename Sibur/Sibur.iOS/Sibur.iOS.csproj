@@ -189,4 +189,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\cancelblack.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bonus.gif" />
+  </ItemGroup>
 </Project>
