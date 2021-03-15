@@ -3,16 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sibur.Views.Activities">    
     <ContentPage.Content>
-        <StackLayout>
+         <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-                <RelativeLayout>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
                 <ImageButton IsVisible="{Binding ForAdmin}" Command="{Binding CreateActivityCommand}" RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=lbl,
              Property=X, Factor=0.5, Constant=-10}" 
                x:Name="image" BackgroundColor="Transparent" Source="Pluse.png"/>
-                <Label x:Name="lbl" Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>                
-            </RelativeLayout>
-            <Label Text="Нажмите на мероприятие, чтобы узнать подробную информацию" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
-            <Frame BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+                <Label Grid.Column="1" x:Name="lbl" Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>                
+            </Grid>
+            <Label Grid.Row="2" Text="Нажмите на мероприятие, чтобы узнать подробную информацию" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
+            <Frame  Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="True" Padding="10">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand">
                         <Button Text="Открыть" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
@@ -49,6 +60,6 @@ HorizontalOptions="Center"  VerticalOptions="Center" Padding="20">
                     </Grid>
                 </StackLayout>
             </Frame>            
-            </StackLayout>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>
