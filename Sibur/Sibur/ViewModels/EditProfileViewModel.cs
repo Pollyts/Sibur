@@ -58,7 +58,7 @@ namespace Sibur.ViewModels
         private async Task<bool> AddUserAvatar()
         {
             var content = new StreamContent(await editprofilepage.photo.OpenReadAsync());
-            UserImg usrimg = new UserImg() { Img = await content.ReadAsByteArrayAsync(), UserId = Globals.CurrentUser.Id };
+            UserImg usrimg = new UserImg() { Img = await content.ReadAsByteArrayAsync(), UserId = Globals.CurrentUser.Id, Id = Globals.CurrentUser.UserImgs.ToArray()[0].Id };
             var ifcan = await db.AddImage(usrimg);
             return ifcan;
         }

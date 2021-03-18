@@ -26,6 +26,18 @@ namespace Sibur.Views
             BindingContext = viewmodel;
             InitializeComponent();
         }
+        protected override void OnAppearing()
+        {
+            GetImage();
+            base.OnAppearing();
+        }
+        public void GetImage()
+        {
+            if (Globals.CurrentUser.UserImgs.Count != 0)
+            {
+                Avatar_Image.Source = ImageSource.FromStream(() => new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img));
+            }
+        }
         public void Fail()
         {
             DisplayAlert("Провалено", "Косяк в данных", "ОK");
