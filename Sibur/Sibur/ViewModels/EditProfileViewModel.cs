@@ -9,6 +9,7 @@ using Sibur.Models;
 using Sibur.Views;
 using Sibur.Requests;
 using System;
+using System.Net.Http;
 
 namespace Sibur.ViewModels
 {
@@ -38,9 +39,14 @@ namespace Sibur.ViewModels
         
         //Изменить информацию в профиле
         private async void EditUserProfile()
-        {         
+        {
+            bool ifcanavatar=true;
+            if(editprofilepage.changeavatar)
+            {
+                ifcanavatar = await AddUserAvatar();
+            }    
             bool ifcan = await db.Edit(currentuser);
-            if (ifcan)
+            if (ifcan&&ifcanavatar)
             {
                 editprofilepage.Sucess();
             }
@@ -49,7 +55,14 @@ namespace Sibur.ViewModels
                 editprofilepage.Fail();
             }
         }
-        
+        private async Task<bool> AddUserAvatar()
+        {
+            var content = new StreamContent(await editprofilepage.photo.OpenReadAsync());
+            UserImg usrimg = new UserImg() { Img = await content.ReadAsByteArrayAsync(), UserId = Globals.CurrentUser.Id };
+            var ifcan = await db.AddImage(usrimg);
+            return ifcan;
+        }
+
         private async void DeleteUserProfile()
         {
             bool ifcan = await db.Delete(currentuser.Id);

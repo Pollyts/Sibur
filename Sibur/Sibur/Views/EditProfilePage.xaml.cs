@@ -15,6 +15,8 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage
     {
+        public FileResult photo;
+        public bool changeavatar;
         public EditProfileViewModel viewmodel;
         public EditProfilePage(EditProfileViewModel epvm)
         {
@@ -35,9 +37,13 @@ namespace Sibur.Views
 
         private async void B_EditAvatar(object sender, EventArgs e)
         {
-            var photo = await MediaPicker.PickPhotoAsync();
-            Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
-
+            changeavatar = false;
+            photo = await MediaPicker.PickPhotoAsync();
+            if(photo!=null)
+            {
+                Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
+                changeavatar = true;
+            }            
         }
     }
 }
