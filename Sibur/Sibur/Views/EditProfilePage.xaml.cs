@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Sibur.Models;
+using Xamarin.Essentials;
+using System.IO;
 using Sibur.ViewModels;
 
 namespace Sibur.Views
@@ -29,6 +31,13 @@ namespace Sibur.Views
         public void Sucess()
         {
             DisplayAlert("Успешно", "Ура, получилось", "ОК");
+        }
+
+        private async void B_EditAvatar(object sender, EventArgs e)
+        {
+            var photo = await MediaPicker.PickPhotoAsync();
+            Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
+
         }
     }
 }

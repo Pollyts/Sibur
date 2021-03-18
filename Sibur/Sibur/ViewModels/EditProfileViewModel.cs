@@ -21,6 +21,7 @@ namespace Sibur.ViewModels
         ProfileViewModel ProfileViewModel;
 
         private bool isBusy;
+        bool changepicture;
 
         UserRequests db = new UserRequests();
         public EditProfilePage editprofilepage;
@@ -37,7 +38,7 @@ namespace Sibur.ViewModels
         
         //Изменить информацию в профиле
         private async void EditUserProfile()
-        {            
+        {         
             bool ifcan = await db.Edit(currentuser);
             if (ifcan)
             {
