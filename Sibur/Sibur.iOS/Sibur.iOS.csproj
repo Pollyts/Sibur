@@ -192,4 +192,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\bonus.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\noname.jpg" />
+  </ItemGroup>
 </Project>

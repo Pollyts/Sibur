@@ -6,6 +6,11 @@ namespace Sibur.Models
 {
     public partial class ActChat
     {
+        public ActChat()
+        {
+            ChatPhotos = new HashSet<ChatPhoto>();
+        }
+
         public int Id { get; set; }
         public int Thanks { get; set; }
         public string Text { get; set; }
@@ -15,5 +20,6 @@ namespace Sibur.Models
 
         public virtual Activity Activity { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<ChatPhoto> ChatPhotos { get; set; }
     }
 }

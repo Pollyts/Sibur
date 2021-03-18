@@ -41,7 +41,8 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                            <Image Source="Face.png"  Grid.RowSpan="2"/>
+                            <!--<Image Source="noname.jpg" x:Name="Image_Avatar"  Grid.RowSpan="2"/>-->
+                            <Image x:Name="Image_Avatar" Grid.RowSpan="2"/>
                                     <Image Grid.Column="1" Source="Information.png" />
                                     <!--<Label Text="Рейтинг: "/>-->
                                     <Label Grid.Column="2" VerticalOptions="Center" Text="KPI: " />
