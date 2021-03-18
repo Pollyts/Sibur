@@ -27,7 +27,7 @@ namespace Sibur.Views
         }
         public void GetImage()
         {
-            if (Globals.CurrentUser.UserImgs!= null)
+            if (Globals.CurrentUser.UserImgs.Count!=0)
             {
                 Image_Avatar.Source = ImageSource.FromStream(() => new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img));
             }

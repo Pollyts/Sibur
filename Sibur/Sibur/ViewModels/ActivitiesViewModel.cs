@@ -19,6 +19,7 @@ namespace Sibur.ViewModels
         public ICommand OpenActivityCommand { get; set; }
         public ICommand EditActivityCommand { get; set; }
         public ICommand DeleteActivityCommand { get; set; }
+        public ObservableCollection<Category> categories { get; set; }
 
         private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
@@ -30,6 +31,7 @@ namespace Sibur.ViewModels
 
         public ActivitiesViewModel()
         {
+            categories = new ObservableCollection<Category>();
             IsBusy = false;
             activities = new ObservableCollection<ActWithCatGet>();
             CreateActivityCommand = new Command(CreateActivity);
@@ -61,6 +63,13 @@ namespace Sibur.ViewModels
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+        public async Task GetCategories()
+        {
+            IEnumerable<Category> cats = await db.GetCategories();
+            categories.Clear();
+            foreach (Category a in cats)
+                categories.Add(a);
         }
         private string _searchText { get; set; }
         public string SearchText
