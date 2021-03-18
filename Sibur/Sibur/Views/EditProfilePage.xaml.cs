@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Sibur.Models;
-using Xamarin.Essentials;
-using System.IO;
 using Sibur.ViewModels;
 
 namespace Sibur.Views
@@ -15,8 +13,6 @@ namespace Sibur.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage
     {
-        public FileResult photo;
-        public bool changeavatar;
         public EditProfileViewModel viewmodel;
         public EditProfilePage(EditProfileViewModel epvm)
         {
@@ -33,17 +29,6 @@ namespace Sibur.Views
         public void Sucess()
         {
             DisplayAlert("Успешно", "Ура, получилось", "ОК");
-        }
-
-        private async void B_EditAvatar(object sender, EventArgs e)
-        {
-            changeavatar = false;
-            photo = await MediaPicker.PickPhotoAsync();
-            if(photo!=null)
-            {
-                Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
-                changeavatar = true;
-            }            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Sibur.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public byte[] Img { get; set; }
+        public int? Img { get; set; }
 
         public virtual User User { get; set; }
     }

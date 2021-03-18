@@ -53,7 +53,7 @@ namespace Sibur.ViewModels
                 if ((Globals.CurrentUser != null)&&(Globals.CurrentUser.Mail.Trim()==entranceViewModel.Mail) && (Globals.CurrentUser.Password.Trim() == entranceViewModel.Password))
                 {                    
                     await Navigation.PushAsync(new Tabs());
-                    if (Globals.CurrentUser.Display == true)
+                    if (Globals.CurrentUser.LastEntry.ToString("yyyy-MM-dd") == DateTime.Now.Date.AddDays(-1).ToString("yyyy-MM-dd"))
                     {
                         await Navigation.PushModalAsync(new BonusPage(Globals.CurrentUser.Bonus.ToString()));
                     }

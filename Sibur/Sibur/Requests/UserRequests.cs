@@ -20,20 +20,6 @@ namespace Sibur.Requests
             return client;
         }
 
-        public async Task<bool> AddImage(UserImg userimg)
-        {
-            HttpClient client = GetClient();
-            var response = await client.PostAsync(Url+ "/Pic",
-                new StringContent(
-                    JsonConvert.SerializeObject(userimg),
-                    Encoding.UTF8, "application/json"));
-
-            if (response.StatusCode != HttpStatusCode.OK)
-                return false;
-            else
-                return true;
-        }
-
         public async Task<bool> Delete(int userId)
         {
             HttpClient client = GetClient();

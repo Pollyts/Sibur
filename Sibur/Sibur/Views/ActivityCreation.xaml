@@ -57,7 +57,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label  Text="Категория:" Margin="30,0,0,10" FontSize="16" TextColor="White"/>
-                <Label Grid.Row="1" Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="30,0,0,0"/>                
+                <Label Grid.Row="1" Text="Нет" FontSize="16" x:Name="L_Categories" TextColor="White" Margin="30,0,0,0"/>
+                <!--<Picker x:Name="picker" Margin="30,10,30,10" ItemsSource="{Binding categories}" ItemDisplayBinding="{Binding Name}">
+            </Picker>-->
                 </Grid >
                 <Button Grid.Row="4" Command="{Binding AddCategoryCommand}" BackgroundColor="#008993" Text="Добавить категорию" Padding="10,5,10,5" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" FontSize="18" HorizontalOptions="Fill" CornerRadius="24" Margin="61,10,60,0" VerticalOptions="Fill" />
                 <Grid Grid.Row="5" >        

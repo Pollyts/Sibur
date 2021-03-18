@@ -22,7 +22,7 @@
                x:Name="image" BackgroundColor="Transparent" Source="Pluse.png"/>
                 <Label Grid.Column="1" x:Name="lbl" Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>                
             </Grid>
-            <Label Grid.Row="2" Text="G" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
+            <Label Grid.Row="2" Text="Нажмите на мероприятие, чтобы узнать подробную информацию" HorizontalOptions="CenterAndExpand" FontSize="Micro" />
             <Frame  Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="True" Padding="10">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand">
@@ -31,34 +31,26 @@
                         <Button Text="Удалить" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                    <Grid>
-                        <StackLayout IsVisible="{Binding IsBusy}"
-HorizontalOptions="Center"  VerticalOptions="Center" Padding="20">
-                            <Label Text="Ожидайте..." TextColor="Gray" HorizontalOptions="Center" />
-                            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#008993" >
-                            </ActivityIndicator>
-                        </StackLayout>
-                        <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <ViewCell.View>
-                                            <StackLayout Padding="10,5">
-                                                <Label Text="{Binding name}" TextColor="#008993" FontSize="Large" />
-                                                <Label Text="{Binding desc}" FontSize="Small" />
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding startD}" TextColor="#124B30" FontSize="Small" />
-                                                    <Label Text=" - " TextColor="#124B30"/>
-                                                    <Label Text="{Binding endD}" TextColor="#124B30" FontSize="Small" />
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </ViewCell.View>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </StackLayout>
+                    <ListView x:Name="ActivitiesList" ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Padding="10,5">
+                                        <Label Text="{Binding name}" TextColor="#008993" FontSize="Large" />
+                                                    <Label Text="{Binding desc}" FontSize="Small" />
+                                                    <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding startD}" TextColor="#124B30" FontSize="Small" />
+                                            <Label Text=" - " TextColor="#124B30"/>
+                                            <Label Text="{Binding endD}" TextColor="#124B30" FontSize="Small" />
+                                                    </StackLayout>
+                                        </StackLayout>
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>                
+                    </StackLayout>
             </Frame>            
             </Grid>
     </ContentPage.Content>

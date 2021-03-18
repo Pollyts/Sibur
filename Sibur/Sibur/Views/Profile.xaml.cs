@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.IO;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Sibur.Models;
@@ -18,19 +17,12 @@ namespace Sibur.Views
         public Profile()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
         protected override void OnAppearing()
         {            
-            BindingContext = new ProfileViewModel() { Navigation = this.Navigation };
-            GetImage();
+            BindingContext = new ProfileViewModel() { Navigation = this.Navigation };            
             base.OnAppearing();
-        }
-        public void GetImage()
-        {
-            if (Globals.CurrentUser.UserImgs!= null)
-            {
-                Image_Avatar.Source = ImageSource.FromStream(() => new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img));
-            }
         }
 
     }

@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -10,7 +9,6 @@ using Sibur.Models;
 using Sibur.Views;
 using System;
 using Sibur.Requests;
-using System.IO;
 
 namespace Sibur.ViewModels
 {
@@ -50,19 +48,6 @@ namespace Sibur.ViewModels
             set
             {
               CurrentUser.Name = value;
-            }
-        }
-        public void GetImage()
-        {
-            MemoryStream stream = new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img);
-            System.Drawing.Image imgfromstream = System.Drawing.Image.FromStream(stream);        
-        }
-        public string WhatImageShow
-        {
-            get
-            {
-               
-               return string.Format("prefix-{0}-suffix.png");
             }
         }
         public string Mail
