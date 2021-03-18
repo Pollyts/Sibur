@@ -9,30 +9,44 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+
             <Image  Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
-            <Label x:Name="lbl" Grid.Row="1" Text="ПОЛЬЗОВАТЕЛИ" Margin="10" FontSize="24" HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="B_Delete" Grid.Row="1" Text="Удалить" Command="{Binding DeleteUserCommand}"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" IsEnabled="False" IsVisible="{Binding ForAdmin}" TextColor="LightGray" BackgroundColor="Gray" HorizontalOptions="CenterAndExpand"/>
-            <Grid  Grid.Row="2"  Margin="0,0,0,15" VerticalOptions="Start" >
+            <Label x:Name="lbl" Grid.Row="1" Text="ПОЛЬЗОВАТЕЛИ" Margin="10,0" FontSize="24" HorizontalOptions="CenterAndExpand"/>
+            <Grid  Grid.Row="2">
                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                    </Grid.ColumnDefinitions>
-                   <Button Text="Общий" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" />
-                <Button Grid.Column="1" Text="За последний месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="2" BackgroundColor="#008993" />
+                   <Button Text="Все" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" />
+                <Button Grid.Column="1" Text="За месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="2" BackgroundColor="#008993" />
             </Grid>
-            <ListView Grid.Row="3" x:Name="RankList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                <Button Grid.Row="3" x:Name="B_Delete"   Command="{Binding DeleteUserCommand}" Margin="10,0"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" IsEnabled="False" IsVisible="{Binding ForAdmin}" TextColor="White" Text="Удалить пользователя" Padding="2" BackgroundColor="#008993" HorizontalOptions="EndAndExpand"/>
+        <Grid Grid.Row="4" Margin="10">
+            <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                   </Grid.ColumnDefinitions>
+            <Label Text="ФИО" HorizontalTextAlignment="Start"/>
+        <Label Text="Рейтинг" Grid.Column="1" HorizontalTextAlignment="End"/>
+        </Grid>
+        
+            <ListView  Grid.Row="5" x:Name="RankList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
                                 <Grid Padding="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding name}" TextColor="#008993" FontSize="Medium" HorizontalOptions="StartAndExpand" />
-                                        <Label Grid.Column="1" Text="{Binding kpi}" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                                       <Label Grid.Column="1" Text="{Binding kpi}" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
