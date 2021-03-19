@@ -25,6 +25,7 @@ namespace Sibur.Views
         protected override async void OnAppearing()
         {
             viewModel.IsBusy = true;
+            ButtonsVisibility.IsVisible = false;
             await viewModel.GetCategories();
             await viewModel.GetActivities();            
             base.OnAppearing();
@@ -36,7 +37,11 @@ namespace Sibur.Views
             {
                 ActWithCatGet currentact = ActivitiesList.SelectedItem as ActWithCatGet;
                 await Navigation.PushModalAsync(new CurrentActivity(currentact));
-            }            
+            }
+            else
+            {
+                ButtonsVisibility.IsVisible = true;
+            }
         }
         private async void ChangeSort(object sender, EventArgs args)
         {

@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sibur.Views.Activities">
-    <ContentPage.Content>
-                  
+    <ContentPage.Content>                  
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -20,7 +19,7 @@
                x:Name="image" BackgroundColor="Transparent" Source="Pluse.png"/>
                     <Label Grid.Column="1" x:Name="lbl" Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>
                 </Grid>
-                <Grid Grid.Row="2" IsVisible="{Binding ForAdmin}" VerticalOptions="StartAndExpand">
+                <Grid Grid.Row="2" IsVisible="false" x:Name="ButtonsVisibility" VerticalOptions="StartAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -42,7 +41,7 @@
                         
                         <SearchBar Margin="0" Grid.Row="2" x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
                         <StackLayout Padding="0" Margin="0" Grid.Row="3" Orientation="Horizontal">
-                            <Label Text="По имени" x:Name="L_Sort" TextColor="#008993" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label Text="По имени" x:Name="L_Sort" TextDecorations="Underline" TextColor="#008993" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="ChangeSort" NumberOfTapsRequired="1"/>
                                 </Label.GestureRecognizers>
