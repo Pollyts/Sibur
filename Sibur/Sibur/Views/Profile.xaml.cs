@@ -20,7 +20,7 @@ namespace Sibur.Views
         }
         protected override void OnAppearing()
         {            
-            BindingContext = new ProfileViewModel() { Navigation = this.Navigation };
+            BindingContext = new ProfileViewModel() { Navigation = this.Navigation, View=this };
             GetImage();
             base.OnAppearing();
         }

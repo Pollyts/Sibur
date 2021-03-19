@@ -44,11 +44,18 @@ namespace Sibur.ViewModels
             if(editprofilepage.changeavatar)
             {
                 ifcanavatar = await AddUserAvatar();
-            }    
-            bool ifcan = await db.Edit(currentuser);
+            }
+            bool ifcan = true;
+            if ((Globals.CurrentUser.Name!=currentuser.Name)|| (Globals.CurrentUser.Password != currentuser.Password)||(Globals.CurrentUser.Mail != currentuser.Mail))
+            { 
+                ifcan = await db.Edit(currentuser);
+            }
             if (ifcan&&ifcanavatar)
             {
+                Globals.CurrentUser = await db.Entry(Globals.CurrentUser.Mail, Globals.CurrentUser.Password);
+                ProfileViewModel.UpdateAvatar();
                 editprofilepage.Sucess();
+                await Navigation.PopModalAsync();
             }
             else
             {

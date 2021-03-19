@@ -28,15 +28,15 @@ namespace Sibur.ViewModels
             QuitCommand = new Command(Quit);
             CurrentUser = Globals.CurrentUser;
         }
+        public void UpdateAvatar()
+        {
+            View.GetImage();
+        }
         public string Raiting
         {
             get
             {  
                 return CurrentUser.EngPoints.ToString();
-            }
-            set
-            {
-                //CurrentUser.Name = value;
             }
         }
         public string Name
@@ -50,14 +50,6 @@ namespace Sibur.ViewModels
             set
             {
               CurrentUser.Name = value;
-            }
-        }
-        public string WhatImageShow
-        {
-            get
-            {
-               
-               return string.Format("prefix-{0}-suffix.png");
             }
         }
         public string Mail
