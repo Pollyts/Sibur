@@ -49,11 +49,6 @@
                                     <TapGestureRecognizer Tapped="ChangeSort" NumberOfTapsRequired="1"/>
                                 </Label.GestureRecognizers>
                             </Label>
-                            <!--<Label Text="Выбрать категорию" x:Name="ShowCategories" TextDecorations="Underline" TextColor="#008993" FontSize="Small" HorizontalOptions="EndAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SelectCategory" NumberOfTapsRequired="1"/>
-                                </Label.GestureRecognizers>
-                            </Label>-->
                             <Picker x:Name="picker" TextColor="#008993" TitleColor="#008993" FontSize="Small" HorizontalTextAlignment="Center" ItemsSource="{Binding categories}" VerticalOptions="Start" SelectedIndexChanged="picker_SelectedIndexChanged" Title = "Выбрать категорию" />
                         </StackLayout>
                         <Grid Grid.Row="4">
