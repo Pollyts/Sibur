@@ -3,12 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sibur.Views.Activities">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout x:Name="PickerLayout" IsVisible="false"
-HorizontalOptions="Center"  VerticalOptions="Center">
-                <Picker ItemsSource="{Binding categories}"/>
-            </StackLayout>
-            <Grid Margin="10">
+        <StackLayout>            
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -16,7 +12,7 @@ HorizontalOptions="Center"  VerticalOptions="Center">
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="aUTO"/>
                 </Grid.RowDefinitions>
-                <Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
+                <!--<Image Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />-->
                 <Grid Grid.Row="1" HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="AUTO"/>
@@ -27,7 +23,7 @@ HorizontalOptions="Center"  VerticalOptions="Center">
                     <Label Grid.Column="1" x:Name="lbl" Text="МЕРОПРИЯТИЯ" VerticalOptions="Center" FontSize="24" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"/>
                 </Grid>
 
-                <Frame  Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="True" Padding="10">
+                <Frame  Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="5" HasShadow="True" Padding="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -42,22 +38,23 @@ HorizontalOptions="Center"  VerticalOptions="Center">
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Text="Открыть" x:Name="B_Open" IsEnabled="False" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" Margin="0,0,10,0"/>
-                            <Button Text="Изменить" Grid.Column="1" x:Name="B_Edit" IsEnabled="False" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" />
-                            <Button Text="Удалить" Grid.Column="2" x:Name="B_Delete" IsEnabled="False" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993"  Margin="10,0,0,0"/>
+                            <Button Text="Открыть" x:Name="B_Open" Command="{Binding OpenActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" BackgroundColor="#008993" FontSize="Small" Margin="0,0,10,0"/>
+                            <Button Text="Изменить" Grid.Column="1" x:Name="B_Edit" Command="{Binding EditActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" FontSize="Small" BackgroundColor="#008993" />
+                            <Button Text="Удалить" Grid.Column="2" x:Name="B_Delete" Command="{Binding DeleteActivityCommand}" CommandParameter="{Binding SelectedItem, Source={x:Reference ActivitiesList}}" TextColor="White" FontSize="Small" BackgroundColor="#008993"  Margin="10,0,0,0"/>
                         </Grid>
-                        <SearchBar Grid.Row="2" x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                        <StackLayout Grid.Row="3" Orientation="Horizontal">
-                            <Label Text="По имени" x:Name="L_Sort" TextDecorations="Underline" TextColor="#008993" FontSize="Medium" HorizontalOptions="StartAndExpand" Margin="0,30,0,0">
+                        <SearchBar Margin="0" Grid.Row="2" x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                        <StackLayout Padding="0" Margin="0" Grid.Row="3" Orientation="Horizontal">
+                            <Label Text="По имени" x:Name="L_Sort" TextColor="#008993" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="ChangeSort" NumberOfTapsRequired="1"/>
                                 </Label.GestureRecognizers>
                             </Label>
-                            <Label Text="Выбрать категории" x:Name="ShowCategories" TextDecorations="Underline" TextColor="#008993" FontSize="Medium" HorizontalOptions="EndAndExpand" Margin="0,30,0,0">
+                            <!--<Label Text="Выбрать категорию" x:Name="ShowCategories" TextDecorations="Underline" TextColor="#008993" FontSize="Small" HorizontalOptions="EndAndExpand">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="SelectCategory" NumberOfTapsRequired="1"/>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>-->
+                            <Picker x:Name="picker" TextColor="#008993" TitleColor="#008993" FontSize="Small" HorizontalTextAlignment="Center" ItemsSource="{Binding categories}" VerticalOptions="Start" SelectedIndexChanged="picker_SelectedIndexChanged" Title = "Выбрать категорию" />
                         </StackLayout>
                         <Grid Grid.Row="4">
                             <StackLayout IsVisible="{Binding IsBusy}"

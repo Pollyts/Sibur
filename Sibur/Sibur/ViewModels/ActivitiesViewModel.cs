@@ -19,7 +19,7 @@ namespace Sibur.ViewModels
         public ICommand OpenActivityCommand { get; set; }
         public ICommand EditActivityCommand { get; set; }
         public ICommand DeleteActivityCommand { get; set; }
-        public ObservableCollection<Category> categories { get; set; }
+        public ObservableCollection<string> categories { get; set; }
 
         private bool isBusy;    // идет ли загрузка с сервера
         ActivitiesRequests db = new ActivitiesRequests();
@@ -31,7 +31,7 @@ namespace Sibur.ViewModels
 
         public ActivitiesViewModel()
         {
-            categories = new ObservableCollection<Category>();
+            categories = new ObservableCollection<string>();
             IsBusy = false;
             activities = new ObservableCollection<ActWithCatGet>();
             CreateActivityCommand = new Command(CreateActivity);
@@ -68,8 +68,9 @@ namespace Sibur.ViewModels
         {
             IEnumerable<Category> cats = await db.GetCategories();
             categories.Clear();
+            categories.Add("Все категории");
             foreach (Category a in cats)
-                categories.Add(a);
+                categories.Add(a.Name);
         }
         private string _searchText { get; set; }
         public string SearchText
@@ -84,24 +85,50 @@ namespace Sibur.ViewModels
                 }
             }
         }
-        private void PerformSearch(object search)
+        public void SortByDate()
         {
-            string text = search.ToString();
-            if ((text == null) || (text == ""))
+            var oldacts = new ObservableCollection<ActWithCatGet>(activities.OrderBy(i => i.startD));
+            activities.Clear();
+                foreach (ActWithCatGet a in oldacts)
+                    activities.Add(a);
+        }
+        public void SortByName()
+        {
+            var oldacts = new ObservableCollection<ActWithCatGet>(activities.OrderBy(i => i.name));
+            activities.Clear();
+            foreach (ActWithCatGet a in oldacts)
+                activities.Add(a);
+        }
+        public void SelectCategory(string selectedcat)
+        {
+            if (selectedcat=="Все категории")
             {
-                //while (activities.Any())
-                //    activities.RemoveAt(activities.Count - 1);
                 activities.Clear();
-                // добавляем загруженные данные
                 foreach (ActWithCatGet a in allactivities)
                     activities.Add(a);
             }
             else
             {
                 activities.Clear();
-                var temp = (from act in allactivities where act.name.Contains(text) select act);   
-                //while (activities.Any())
-                //    activities.RemoveAt(activities.Count - 1);
+                var temp = (from act in allactivities where act.categories.ToList().Contains(selectedcat) select act);
+                // добавляем загруженные данные
+                foreach (ActWithCatGet a in temp)
+                    activities.Add(a);
+            }            
+        }
+        private void PerformSearch(object search)
+        {
+            string text = search.ToString();
+            if ((text == null) || (text == ""))
+            {
+                activities.Clear();
+                foreach (ActWithCatGet a in allactivities)
+                    activities.Add(a);
+            }
+            else
+            {
+                activities.Clear();
+                var temp = (from act in allactivities where act.name.Contains(text) select act); 
 
                 // добавляем загруженные данные
                 foreach (ActWithCatGet a in temp)
@@ -115,25 +142,30 @@ namespace Sibur.ViewModels
         private async void OpenActivity(object actobject)
         {
             ActWithCatGet currentact = actobject as ActWithCatGet;
+            if (currentact != null)
             await Navigation.PushModalAsync(new CurrentActivity(currentact));
         }
         private async void EditActivity(object actobject)
         {
             ActWithCatGet currentact = actobject as ActWithCatGet;
-            await Navigation.PushModalAsync(new ActivityCreation(currentact));
+            if (currentact != null)
+                await Navigation.PushModalAsync(new ActivityCreation(currentact));
         }
         private async void DeleteActivity(object actobject)
         {
             ActWithCatGet currentact = actobject as ActWithCatGet;
-            bool ifcan = await db.Delete(currentact.id);
-            if (ifcan)
+            if (currentact != null)
             {
-                ActivitiesPage.Sucess();
-                await GetActivities();
-            }
-            else
-            {
-                ActivitiesPage.Fail();
+                bool ifcan = await db.Delete(currentact.id);
+                if (ifcan)
+                {
+                    ActivitiesPage.Sucess();
+                    await GetActivities();
+                }
+                else
+                {
+                    ActivitiesPage.Fail();
+                }
             }
         }
         public async Task GetActivities()

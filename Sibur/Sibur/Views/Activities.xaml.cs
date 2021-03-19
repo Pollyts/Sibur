@@ -36,19 +36,24 @@ namespace Sibur.Views
             {
                 ActWithCatGet currentact = ActivitiesList.SelectedItem as ActWithCatGet;
                 await Navigation.PushModalAsync(new CurrentActivity(currentact));
-            }
-            else
-            {
-                
-            }
+            }            
         }
         private async void ChangeSort(object sender, EventArgs args)
         {
-
+            if(L_Sort.Text=="По имени")
+            {
+                viewModel.SortByName();
+                L_Sort.Text = "По дате";
+            }
+            else
+            {
+                viewModel.SortByDate();
+                L_Sort.Text = "По имени";
+            }
         }
-        private async void SelectCategory(object sender, EventArgs args)
+        void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
         }
         public void Fail()
         {
