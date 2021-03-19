@@ -51,7 +51,10 @@ namespace Sibur.Views
                 L_Sort.Text = "По имени";
             }
         }
-        
+        void picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
+        }
         public void Fail()
         {
             DisplayAlert("Провалено", "Косяк в данных", "ОK");
