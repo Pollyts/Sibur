@@ -17,11 +17,11 @@ namespace Sibur.Views
         public Profile()
         {
             InitializeComponent();
+            GetImage();
         }
         protected override void OnAppearing()
         {            
-            BindingContext = new ProfileViewModel() { Navigation = this.Navigation, View=this };
-            GetImage();
+            BindingContext = new ProfileViewModel() { Navigation = this.Navigation, View=this };            
             base.OnAppearing();
         }
         public void GetImage()

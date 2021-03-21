@@ -53,9 +53,9 @@ namespace Sibur.ViewModels
             if (ifcan&&ifcanavatar)
             {
                 Globals.CurrentUser = await db.Entry(currentuser.Mail, currentuser.Password);
-                //ProfileViewModel.UpdateAvatar();
-                editprofilepage.Sucess();
-                await Navigation.PopModalAsync();
+                ProfileViewModel.UpdateAvatar();
+                //ProfileViewModel.UpdateInfo();
+                editprofilepage.Sucess();                
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Sibur.ViewModels
             if (ifcan)
             {
                 editprofilepage.Sucess();
-                await Navigation.PopModalAsync();
+                await Navigation.PopAsync();
                 ProfileViewModel.QuitCommand.Execute(null);
             }
             else
@@ -94,7 +94,7 @@ namespace Sibur.ViewModels
         }        
         private async void GoBack()
         {
-            await Navigation.PopModalAsync();
+            await Navigation.PopAsync();
         }        
     }
 }

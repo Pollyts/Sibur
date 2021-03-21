@@ -14,10 +14,11 @@ using System.IO;
 
 namespace Sibur.ViewModels
 {
-    public class ProfileViewModel
+    public class ProfileViewModel: INotifyPropertyChanged
     {
         UserRequests db = new UserRequests();
         public ICommand ChangeProfileInfoCommand { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
         public ICommand QuitCommand { protected set; get; }
         public INavigation Navigation { get; set; }
         public Profile View { get; set; }
@@ -28,10 +29,22 @@ namespace Sibur.ViewModels
             QuitCommand = new Command(Quit);
             CurrentUser = Globals.CurrentUser;
         }
-        //public void UpdateAvatar()
+        public void UpdateAvatar()
+        {
+            View.GetImage();
+        }
+        //public void UpdateInfo()
         //{
-        //    View.GetImage();
+        //    CurrentUser = Globals.CurrentUser;
+        //    OnPropertyChanged("Name");
+        //    OnPropertyChanged("Mail");
         //}
+
+        protected void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
         public string Raiting
         {
             get
@@ -102,7 +115,7 @@ namespace Sibur.ViewModels
         private async void ChangeProfileInfo(object obj)
         {
             EditProfileViewModel epvm = new EditProfileViewModel(Globals.CurrentUser, this);
-            await Navigation.PushModalAsync(new EditProfilePage(epvm));
+            await Navigation.PushAsync(new EditProfilePage(epvm));
         }
         private async void Quit(object obj)
         {

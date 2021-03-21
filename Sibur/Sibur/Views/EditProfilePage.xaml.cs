@@ -24,12 +24,26 @@ namespace Sibur.Views
             viewmodel.Navigation = this.Navigation;
             viewmodel.editprofilepage = this;
             BindingContext = viewmodel;
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
         protected override void OnAppearing()
-        {
-            GetImage();
+        {            
             base.OnAppearing();
+            if (photo != null)
+            {
+                Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
+                changeavatar = true;
+            }
+            else
+            {
+                GetImage();
+            }
+        }
+        private async void B_EditAvatar(object sender, EventArgs e)
+        {
+            changeavatar = false;
+            photo = await MediaPicker.PickPhotoAsync();
         }
         public void GetImage()
         {
@@ -45,17 +59,6 @@ namespace Sibur.Views
         public void Sucess()
         {
             DisplayAlert("Успешно", "Ура, получилось", "ОК");
-        }
-
-        private async void B_EditAvatar(object sender, EventArgs e)
-        {
-            changeavatar = false;
-            photo = await MediaPicker.PickPhotoAsync();
-            if(photo!=null)
-            {
-                Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
-                changeavatar = true;
-            }            
         }
     }
 }
