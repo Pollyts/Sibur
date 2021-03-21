@@ -7,11 +7,11 @@
         <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                     <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
             <Image  Source="sibur_minilogo.png" HorizontalOptions="Center" Margin="0,20,0,20" />
             <Label x:Name="lbl" Grid.Row="1" Text="ПОЛЬЗОВАТЕЛИ" Margin="10,0" FontSize="24" HorizontalOptions="CenterAndExpand"/>
@@ -22,9 +22,8 @@
                    </Grid.ColumnDefinitions>
                    <Button Text="Все" Command="{Binding ShowRankCommand}" TextColor="White" Margin="8,0,1,0" BackgroundColor="#008993" />
                 <Button Grid.Column="1" Text="За месяц" Command="{Binding ShowMonthRankCommand}" Margin="1,0,8,0" TextColor="White" Padding="2" BackgroundColor="#008993" />
-            </Grid>
-                <Button Grid.Row="3" x:Name="B_Delete"   Command="{Binding DeleteUserCommand}" Margin="10,0"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" IsEnabled="False" IsVisible="{Binding ForAdmin}" TextColor="White" Text="Удалить пользователя" Padding="2" BackgroundColor="#008993" HorizontalOptions="EndAndExpand"/>
-        <Grid Grid.Row="4" Margin="10">
+            </Grid>            
+            <Grid Grid.Row="3" Margin="10">
             <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -32,8 +31,8 @@
             <Label Text="ФИО" HorizontalTextAlignment="Start"/>
         <Label Text="Рейтинг" Grid.Column="1" HorizontalTextAlignment="End"/>
         </Grid>
-        
-            <ListView  Grid.Row="5" x:Name="RankList" ItemsSource="{Binding CurrentRank}" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+            <Grid Grid.Row="4">
+            <ListView   x:Name="RankList" ItemsSource="{Binding CurrentRank}" ItemSelected="SelectItemCheck" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -53,6 +52,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Grid Margin="10,10" x:Name="Grid_ForAdmin" IsVisible="False" VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="B_MakeAdmin" Command="{Binding DeleteUserCommand}"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" TextColor="White" Text="Сделать администратором" Padding="5" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+                <Button Grid.Column="1" x:Name="B_Delete" Command="{Binding DeleteUserCommand}"  CommandParameter="{Binding SelectedItem, Source={x:Reference RankList}}" TextColor="White" Text="Удалить пользователя" Padding="5" BackgroundColor="#008993" HorizontalOptions="CenterAndExpand"/>
+            </Grid>
+        </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

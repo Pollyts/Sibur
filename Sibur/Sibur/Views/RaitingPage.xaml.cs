@@ -25,12 +25,14 @@ namespace Sibur.Views
         {
             if (viewmodel.ForAdmin)
             {
-                B_Delete.IsEnabled = true;
-                B_Delete.BackgroundColor = Color.FromRgb(0, 137, 147);
-                B_Delete.TextColor = Color.White;
+                Grid_ForAdmin.IsVisible = true;
             }
             else
                 RankList.SelectedItem = null;
+        }
+        public void MakeFalseVisibility()
+        {
+            Grid_ForAdmin.IsVisible = false;
         }
         public void Fail()
         {
@@ -43,6 +45,7 @@ namespace Sibur.Views
         protected override async void OnAppearing()
         {
             await viewmodel.GetRanks();
+            MakeFalseVisibility();
             base.OnAppearing();
         }
     }

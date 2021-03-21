@@ -16,6 +16,7 @@ namespace Sibur.ViewModels
     {
         public ICommand PerformSearchCommand { get; set; }
         public ICommand ShowRankCommand { get; set; }
+        public ICommand MakeAdminCommand { get; set; }
         public ICommand DeleteUserCommand { get; set; }
         public ICommand ShowMonthRankCommand { get; set; }
         public ObservableCollection<UserRank> UsersMonthRank { get; set; }
@@ -36,6 +37,7 @@ namespace Sibur.ViewModels
             ShowMonthRankCommand = new Command(ShowMonthRank);
             PerformSearchCommand = new Command(PerformSearch);
             DeleteUserCommand = new Command(DeleteUser);
+            MakeAdminCommand = new Command(MakeAdmin);
         }
         private async void DeleteUser(object currus)
         {
@@ -43,6 +45,21 @@ namespace Sibur.ViewModels
             bool ifcan = await dbuser.Delete(ur.UserId);
             if (ifcan)
             {
+                raitingPage.Sucess();                
+                await GetRanks();
+            }
+            else
+            {
+                raitingPage.Fail();
+            }
+        }
+        private async void MakeAdmin(object currus)
+        {
+            UserRank ur = currus as UserRank;
+            bool ifcan = await dbuser.Delete(ur.UserId);
+            if (ifcan)
+            {
+                raitingPage.MakeFalseVisibility();
                 raitingPage.Sucess();
                 await GetRanks();
             }
@@ -117,6 +134,7 @@ namespace Sibur.ViewModels
             foreach (UserRank ur in urank)
                 UsersMonthRank.Add(ur);
             ShowRank();
+            raitingPage.MakeFalseVisibility();
         }
 
         private void ShowRank()
@@ -127,6 +145,7 @@ namespace Sibur.ViewModels
             foreach (UserRank ur in UsersRank)
                 CurrentRank.Add(ur);
             AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
+            raitingPage.MakeFalseVisibility();
         }
         private void ShowMonthRank()
         {
@@ -136,6 +155,7 @@ namespace Sibur.ViewModels
             foreach (UserRank ur in UsersMonthRank)
                 CurrentRank.Add(ur);
             AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
+            raitingPage.MakeFalseVisibility();
         }
     }
 }
