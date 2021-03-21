@@ -87,7 +87,7 @@ namespace Sibur.ViewModels
         }
         public void SortByDate()
         {
-            var oldacts = new ObservableCollection<ActWithCatGet>(activities.OrderBy(i => i.startD));
+            var oldacts = new ObservableCollection<ActWithCatGet>(activities.OrderByDescending(i => i.startD));
             activities.Clear();
                 foreach (ActWithCatGet a in oldacts)
                     activities.Add(a);
