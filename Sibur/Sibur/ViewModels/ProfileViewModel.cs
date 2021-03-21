@@ -28,10 +28,10 @@ namespace Sibur.ViewModels
             QuitCommand = new Command(Quit);
             CurrentUser = Globals.CurrentUser;
         }
-        public void UpdateAvatar()
-        {
-            View.GetImage();
-        }
+        //public void UpdateAvatar()
+        //{
+        //    View.GetImage();
+        //}
         public string Raiting
         {
             get

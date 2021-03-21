@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sibur.Models
 {
-    public partial class User
+    public partial class User : ICloneable
     {
         public User()
         {
@@ -19,6 +19,36 @@ namespace Sibur.Models
             UserQuests = new HashSet<UserQuest>();
             UsersKpihistories = new HashSet<UsersKpihistory>();
             MailConfirm = true;
+        }
+        public User(User user)
+        {
+            Id = user.Id;
+            Mail = user.Mail;
+            Password = user.Password;
+            Name = user.Name;
+        }
+        public object Clone()
+        {
+            return new User {
+                Name = this.Name,
+                Id = this.Id,
+                Mail = this.Mail,
+                Password = this.Password,
+                MailConfirm = this.MailConfirm,
+                Currency=this.Currency,
+                Thanks=this.Thanks,
+                Role=this.Role,
+                Display=this.Display,
+                EngPoints=this.EngPoints,
+                LastEntry=this.LastEntry,
+                Bonus=this.Bonus,
+                ActAttendings=this.ActAttendings,
+                ActChats=this.ActChats,
+                QuestTaskUsers=this.QuestTaskUsers,
+                UserImgs=this.UserImgs,
+                UserQuests=this.UserQuests,
+                UsersKpihistories=this.UsersKpihistories  
+            };
         }
 
         public int Id { get; set; }
