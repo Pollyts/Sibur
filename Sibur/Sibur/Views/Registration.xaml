@@ -10,17 +10,17 @@ Title="Grid spacing demo">
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="sibur_minilogo.png" HorizontalOptions="Center" />
+                <Image Grid.Row="0" Source="sibur_minilogo.png" HorizontalOptions="Center" />
 
-                <Label Grid.Row="1" Text ="РЕГИСТРАЦИЯ" VerticalOptions="Start" FontSize="Title" Margin="20,5,20,0" HorizontalOptions="CenterAndExpand"/>
+                <Label Grid.Row="1" Text ="РЕГИСТРАЦИЯ" FontSize="Title" Margin="20,5,20,0" HorizontalOptions="CenterAndExpand"/>
 
-                <Frame Grid.Row="2" BackgroundColor="White" VerticalOptions="CenterAndExpand" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
+                <Frame Grid.Row="2" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -30,7 +30,7 @@ Title="Grid spacing demo">
                             <RowDefinition />-->
 
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -39,7 +39,7 @@ Title="Grid spacing demo">
                             <Label Text="Почта" FontSize="17" VerticalOptions="Center"/>
                             <Entry Grid.Column="1" Text="{Binding NewUser.Mail}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                         </Grid>
-                        <Grid Grid.Row="2" >
+                        <Grid Grid.Row="1" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -47,7 +47,7 @@ Title="Grid spacing demo">
                             <Label  VerticalOptions="Center" Text="Пароль" FontSize="17"/>
                             <Entry Grid.Column="1" Text="{Binding NewUser.Password}" VerticalOptions="Center" IsPassword="true" HorizontalOptions="FillAndExpand" />
                         </Grid>
-                        <Grid Grid.Row="3" >
+                        <Grid Grid.Row="2" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
