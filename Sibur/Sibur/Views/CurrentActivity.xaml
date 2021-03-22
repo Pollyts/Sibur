@@ -7,13 +7,13 @@
         <StyleSheet Source="/mainstylesheet.css" />
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>                    
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -24,10 +24,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                 <ImageButton  Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancelblack.png"/>
                 <Label Grid.Row="1" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="{Binding Name}" FontAttributes="Bold" TextColor="Black" FontSize="24"/>
@@ -51,27 +48,9 @@
                     </Grid.ColumnDefinitions>
                 <Label Text="Дата окончания:" Margin="10" FontSize="16" TextColor="#008993"/>
                     <Label Grid.Column="1" Text="{Binding EndDate}" Margin="10"  HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
-                </Grid>
-                <Grid Grid.Row="9" >
-                     <Grid.ColumnDefinitions>
-                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Участников:" Margin="10" FontSize="16" TextColor="#008993"/>
-                    <ImageButton Grid.Column="1" Source="Eye.png" VerticalOptions="Center" />
-                    <Label Grid.Column="2" Text="Static"  Margin="10" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
-                </Grid>
+                </Grid>                
+                <Label Grid.Row="9" Text="Комментарии"  Margin="10,10,0,10" FontSize="16" TextColor="#008993"/>
                 <Grid Grid.Row="10" >
-                    <Grid.ColumnDefinitions>
-                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Осталось мест:" Margin="10" FontSize="16" TextColor="#008993"/>
-                    <Label Grid.Column="1" Text="Static" HorizontalOptions="EndAndExpand" Margin="10" FontSize="16" TextColor="Black"/>
-                </Grid>
-                <Label Grid.Row="11" Text="Комментарии"  Margin="10,10,0,10" FontSize="16" TextColor="#008993"/>
-                <Grid Grid.Row="12" >
                     <Grid.ColumnDefinitions>
                                      <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="AUTO"/>
@@ -81,14 +60,15 @@
                 </Frame>
                 <Button Grid.Column="1" Command="{Binding AddCommentCommand}" Text="Добавить" Padding="10" Margin="0,0,10,10" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="#84CB35" FontSize="16" TextColor="#FFFFFF" CornerRadius="24" />
                 </Grid>
-                <Frame Grid.Row="15" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="10">
-                    <ListView ItemsSource="{Binding comments}" HasUnevenRows="true">
+                <Frame Grid.Row="11" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="5">
+                    <Grid>
+                    <ListView VerticalOptions="FillAndExpand" x:Name="CommentList" ItemsSource="{Binding comments}" HasUnevenRows="true">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame Margin="5" BorderColor="#008993" >
-                                            <StackLayout>
+                                        <Frame Margin="1" Padding="0" BorderColor="#008993" >
+                                            <StackLayout Padding="0">
                                                 <Label Text="{Binding UserName}" FontSize="Small" />
                                             <Label Text="{Binding Text}" FontSize="Medium" />
                                             </StackLayout>
@@ -98,8 +78,9 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <Label x:Name="L_NoComments" HorizontalOptions="Center" FontSize="Large" Margin="5" IsVisible="true" Text="Нет комментариев"/>
+                    </Grid>
                 </Frame>
             </Grid>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

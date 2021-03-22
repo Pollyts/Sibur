@@ -25,6 +25,7 @@ namespace Sibur.Views
         protected override async void OnAppearing()
         {
             await viewmodel.GetComments();
+            CheckComments();            
             base.OnAppearing();
         }
         public void Fail()
@@ -34,6 +35,19 @@ namespace Sibur.Views
         public void Sucess()
         {
             DisplayAlert("Успешно", "Ура, получилось", "ОК");
+        }
+        public void CheckComments()
+        {
+            if (viewmodel.comments.Count==0)
+            {
+                CommentList.IsVisible = false;
+                L_NoComments.IsVisible = true;
+            }
+            else
+            {
+                CommentList.IsVisible = true;
+                L_NoComments.IsVisible = false;
+            }
         }
         public void ButtonText(bool signin)
         {

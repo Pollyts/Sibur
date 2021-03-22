@@ -51,7 +51,8 @@ namespace Sibur.ViewModels
                     c.UserName += " (Удален)";
                 }
                 comments.Add(c);
-            }                    
+            }
+            CurrentActivityPage.CheckComments();
         }
 
         //Переименовывает кнопку

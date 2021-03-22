@@ -26,6 +26,7 @@ namespace Sibur.Views
             if (viewmodel.ForAdmin)
             {
                 Grid_ForAdmin.IsVisible = true;
+                UserRank ur = RankList.SelectedItem as UserRank;
             }
             else
                 RankList.SelectedItem = null;
