@@ -115,7 +115,7 @@ namespace Sibur.ViewModels
         private async void ChangeProfileInfo(object obj)
         {
             EditProfileViewModel epvm = new EditProfileViewModel(Globals.CurrentUser, this);
-            await Navigation.PushAsync(new EditProfilePage(epvm));
+            await Navigation.PushModalAsync(new EditProfilePage(epvm));
         }
         private async void Quit(object obj)
         {

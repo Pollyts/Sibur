@@ -44,6 +44,11 @@ namespace Sibur.Views
         {
             changeavatar = false;
             photo = await MediaPicker.PickPhotoAsync();
+            if (photo != null)
+            {
+                Avatar_Image.Source = ImageSource.FromFile(photo.FullPath);
+                changeavatar = true;
+            }
         }
         public void GetImage()
         {

@@ -84,7 +84,7 @@ namespace Sibur.ViewModels
             if (ifcan)
             {
                 editprofilepage.Sucess();
-                await Navigation.PopAsync();
+                await Navigation.PopModalAsync();
                 ProfileViewModel.QuitCommand.Execute(null);
             }
             else
@@ -94,7 +94,7 @@ namespace Sibur.ViewModels
         }        
         private async void GoBack()
         {
-            await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
         }        
     }
 }
