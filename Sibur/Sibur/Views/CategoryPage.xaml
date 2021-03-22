@@ -53,8 +53,10 @@ x:Class="Sibur.Views.CategoryPage">
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <local:CustomEntry  Text="{Binding NewCategory.Name}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Placeholder="Добавьте новую категорию" PlaceholderColor="#124B30" Margin="20,0,10,0" >
-                </local:CustomEntry>
+                <Frame  BorderColor="#008993" Padding="0" CornerRadius="23.5" Margin="0">
+                    <local:CustomEntry  Text="{Binding NewCategory.Name}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Placeholder="Добавьте новую категорию" PlaceholderColor="#124B30" Margin="20,0,10,0" >
+                    </local:CustomEntry>
+                </Frame>
                 <Button Grid.Column="1" Text="Добавить" BackgroundColor="#008993" Padding="10" Margin="10,0,10,0" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" CornerRadius="23"  Command="{Binding CreateCategoryCommand}"/>
             </Grid>
             <Grid Grid.Row="5" Margin="20" >
