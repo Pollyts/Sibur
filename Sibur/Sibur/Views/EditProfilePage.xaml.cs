@@ -58,7 +58,7 @@ namespace Sibur.Views
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Ура, получилось", "ОК");
+            DisplayAlert("Успешно", "Данные успешно обновлены", "ОК");
         }
     }
 }

@@ -30,7 +30,11 @@ namespace Sibur.Views
         }
         public void Fail()
         {
-            DisplayAlert("Провалено", "Где-то косяк", "ОK");
+            DisplayAlert("Ошибка", "Введены некорректные данные", "ОK");
+        }
+        public void FailServer()
+        {
+            DisplayAlert("Ошибка", "Связь с сервером прервана. Попробуйте еще раз", "ОK");
         }
     }
 }
