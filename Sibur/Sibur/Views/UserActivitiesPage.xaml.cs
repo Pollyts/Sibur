@@ -17,13 +17,17 @@ namespace Sibur.Views
         public UserActivitiesPage()
         {
             InitializeComponent();
-            viewModel = new UserActivitiesViewModel() { Navigation = this.Navigation };
+            viewModel = new UserActivitiesViewModel() { Navigation = this.Navigation, activitiesPage=this };
             BindingContext = viewModel;
         }
         protected override async void OnAppearing()
         {
+            viewModel.IsBusy = true;
+            ButtonsVisibility.IsVisible = false;
+            await viewModel.GetCategories();
             await viewModel.GetActivities();
             base.OnAppearing();
+            viewModel.IsBusy = false;
         }
         private async void SelectItemCheck(object sender, SelectedItemChangedEventArgs e)
         {
@@ -32,14 +36,35 @@ namespace Sibur.Views
                 ActWithCatGet currentact = ActivitiesList.SelectedItem as ActWithCatGet;
                 await Navigation.PushModalAsync(new CurrentActivity(currentact));
             }
+            else
+            {
+                ButtonsVisibility.IsVisible = true;
+            }
+        }
+        private async void ChangeSort(object sender, EventArgs args)
+        {
+            if (L_Sort.Text == "По имени")
+            {
+                viewModel.SortByName();
+                L_Sort.Text = "По дате";
+            }
+            else
+            {
+                viewModel.SortByDate();
+                L_Sort.Text = "По имени";
+            }
+        }
+        void picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
         }
         public void Fail()
         {
-            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+            DisplayAlert("Ошибка", "Не удалось соединиться с сервером. Попробуйте позднее", "ОK");
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Ура, получилось", "ОК");
+            DisplayAlert("Успешно", "Мероприятие удалено", "ОК");
         }
     }
 }

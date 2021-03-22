@@ -17,7 +17,6 @@ namespace Sibur.Views
         public Activities()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             viewModel = new ActivitiesViewModel() { Navigation = this.Navigation, ActivitiesPage=this };
             BindingContext = viewModel;
         }
