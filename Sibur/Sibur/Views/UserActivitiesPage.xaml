@@ -40,7 +40,7 @@
                         <RowDefinition Height="Auto"/>   
                 </Grid.RowDefinitions>
                    <SearchBar  x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                    <ListView Grid.Row="1" x:Name="ActivitiesList"  ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                    <ListView Grid.Row="1" x:Name="ActivitiesList"  ItemsSource="{Binding activities}" ItemSelected="SelectItemCheck" SelectionMode="Single" HasUnevenRows="true">
                         <ListView.ItemTemplate >
                             <DataTemplate>
                                 <ViewCell>

@@ -37,7 +37,7 @@ x:Class="Sibur.Views.CategoryPage">
                 <SearchBar x:Name="searchBar" Text="{Binding SearchText, Mode=TwoWay}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
             </Frame>
             <Frame Grid.Row="3" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="True" Padding="10">
-                <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}" VerticalScrollBarVisibility="Never">
+                <CollectionView HeightRequest="250" SelectionChanged="OnCollectionViewSelectionChanged" x:Name="CatCollection" SelectionMode="Multiple" ItemsSource="{Binding categories}">
                     <!--SelectedItems="{Binding selectedcats, Mode=TwoWay}"-->
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

@@ -32,7 +32,7 @@
         <Label Text="Рейтинг" Grid.Column="1" HorizontalTextAlignment="End"/>
         </Grid>
             <Grid Grid.Row="4">
-            <ListView   x:Name="RankList" ItemsSource="{Binding CurrentRank}" ItemSelected="SelectItemCheck" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+            <ListView   x:Name="RankList" ItemsSource="{Binding CurrentRank}" ItemSelected="SelectItemCheck" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
