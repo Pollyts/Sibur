@@ -26,7 +26,7 @@ namespace Sibur.Views
             if ((!viewmodel.isedit)&&(viewmodel.currentact.Id!=0))
             {
                 viewmodel.isedit = true;
-                B_AddorEdit.Text = "Редактировать";
+                B_AddorEdit.Text = "Сохранить";
                 L_Name.Text = "РЕДАКТИРОВАТЬ МЕРОПРИЯТИЕ";
                 await viewmodel.GetCategoriesForEditing();
                 setCategoriesList();
