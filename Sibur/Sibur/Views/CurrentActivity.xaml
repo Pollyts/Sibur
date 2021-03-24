@@ -26,48 +26,48 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                <ImageButton  Command="{Binding GoBackCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancelblack.png"/>
+                <ImageButton  Command="{Binding GoBackCommand}" Margin="10,15,0,0" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancelblack.png"/>
                 <Label Grid.Row="1" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="{Binding Name}" FontAttributes="Bold" TextColor="Black" FontSize="24"/>
-                <Button Grid.Row="2" x:Name="SignUpButton" Command="{Binding SignUpCommand}" Text="Записаться"  BackgroundColor="#84CB35" FontSize="18" TextColor="#FFFFFF" CornerRadius="24" Margin="31,15,10,0" Padding="10" VerticalOptions="Fill" HorizontalOptions="End" />
-                <Label Grid.Row="3" Text="Описание:" Margin="10" FontSize="16" TextColor="#008993"/>
-                <Label Grid.Row="4" Text="{Binding Description}" Margin="10" FontSize="16" TextColor="Black"/>
-                <Label Grid.Row="5" Text="Категории:"  Margin="10" FontSize="16" TextColor="#008993"/>
-                <Label Grid.Row="6" Text="{Binding Categories}" Margin="10" FontSize="16" TextColor="Black"/>
+                <Button Grid.Row="2" x:Name="SignUpButton" Command="{Binding SignUpCommand}" Text="Записаться"  BackgroundColor="#84CB35" FontSize="18" TextColor="#FFFFFF" CornerRadius="24" Margin="31,0,10,0" Padding="10" VerticalOptions="Fill" HorizontalOptions="End" />
+                <Label Grid.Row="3" Text="Описание:" Margin="10,0,0,10" FontSize="16" TextColor="#008993"/>
+                <Label Grid.Row="4" Text="{Binding Description}" Margin="10,0,10,10" FontSize="16" TextColor="Black"/>
+                <Label Grid.Row="5" Text="Категории:"  Margin="10,0,0,10" FontSize="16" TextColor="#008993"/>
+                <Label Grid.Row="6" Text="{Binding Categories}" Margin="10,0,10,10" FontSize="16" TextColor="Black"/>
                 <Grid Grid.Row="7" >
                     <Grid.ColumnDefinitions>
                                      <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                <Label Text="Дата начала:" Margin="10" FontSize="16" TextColor="#008993"/>
-                    <Label Grid.Column="1" Text="{Binding StartDate}" Margin="10" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
+                <Label Text="Дата начала:" Margin="10,0,0,2" FontSize="16" TextColor="#008993"/>
+                    <Label Grid.Column="1" Text="{Binding StartDate}" Margin="0,2,10,10" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
                 </Grid>
                 <Grid Grid.Row="8" >
                     <Grid.ColumnDefinitions>
                                      <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                <Label Text="Дата окончания:" Margin="10" FontSize="16" TextColor="#008993"/>
-                    <Label Grid.Column="1" Text="{Binding EndDate}" Margin="10"  HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
+                <Label Text="Дата окончания:" Margin="10,0,0,2" FontSize="16" TextColor="#008993"/>
+                    <Label Grid.Column="1"  Text="{Binding EndDate}" Margin="0,2,10,10"  HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
                 </Grid>                
-                <Label Grid.Row="9" Text="Комментарии"  Margin="10,10,0,10" FontSize="16" TextColor="#008993"/>
+                <Label Grid.Row="9" Text="Комментарии"  Margin="10,0,0,0" FontSize="16" TextColor="#008993"/>
                 <Grid Grid.Row="10" >
                     <Grid.ColumnDefinitions>
                                      <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="AUTO"/>
                     </Grid.ColumnDefinitions>
-                <Frame BorderColor="#008993" Margin="10" Padding="5" CornerRadius="23.5">
+                <Frame BorderColor="#008993" Margin="10,2,5,10" Padding="5" CornerRadius="23.5">
                         <local:CustomEntry VerticalOptions="Center" HorizontalOptions="FillAndExpand"  Text="{Binding TextComment}" FontSize="16" Placeholder="Добавьте комментарий"></local:CustomEntry>
                 </Frame>
                 <Button Grid.Column="1" Command="{Binding AddCommentCommand}" Text="Добавить" Padding="10" Margin="0,0,10,10" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="#84CB35" FontSize="16" TextColor="#FFFFFF" CornerRadius="24" />
                 </Grid>
-                <Frame Grid.Row="11" BackgroundColor="White" CornerRadius="20" Margin="10" HasShadow="False" Padding="5">
+                <Frame Grid.Row="11" BackgroundColor="White" CornerRadius="20" Margin="10,0,10,0" HasShadow="True" Padding="6">
                     <Grid>
                     <ListView VerticalOptions="FillAndExpand" x:Name="CommentList" ItemsSource="{Binding comments}" HasUnevenRows="true">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame Margin="1" Padding="0" BorderColor="#008993" >
+                                        <Frame Margin="2" Padding="2" BorderColor="#008993" >
                                             <StackLayout Padding="0">
                                                 <Label Text="{Binding UserName}" FontSize="Small" />
                                             <Label Text="{Binding Text}" FontSize="Medium" />
