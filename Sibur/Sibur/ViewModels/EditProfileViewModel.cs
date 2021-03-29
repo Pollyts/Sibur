@@ -52,14 +52,14 @@ namespace Sibur.ViewModels
             }
             if (ifcan&&ifcanavatar)
             {
-                Globals.CurrentUser = await db.Entry(currentuser.Mail, currentuser.Password);
+                Globals.CurrentUser = await db.Entry(currentuser.Mail, currentuser.Password);                
+                ProfileViewModel.UpdateInfo();
                 ProfileViewModel.UpdateAvatar();
-                //ProfileViewModel.UpdateInfo();
-                editprofilepage.Sucess();                
+                await editprofilepage.Sucess();                
             }
             else
             {
-                editprofilepage.Fail();
+                await editprofilepage.Fail();
             }
         }
         private async Task<bool> AddUserAvatar()
