@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Sibur;assembly=Sibur"
              x:Class="Sibur.Views.Activities">
     <ContentPage.Content>                  
             <Grid Margin="5">
@@ -65,9 +64,9 @@ HorizontalOptions="Center"  VerticalOptions="Center" Padding="20">
                                             <Label Text="{Binding name}" TextColor="#008993" FontSize="Medium" />
                                             <Label Text="{Binding desc}" FontSize="Small" />
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding startD, StringFormat='{0:d}'}" TextColor="#124B30" FontSize="Small" />
+                                                <Label Text="{Binding startD}" TextColor="#124B30" FontSize="Small" />
                                                 <Label Text=" - " TextColor="#124B30"/>
-                                                <Label Text="{Binding endD, StringFormat='{0:d}'}" TextColor="#124B30" FontSize="Small" />
+                                                <Label Text="{Binding endD}" TextColor="#124B30" FontSize="Small" />
                                             </StackLayout>
                                         </StackLayout>
                                         </ViewCell.View>

@@ -131,6 +131,7 @@ namespace Sibur.Models
         public int UserId { get; set; }
         public float kpi { get; set; }
         public string name { get; set; }
+        public string role { get; set; }
 
         public UserRank()
         {

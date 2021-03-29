@@ -81,5 +81,16 @@ namespace Sibur.Requests
             return JsonConvert.DeserializeObject<User>(
                 await response.Content.ReadAsStringAsync());
         }
+        public async Task<bool> MakeAdmin(int userid)
+        {
+            HttpClient client = GetClient();
+            string requesturi = Url + $"/Admin/{userid}";
+            var response = await client.GetAsync(requesturi);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

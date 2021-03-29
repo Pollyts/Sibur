@@ -27,6 +27,14 @@ namespace Sibur.Views
             {
                 Grid_ForAdmin.IsVisible = true;
                 UserRank ur = RankList.SelectedItem as UserRank;
+                if (ur.role!=null)
+                {
+                    B_MakeAdmin.IsEnabled = false;
+                }
+                else
+                {
+                    B_MakeAdmin.IsEnabled = true;
+                }
             }
             else
                 RankList.SelectedItem = null;
@@ -37,11 +45,11 @@ namespace Sibur.Views
         }
         public void Fail()
         {
-            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+            DisplayAlert("Провалено", "Ошибка. Попробуйте еще раз", "ОK");
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Ура, получилось", "ОК");
+            DisplayAlert("Успешно", "Данные успешно обновлены", "ОК");
         }
         protected override async void OnAppearing()
         {

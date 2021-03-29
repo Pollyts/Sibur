@@ -23,10 +23,13 @@ namespace Sibur.Views
         protected override async void OnAppearing()
         {
             viewModel.IsBusy = true;
+            ActivitiesList.IsVisible = false;
             ButtonsVisibility.IsVisible = false;
+            picker.SelectedIndex = -1;
             await viewModel.GetCategories();
             await viewModel.GetActivities();
             base.OnAppearing();
+            ActivitiesList.IsVisible = true;
             viewModel.IsBusy = false;
         }
         private async void SelectItemCheck(object sender, SelectedItemChangedEventArgs e)
@@ -34,7 +37,7 @@ namespace Sibur.Views
             if (!viewModel.ForAdmin)
             {
                 ActWithCatGet currentact = ActivitiesList.SelectedItem as ActWithCatGet;
-                await Navigation.PushModalAsync(new CurrentActivity(currentact));
+                viewModel.OpenActivityCommand.Execute(currentact);
             }
             else
             {
@@ -56,7 +59,8 @@ namespace Sibur.Views
         }
         void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
+            if (picker.SelectedIndex != -1)
+                viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
         }
         public void Fail()
         {

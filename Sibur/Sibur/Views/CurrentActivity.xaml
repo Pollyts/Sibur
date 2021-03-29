@@ -39,7 +39,7 @@
                                     <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                 <Label Text="Дата начала:" Margin="10,0,0,2" FontSize="16" TextColor="#008993"/>
-                    <Label Grid.Column="1" Text="{Binding StartDate}" Margin="0,2,10,10" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
+                <Label Grid.Column="1" Text="{Binding StartDate, StringFormat='{0:d}'}" Margin="0,2,10,10" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
                 </Grid>
                 <Grid Grid.Row="8" >
                     <Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
                                     <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                 <Label Text="Дата окончания:" Margin="10,0,0,2" FontSize="16" TextColor="#008993"/>
-                    <Label Grid.Column="1"  Text="{Binding EndDate}" Margin="0,2,10,10"  HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
+                <Label Grid.Column="1"  Text="{Binding EndDate, StringFormat='{0:d}'}" Margin="0,2,10,10"  HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
                 </Grid>                
                 <Label Grid.Row="9" Text="Комментарии"  Margin="10,0,0,2" FontSize="16" TextColor="#008993"/>
                 <Grid Grid.Row="10" >
@@ -67,8 +67,8 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame Margin="2" Padding="2" BorderColor="#008993" >
-                                            <StackLayout Padding="0">
+                                        <Frame Margin="2" Padding="2" CornerRadius="25" BorderColor="#84CB35" >
+                                            <StackLayout Padding="10,0">
                                                 <Label Text="{Binding UserName}" FontSize="Small" />
                                             <Label Text="{Binding Text}" FontSize="Medium" />
                                             </StackLayout>
@@ -78,7 +78,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Label x:Name="L_NoComments" HorizontalOptions="Center" FontSize="Large" Margin="5" IsVisible="true" Text="Нет комментариев"/>
+                    <Label x:Name="L_NoComments" HorizontalOptions="Center" FontSize="16" Margin="5" IsVisible="true" Text="Нет комментариев"/>
                     </Grid>
                 </Frame>
             </Grid>

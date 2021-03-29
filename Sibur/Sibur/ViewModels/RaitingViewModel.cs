@@ -25,11 +25,13 @@ namespace Sibur.ViewModels
         public ObservableCollection<UserRank> AllCurrentRanks { get; set; }
         public RaitingRequests db = new RaitingRequests();
         public UserRequests dbuser = new UserRequests();
+        public string whattype;
         public RaitingPage raitingPage;
         public INavigation Navigation { get; set; }
 
         public RaitingViewModel()
         {
+            whattype = "all";
             CurrentRank = new ObservableCollection<UserRank>();
             UsersMonthRank = new ObservableCollection<UserRank>();
             UsersRank = new ObservableCollection<UserRank>();
@@ -55,19 +57,18 @@ namespace Sibur.ViewModels
         }
         private async void MakeAdmin(object currus)
         {
-            //UserRank ur = currus as UserRank;
-            //bool ifcan = await dbuser.Delete(ur.UserId);
-            //if (ifcan)
-            //{
-            //    raitingPage.MakeFalseVisibility();
-            //    raitingPage.Sucess();
-            //    await GetRanks();
-            //}
-            //else
-            //{
-            //    raitingPage.Fail();
-            //}
-            raitingPage.Fail();
+            UserRank ur = currus as UserRank;
+            bool ifcan = await dbuser.MakeAdmin(ur.UserId);
+            if (ifcan)
+            {
+                raitingPage.MakeFalseVisibility();
+                raitingPage.Sucess();
+                await GetRanks();
+            }
+            else
+            {
+                raitingPage.Fail();
+            }
         }
         private string _searchText { get; set; }
         public string SearchText
@@ -134,7 +135,10 @@ namespace Sibur.ViewModels
                 UsersMonthRank.RemoveAt(UsersMonthRank.Count - 1);
             foreach (UserRank ur in urank)
                 UsersMonthRank.Add(ur);
-            ShowRank();
+            if (whattype == "all")
+                ShowRank();
+            else
+                ShowMonthRank();
             raitingPage.MakeFalseVisibility();
         }
 
@@ -147,6 +151,7 @@ namespace Sibur.ViewModels
                 CurrentRank.Add(ur);
             AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
             raitingPage.MakeFalseVisibility();
+            whattype = "all";
         }
         private void ShowMonthRank()
         {
@@ -157,6 +162,7 @@ namespace Sibur.ViewModels
                 CurrentRank.Add(ur);
             AllCurrentRanks = new ObservableCollection<UserRank>(CurrentRank);
             raitingPage.MakeFalseVisibility();
+            whattype = "month";
         }
     }
 }
