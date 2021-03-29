@@ -23,12 +23,13 @@ namespace Sibur.Views
 
         protected override async void OnAppearing()
         {
-            viewModel.IsBusy = true;
+            viewModel.IsBusy = true;            
             ButtonsVisibility.IsVisible = false;
+            picker.SelectedIndex = -1;
             await viewModel.GetCategories();
             await viewModel.GetActivities();            
             base.OnAppearing();
-            viewModel.IsBusy = false;
+            viewModel.IsBusy = false;            
         }
         private async void SelectItemCheck(object sender, SelectedItemChangedEventArgs e)
         {
@@ -57,6 +58,7 @@ namespace Sibur.Views
         }
         void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(picker.SelectedIndex!=-1)
             viewModel.SelectCategory(picker.Items[picker.SelectedIndex]);
         }
         public void Fail()
