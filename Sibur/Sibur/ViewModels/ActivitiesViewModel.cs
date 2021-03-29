@@ -31,6 +31,7 @@ namespace Sibur.ViewModels
 
         public ActivitiesViewModel()
         {
+            
             categories = new ObservableCollection<string>();
             IsBusy = false;
             activities = new ObservableCollection<ActWithCatGet>();
