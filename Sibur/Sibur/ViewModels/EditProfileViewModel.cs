@@ -13,11 +13,12 @@ using System.Net.Http;
 
 namespace Sibur.ViewModels
 {
-    public class EditProfileViewModel
+    public class EditProfileViewModel: INotifyPropertyChanged
     {
         public ICommand EditUserProfileCommand { get; set; }
         public ICommand DeleteUserProfileCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation { get; set; }
         ProfileViewModel ProfileViewModel;
 
@@ -30,16 +31,32 @@ namespace Sibur.ViewModels
         public User currentuser { get; set; }
         public EditProfileViewModel(User user, ProfileViewModel pvm)
         {
+            IsBusy = false;
             ProfileViewModel = pvm;
             currentuser = (User)user.Clone();
             EditUserProfileCommand = new Command(EditUserProfile);
             GoBackCommand = new Command(GoBack);
             DeleteUserProfileCommand = new Command(DeleteUserProfile);
-        }    
-        
+        }
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                isBusy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
+        protected void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
         //Изменить информацию в профиле
         private async void EditUserProfile()
         {
+            IsBusy = true;
             bool ifcanavatar=true;
             if(editprofilepage.changeavatar)
             {
@@ -61,6 +78,7 @@ namespace Sibur.ViewModels
             {
                 await editprofilepage.Fail();
             }
+            IsBusy = false;
         }
         private async Task<bool> AddUserAvatar()
         {
@@ -80,16 +98,19 @@ namespace Sibur.ViewModels
 
         private async void DeleteUserProfile()
         {
+            IsBusy = true;
             bool ifcan = await db.Delete(currentuser.Id);
             if (ifcan)
             {
                 editprofilepage.Sucess();
                 await Navigation.PopModalAsync();
+                IsBusy = false;
                 ProfileViewModel.QuitCommand.Execute(null);
             }
             else
             {
                 editprofilepage.Fail();
+                IsBusy = false;
             }
         }        
         private async void GoBack()

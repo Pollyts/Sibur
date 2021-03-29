@@ -4,16 +4,17 @@
              x:Class="Sibur.Views.EditProfilePage" BackgroundColor="#008993"
              xmlns:local="clr-namespace:Sibur;assembly=Sibur">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView>            
             <Grid VerticalOptions="FillAndExpand">                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>                
                 <ImageButton  Command="{Binding GoBackCommand}"  HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Source="cancel.png"/>
-                <Label Grid.Row="1" Margin="5,5,5,30" x:Name="L_Name" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="РЕДАКТИРОВАНИЕ ПРОФИЛЯ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
+                <Label Grid.Row="1" Margin="10,5,10,30" x:Name="L_Name" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="РЕДАКТИРОВАНИЕ ПРОФИЛЯ" FontAttributes="Bold" TextColor="White" FontSize="24"/>
                 <Grid Grid.Row="2" Margin="0">
                     <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -49,8 +50,14 @@
                 <Frame Grid.Row="8" BackgroundColor="White" Margin="30,0,30,0" Padding="0" CornerRadius="23.5">
                     <local:CustomEntry Text="{Binding currentuser.Password, Mode=TwoWay}" FontSize="16" Placeholder="Добавьте пароль" PlaceholderColor="#124B30" Margin="30,0,30,0"></local:CustomEntry>
                 </Frame>
-                    </Grid> 
-            <Grid Grid.Row="3" VerticalOptions="FillAndExpand">
+                    </Grid>
+                <StackLayout  Grid.Row="3" IsVisible="{Binding IsBusy}"
+HorizontalOptions="Center"  VerticalOptions="Center" Padding="0">
+                    <Label Text="Ожидайте..." TextColor="White" HorizontalOptions="Center" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" Color="White" >
+                    </ActivityIndicator>
+                </StackLayout>
+                <Grid Grid.Row="4" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
@@ -58,8 +65,9 @@
                 </Grid.RowDefinitions>
                 <Button  Command="{Binding EditUserProfileCommand}" Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,30,30,0" VerticalOptions="End"  />
                 <Button Grid.Row="1" Command="{Binding DeleteUserProfileCommand}" Text="УДАЛИТЬ ПРОФИЛЬ" BackgroundColor="#008993" FontSize="18" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" CornerRadius="24" Margin="31,20,30,30" VerticalOptions="End" />
-                </Grid> 
-                </Grid>                
+                </Grid>
+                
+            </Grid>                
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
