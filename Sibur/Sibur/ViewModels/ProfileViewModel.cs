@@ -33,12 +33,11 @@ namespace Sibur.ViewModels
         {
             View.GetImage();
         }
-        //public void UpdateInfo()
-        //{
-        //    CurrentUser = Globals.CurrentUser;
-        //    OnPropertyChanged("Name");
-        //    OnPropertyChanged("Mail");
-        //}
+        public void UpdateInfo()
+        {
+            CurrentUser = Globals.CurrentUser;
+            View.UpdateInfo();
+        }
 
         protected void OnPropertyChanged(string propName)
         {

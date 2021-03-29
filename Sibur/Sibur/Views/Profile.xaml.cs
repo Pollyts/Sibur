@@ -31,6 +31,11 @@ namespace Sibur.Views
                 Image_Avatar.Source = ImageSource.FromStream(() => new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img));
             }
         }
+        public void UpdateInfo()
+        {
+            L_FIO.Text = Globals.CurrentUser.Name.Trim();
+            L_Mail.Text = Globals.CurrentUser.Mail.Trim();
+        }
 
     }
 }

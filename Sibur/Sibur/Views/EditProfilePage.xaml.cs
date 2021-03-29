@@ -57,13 +57,13 @@ namespace Sibur.Views
                 Avatar_Image.Source = ImageSource.FromStream(() => new MemoryStream(Globals.CurrentUser.UserImgs.ToArray()[0].Img));
             }
         }
-        public void Fail()
+        public async Task Fail()
         {
-            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+            await DisplayAlert("Ошибка", "Не удалось соединиться с сервером. Попробуйте позднее", "ОK");
         }
-        public void Sucess()
+        public async Task Sucess()
         {
-            DisplayAlert("Успешно", "Данные успешно обновлены", "ОК");
+            await DisplayAlert("Успешно", "Мероприятие удалено", "ОК");
         }
     }
 }

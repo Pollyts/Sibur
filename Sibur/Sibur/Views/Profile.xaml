@@ -71,7 +71,7 @@
                                   <ColumnDefinition Width="*"/> 
                                  </Grid.ColumnDefinitions>
                             <Label Text="ФИО" FontSize="17" />
-                            <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center" FontSize="17" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
+                            <Label Grid.Column="1" x:Name="L_FIO" Text="{Binding Name}" VerticalOptions="Center" FontSize="17" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                         </Grid>
                         <Grid Grid.Row="3"  Margin="10,0,0,0">
                             <Grid.ColumnDefinitions>
@@ -79,7 +79,7 @@
                                   <ColumnDefinition Width="*"/> 
                                  </Grid.ColumnDefinitions>
                             <Label Text="Почта" FontSize="17"/>
-                            <Label Grid.Column="1"  Text="{Binding Mail}" FontSize="17" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
+                            <Label Grid.Column="1" x:Name="L_Mail" Text="{Binding Mail}" FontSize="17" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                         </Grid>
                         <Grid Grid.Row="4" Margin="10,0,0,0">
                             <Grid.ColumnDefinitions>
