@@ -30,11 +30,11 @@ namespace Sibur.Views
         }
         public void Fail()
         {
-            DisplayAlert("Провалено", "Косяк в данных", "ОK");
+            DisplayAlert("Ошибка", "Попробуйте позднее", "ОK");
         }
         public void Sucess()
         {
-            DisplayAlert("Успешно", "Ура, получилось", "ОК");
+            DisplayAlert("Успешно", "Данные обновлены", "ОК");
         }
         public void CheckComments()
         {
