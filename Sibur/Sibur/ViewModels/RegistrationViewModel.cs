@@ -53,7 +53,7 @@ namespace Sibur.ViewModels
         private async void SaveUser(object userObject)
         {
             User usr = userObject as User;
-            if (usr != null)
+            if ((usr != null)&&(usr.Mail != null)&&(usr.Password!= null)&&(usr.Name != null))
             {
                 IsBusy = true;
                 Globals.CurrentUser = await db.Add(usr);
