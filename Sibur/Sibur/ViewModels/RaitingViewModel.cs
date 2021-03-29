@@ -55,18 +55,19 @@ namespace Sibur.ViewModels
         }
         private async void MakeAdmin(object currus)
         {
-            UserRank ur = currus as UserRank;
-            bool ifcan = await dbuser.Delete(ur.UserId);
-            if (ifcan)
-            {
-                raitingPage.MakeFalseVisibility();
-                raitingPage.Sucess();
-                await GetRanks();
-            }
-            else
-            {
-                raitingPage.Fail();
-            }
+            //UserRank ur = currus as UserRank;
+            //bool ifcan = await dbuser.Delete(ur.UserId);
+            //if (ifcan)
+            //{
+            //    raitingPage.MakeFalseVisibility();
+            //    raitingPage.Sucess();
+            //    await GetRanks();
+            //}
+            //else
+            //{
+            //    raitingPage.Fail();
+            //}
+            raitingPage.Fail();
         }
         private string _searchText { get; set; }
         public string SearchText

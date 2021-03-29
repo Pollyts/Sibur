@@ -23,7 +23,8 @@ namespace Sibur.Views
 
         protected override async void OnAppearing()
         {
-            viewModel.IsBusy = true;            
+            viewModel.IsBusy = true;
+            ActivitiesList.SelectedItem = null;
             ButtonsVisibility.IsVisible = false;
             picker.SelectedIndex = -1;
             await viewModel.GetCategories();

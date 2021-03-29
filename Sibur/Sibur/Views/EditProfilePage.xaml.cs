@@ -63,7 +63,7 @@ namespace Sibur.Views
         }
         public async Task Sucess()
         {
-            await DisplayAlert("Успешно", "Мероприятие удалено", "ОК");
+            await DisplayAlert("Успешно", "Данные успешно обновлены", "ОК");
         }
     }
 }
